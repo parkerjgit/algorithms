@@ -9,7 +9,7 @@ namespace ArraysTest
         [TestMethod]
         public void TestIsAnagram()
         {
-            bool result = Anagrams.IsAnagram("abc", "bcaj");
+            bool result = Anagrams.IsAnagram("abc", "bca");
             Assert.IsTrue(result);
         }
     }
