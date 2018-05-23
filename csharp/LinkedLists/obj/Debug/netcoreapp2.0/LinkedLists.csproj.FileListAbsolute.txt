@@ -1,0 +1,4 @@
+E:\mydocs\dev\algorithms\csharp\LinkedLists\obj\Debug\netcoreapp2.0\LinkedLists.csprojResolveAssemblyReference.cache
+E:\mydocs\dev\algorithms\csharp\LinkedLists\obj\Debug\netcoreapp2.0\LinkedLists.csproj.CoreCompileInputs.cache
+E:\mydocs\dev\algorithms\csharp\LinkedLists\obj\Debug\netcoreapp2.0\LinkedLists.AssemblyInfoInputs.cache
+E:\mydocs\dev\algorithms\csharp\LinkedLists\obj\Debug\netcoreapp2.0\LinkedLists.AssemblyInfo.cs

@@ -4,7 +4,7 @@ Given two strings, write a function to check if strings are anagrams of each oth
 the same characters in different order.
 """
 
-def is_anagram(s1, s2):
+def is_anagram(s1: str, s2: str) -> bool:
     """
     solution:
     check if two strings are anagrams. First make sure they are same length. Then count frequency of each character
@@ -29,7 +29,7 @@ def is_anagram(s1, s2):
     for char in s1:
         char_counts[char.lower()] += 1
 
-    # decrementing char counts of each char in s2
+    # decrement char counts of each char in s2
     for char in s2:
 
         if char_counts[char.lower()] <= 0:
