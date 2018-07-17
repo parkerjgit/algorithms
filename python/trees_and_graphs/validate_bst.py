@@ -32,7 +32,7 @@ def validate_bst(root):
             return False
 
         # test this node in order
-        if prev and node.data < prev:
+        if prev and node.data <= prev:
             return False
         prev = node.data
 
