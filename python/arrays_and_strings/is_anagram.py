@@ -36,7 +36,7 @@ def is_anagram(s1: str, s2: str) -> bool:
             # count is zero before decrement, so not anagrams
             return False
         else:
-            char_counts[char.lower()] += 1
+            char_counts[char.lower()] -= 1
 
     # they are anagrams!
     return True

@@ -51,9 +51,9 @@ function longestSubstring2(str) {
 
 //console.log(longestSubstring2('abcabcbb'));
 
-describe('longest substring', function() {
-  it('returns first longest non-repeating substring', function() {
-    expect(longestSubstring2('abaeaf')).toEqual('ab');
-  });
-});
+// describe('longest substring', function() {
+//   it('returns first longest non-repeating substring', function() {
+//     expect(longestSubstring2('abaeaf')).toEqual('ab');
+//   });
+// });
 
