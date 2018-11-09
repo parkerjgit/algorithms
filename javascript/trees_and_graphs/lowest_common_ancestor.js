@@ -14,20 +14,20 @@ const findLCA = (root , n1, n2) => {
     const _hasTarget = (node) => 
         (node && (node.count > 0))
 
-    // current node is a target and other is in a subtree OR
+    // found LCA if current node is a target and other is in a subtree OR
     // one target in each subtree
     const _foundLCA = (root, left, right) =>      
         ((_isTarget(root) && (_hasTarget(left) || _hasTarget(right))) ||
         (!_isTarget(root) && (_hasTarget(left) && _hasTarget(right))))
 
-    // current node is a target and other is NOT in a subtree
+    // found Target if current node is a target and other is NOT in a subtree
     const _foundTarget = (root, left, right) =>
         (_isTarget(root) && !(_hasTarget(left) || _hasTarget(right)))
     
     const _find = (root, n1, n2) => {
      
         if (!root) 
-            return { lca: null, count: 0 }
+            return {lca: null, count: 0}
 
         // recurse left and right (post-order)
         let left = _find(root.left, n1, n2);
@@ -35,11 +35,10 @@ const findLCA = (root , n1, n2) => {
 
         if (_foundLCA(root, left, right)) 
             return {lca: root, count: 2};
-
         if (_foundTarget(root, left, right))
             return {lca: null, count: 1};
 
-        // nothing special about this node, so forward results upward
+        // nothing special about this node, so pass results up
         return (left.count > 0) ? left : right;
     }
 
