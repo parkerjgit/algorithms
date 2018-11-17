@@ -14,6 +14,7 @@ source: EPI 13.6
 ### Boardwork (Design)
 
 ![](../images/epi13.9-2.jpg)
+<img src="../images/epi13.9-2.jpg"/>
 
 ### Analysis
 
