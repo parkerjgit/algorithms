@@ -1,7 +1,22 @@
-/*
-Problem: Implement of min heap
-*/
+## Min Heap
 
+### Problem
+
+Implement a min heap.
+
+### Boardwork (Design)
+
+![](../../images/minheap-2.jpg)
+
+### Analysis
+
+xxx
+
+### Codework (Test)
+
+Javascript implementation.
+
+```javascript
 function minHeap() {
     this.content = [];
 }
@@ -48,22 +63,9 @@ minHeap.prototype = {
         return temp;
     }
 }
+```
+(from [min_heap.js](../../javascript/heaps/min_heap.js))
 
-// test
-describe('minHeap', function() {
-    beforeEach(function() {
-        this.heap = new minHeap();
-        [10, 3, 4, 8, 2, 9, 7, 1, 2, 6, 5].forEach(item => this.heap.push(item))
-    })
-    it('correctly pushes items to the head', function() {       
-        expect(this.heap.content).toEqual([1, 2, 4, 2, 5, 9, 7, 10, 3, 8, 6])
-    })
-    it('correctly pops items from the head', function() {
-        let popped = [];
-        [...Array(this.heap.content.length).keys()].forEach(_ => {
-            popped.push(this.heap.pop())
-        });    
-        expect(popped).toEqual([1, 2, 2, 3, 4, 5, 6, 7, 8, 9, 10])
-    })
-    
-})
+
+
+
