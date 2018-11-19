@@ -1,8 +1,38 @@
 /*
-Problem: Implement of min heap
+Write a program which takes as input a very long sequence of numbers 
+and prints the numbers in sorted order. Each number is at most k away 
+from its correctly sorted position, ie array is k-sorted.
+
+source: EPI 10.3
 */
 
+// import MinHeap from './min_heap';
 
+function sortKSorted(arr, k) {
+    let heap = new MinHeap();
+    let result = [];
+
+    // heapify first k items
+    arr.slice(0,k+1).forEach(item => {
+        heap.push(item);
+    });
+
+    // push-pop remaining n-k items
+    arr.slice(k+1).forEach(item => {
+        result.push(heap.pop());
+        heap.push(item);
+    });
+
+    // pop remaining k items off the heap
+    [...Array(k+1)].forEach(_ => {
+        result.push(heap.pop());
+    });
+
+    return result;
+}
+
+
+// min heap class
 function MinHeap() {
     this.content = [];
 }
@@ -50,23 +80,9 @@ MinHeap.prototype = {
     }
 }
 
-// export default MinHeap;
-
 // test
-describe('minHeap', function() {
-    beforeEach(function() {
-        this.heap = new MinHeap();
-        [10, 3, 4, 8, 2, 9, 7, 1, 2, 6, 5].forEach(item => this.heap.push(item))
+describe('sortKSorted', function() {
+    it('correctly sorts a k-sorted array', function() {
+        expect(sortKSorted([3,-1,2,6,4,5,8],2)).toEqual([-1,2,3,4,5,6,8])
     })
-    it('correctly pushes items to the head', function() {       
-        expect(this.heap.content).toEqual([1, 2, 4, 2, 5, 9, 7, 10, 3, 8, 6])
-    })
-    it('correctly pops items from the head', function() {
-        let popped = [];
-        [...Array(this.heap.content.length).keys()].forEach(_ => {
-            popped.push(this.heap.pop())
-        });    
-        expect(popped).toEqual([1, 2, 2, 3, 4, 5, 6, 7, 8, 9, 10])
-    })
-    
-})
+});
