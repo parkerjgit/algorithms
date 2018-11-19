@@ -17,7 +17,7 @@ xxx
 Javascript implementation.
 
 ```javascript
-function minHeap() {
+function MinHeap() {
     this.content = [];
 }
 minHeap.prototype = {
