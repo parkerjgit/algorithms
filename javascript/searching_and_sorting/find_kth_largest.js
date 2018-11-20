@@ -1,5 +1,5 @@
 /*
-Design an algroithm for computing the kth largest element in a n array.. Assume entries are distinct.
+Design an algroithm for computing the kth largest element in a n array. Assume entries are distinct.
 
 source: EPI 11.8
 */
