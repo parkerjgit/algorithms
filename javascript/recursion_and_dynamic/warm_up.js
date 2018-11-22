@@ -11,11 +11,11 @@
 // Top-down: fac(n) = n * fact(n-1)
 // Time: O(n!)
 // Space: O(n)
-const topDownFactorial = (n) => {
-    if (n === 0) return 1
-    if (n <= 2) return n;
-    return n * topDownFactorial(n-1);
-} 
+// const topDownFactorial = (n) => {
+//     if (n === 0) return 1
+//     if (n <= 2) return n;
+//     return n * topDownFactorial(n-1);
+// } 
 
 // Top-down with Memoization
 // Time: O(n)

@@ -1,4 +1,4 @@
-## Find kth largest elements in an array
+## Find kth largest element in an array
 
 ### Problem
 
