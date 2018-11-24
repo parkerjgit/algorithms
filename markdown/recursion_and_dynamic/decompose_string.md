@@ -1,3 +1,28 @@
+## Decompose String into words, i.e., the bedbathandbeyond problem.
+
+### Problem
+
+Given a dictionary, i.e., a set of strings, and a name, design and efficient algorithm 
+that checks whether the name is the conscatenation of a sequence of dictionary works. 
+If such a consatenation exists, return it . A dictionary word may appear more than once 
+in the sequence.
+
+source: EPI 16.7
+
+### Boardwork (Design)
+
+![](../../images/decomposestring-2.jpg)
+
+### Analysis
+
+Time: O(n^2) (Worst-case if no substring are prefixes)
+Space: O(n^2) (Worst-case if all substrings are prefixes)
+
+### Codework (Test)
+
+Javascript implementation.
+
+```javascript
 function  isDecomposable(dict, str) {
 
     const prefixes = new Set();
@@ -31,21 +56,5 @@ function  isDecomposable(dict, str) {
     // pass will have added it to the prefixes
     return prefixes.has(str);
 }
-
-//test
-describe('isDecomposable', function() {
-    beforeEach(function() {
-        this.dictionary = {
-            'a': null,
-            'man': null,
-            'plan': null,
-            'canal': null,
-            'panama': null,
-        }
-    })
-    it('return true if string can be decomposed into words in dictionary', function() {
-        expect(isDecomposable(this.dictionary, 'amanaplan')).toEqual(true);
-        expect(isDecomposable(this.dictionary, 'amanapla')).toEqual(false);
-
-    })
-})
+```
+(see [decomposestring.js](../../javascript/recursion_and_dynamic/decompose_string.js))
