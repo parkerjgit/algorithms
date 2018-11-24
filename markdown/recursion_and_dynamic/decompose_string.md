@@ -58,5 +58,3 @@ function  isDecomposable(dict, str) {
 }
 ```
 (see [decomposestring.js](../../javascript/recursion_and_dynamic/decompose_string.js))
-
-<script src="https://raw.githubusercontent.com/parkerjgit/algorithms/master/javascript/recursion_and_dynamic/decompose_string.js"></script>
