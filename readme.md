@@ -6,7 +6,7 @@
 
 ### Recursion and Dynamic Programming
 
-<a href="markdown/recursion_and_dynamic/decompose_string.md"><img src="images/decomposestring-2.jpg" width="33%" /></a> <a href="markdown/recursion_and_dynamic/knapsack_problem.md"><img src="images/knapsackproblem-2.jpg" width="33%" /></a> <a href="markdown/recursion_and_dynamic/min_path_in_triangle.md"><img src="images/min_path_in_triangle.jpg" width="33%" /></a>
+<a href="markdown/recursion_and_dynamic/decompose_string.md"><img src="images/decomposestring-2.jpg" width="33%" /></a> <a href="markdown/recursion_and_dynamic/knapsack_problem.md"><img src="images/knapsackproblem-2.jpg" width="33%" /></a> <a href="markdown/recursion_and_dynamic/min_path_in_triangle.md"><img src="images/min_path_in_triangle.jpg" width="33%" /></a> <a href="markdown/recursion_and_dynamic/n_queens.md"><img src="images/n_queens.jpg" width="33%" /></a>
 
 ### Heaps
 
