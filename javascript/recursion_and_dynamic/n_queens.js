@@ -1,6 +1,6 @@
 /*
 Write a program which returns all distinct nonattaching placements 
-of n queens on a x x n chessboard, where n is an input to the program.
+of n queens on a n x n chessboard, where n is an input to the program.
 
 source: EPI 15.2
 */
