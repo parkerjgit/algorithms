@@ -8,6 +8,10 @@
 
 <a href="markdown/recursion_and_dynamic/decompose_string.md"><img src="images/decomposestring-2.jpg" width="33%" /></a> <a href="markdown/recursion_and_dynamic/knapsack_problem.md"><img src="images/knapsackproblem-2.jpg" width="33%" /></a> <a href="markdown/recursion_and_dynamic/min_path_in_triangle.md"><img src="images/min_path_in_triangle.jpg" width="33%" /></a> <a href="markdown/recursion_and_dynamic/n_queens.md"><img src="images/n_queens.jpg" width="33%" /></a>
 
+### Trees and Graphs
+
+<a href="markdown/trees_and_graphs/maze_solver.md"><img src="images/maze_solver.jpg" width="33%" /></a>
+
 ### Heaps
 
 <a href="markdown/heaps/min_heap.md"><img src="images/minheap-2.jpg" width="33%" /></a> <a href="markdownheaps/sort_k_sorted.md"><img src="images/sortksorted-2.jpg" width="33%" /></a>

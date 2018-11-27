@@ -1,11 +1,27 @@
-/*
+## Solve a maze
+
+### Problem
+
 Given a 2D array of black and white entries representing a maze 
 with designated entrance and exit points, find [the shortest] path 
 from the entrance to the exit, if one exist.
 
-source: problem adapted from EPI 18.1
-*/
+source: adapted from EPI 18.1
 
+### Boardwork (Design)
+
+![](../../images/maze_solver.jpg)
+
+### Analysis
+
+Time: O(x)
+Space: O(x)
+
+### Codework (Test)
+
+Javascript implementation of bottom-up recursive solution.
+
+```javascript
 function mazeSolver(maze, start, [end_row, end_col]) {
 
     let solution;
@@ -50,20 +66,5 @@ function mazeSolver(maze, start, [end_row, end_col]) {
     _solve(start, [])
     return solution;
 }
-
-// test
-
-describe('mazeSolver', function() {
-    beforeEach(function() {
-        this.maze = [
-            [0,0,1,0,0],
-            [0,1,1,0,1],
-            [0,1,0,0,0],
-            [0,0,0,1,0],
-            [0,1,0,1,0]
-        ]
-    })
-    it('find shortest solution to maze', function() {
-        expect(mazeSolver(this.maze, [0,0], [4,4])).toEqual([[0,0],[1,0],[2,0],[3,0],[3,1],[3,2],[2,2],[2,3],[2,4],[3,4],[4,4]])
-    })
-})
+```
+(from [maze_solver.js](../../javascript/trees_and_graphs/maze_solver.js))
