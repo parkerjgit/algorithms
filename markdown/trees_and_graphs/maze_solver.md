@@ -131,3 +131,9 @@ function mazeSolver(maze, start, [end_row, end_col]) {
     return _solve(new Set(), start);
 }
 ```
+
+### Links
+
+https://en.wikipedia.org/wiki/A*_search_algorithm
+https://briangrinstead.com/blog/astar-search-algorithm-in-javascript/
+https://www.youtube.com/watch?v=aKYlikFAV4k
