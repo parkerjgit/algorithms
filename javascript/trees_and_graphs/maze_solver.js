@@ -116,64 +116,64 @@ function mazeSolver2(maze, start, [end_row, end_col]) {
 }
 
 
-function mazeSolver3(maze, start, [end_row, end_col]) {
+// function mazeSolver3(maze, start, [end_row, end_col]) {
     
-    let score = [...Array(maze.length)].map( _ => (
-        [...Array(maze[0].length)].map( _ => (
-            {f: Infinity, g: Infinity}
-        ))
-    ))
+//     let score = [...Array(maze.length)].map( _ => (
+//         [...Array(maze[0].length)].map( _ => (
+//             {f: Infinity, g: Infinity}
+//         ))
+//     ))
 
-    function _solve(seen, [row, col]) {
+//     function _solve(seen, [row, col]) {
 
-        if (row === end_row && col === end_col) {
-            return [[row,col]];
-        } 
+//         if (row === end_row && col === end_col) {
+//             return [[row,col]];
+//         } 
 
-        // valid move respects boundries and doesn't double back on itself
-        const isValidMove = ([row, col]) => (
-            row >= 0 && row < maze.length &&
-            col >= 0 && col < maze[0].length &&
-            maze[row][col] !== 1 &&
-            !seen.has(''.concat(row, '-', col)) 
-        )
+//         // valid move respects boundries and doesn't double back on itself
+//         const isValidMove = ([row, col]) => (
+//             row >= 0 && row < maze.length &&
+//             col >= 0 && col < maze[0].length &&
+//             maze[row][col] !== 1 &&
+//             !seen.has(''.concat(row, '-', col)) 
+//         )
 
-        // cache and lookup path
-        const lookupPath = ([row, col]) => {
-            if (!score[row][col])
-                score[row][col] = _solve(new Set(seen), [row, col]);
+//         // cache and lookup path
+//         const lookupPath = ([row, col]) => {
+//             if (!score[row][col])
+//                 score[row][col] = _solve(new Set(seen), [row, col]);
    
-            return score[row][col];
-        }
+//             return score[row][col];
+//         }
 
-        // compare paths and return shortest valid
-        const getMinPath = (a, b) => {
-            if (a[a.length - 1] === null) {
-                return b;
-            } else if (b[b.length - 1] === null) {
-                return a;
-            } else {
-                return (b.length < a.length) ? b : a;
-            }
-        }
+//         // compare paths and return shortest valid
+//         const getMinPath = (a, b) => {
+//             if (a[a.length - 1] === null) {
+//                 return b;
+//             } else if (b[b.length - 1] === null) {
+//                 return a;
+//             } else {
+//                 return (b.length < a.length) ? b : a;
+//             }
+//         }
         
-        // select the shortest successful path from a valid next step to finish
-        let minPath = [
-            [ row + 1, col ],
-            [ row, col + 1 ],
-            [ row - 1, col ], 
-            [ row, col - 1 ]
-        ]
-        .filter(next => isValidMove(next))
-        .map(next => lookupPath(next))
-        .reduce((minSoFar, path) => getMinPath(minSoFar, path), [null])
+//         // select the shortest successful path from a valid next step to finish
+//         let minPath = [
+//             [ row + 1, col ],
+//             [ row, col + 1 ],
+//             [ row - 1, col ], 
+//             [ row, col - 1 ]
+//         ]
+//         .filter(next => isValidMove(next))
+//         .map(next => lookupPath(next))
+//         .reduce((minSoFar, path) => getMinPath(minSoFar, path), [null])
             
-        // return combination of this cell with min path to this cell
-        return [[row, col], ...minPath]
-    }
+//         // return combination of this cell with min path to this cell
+//         return [[row, col], ...minPath]
+//     }
 
-    return _solve(new Set(), start);
-}
+//     return _solve(new Set(), start);
+// }
 
 
 // test
