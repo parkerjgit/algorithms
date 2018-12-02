@@ -1,5 +1,9 @@
 # Algorithms
 
+### Stacks and Queues
+
+<a href="markdown/stacks_and_queues/blgs_with_view.md"><img src="images/blgs_with_view.jpg" width="33%" /></a> 
+
 ### Searching and Sorting
 
 <a href="markdown/searching_and_sorting/add_interval.md"><img src="images/epi13.9-2.jpg" width="33%" /></a> <a href="markdown/searching_and_sorting/find_kth_largest.md"><img src="images/findkthlargest-2.jpg" width="33%" /></a>
