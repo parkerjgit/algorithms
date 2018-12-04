@@ -254,8 +254,8 @@ describe('mazeSolver', function() {
     it('find shortest solution to maze', function() {
         // expect(mazeSolver(this.maze, [0,0], [4,4])).toEqual([[0,0],[1,0],[2,0],[3,0],[3,1],[3,2],[2,2],[2,3],[2,4],[3,4],[4,4]])
         // expect(mazeSolver(this.maze, [0,0], [4,4])).toEqual([[0,0],[1,0],[2,0],[3,0],[3,1],[3,2],[2,2],[2,3],[2,4],[3,4],[4,4]])
-        pathPrint(this.maze, [0,0], [4,4], mazeSolver2(this.maze, [0,0], [4,4]))
-        pathPrint(this.maze2, [0,0], [9,9], mazeSolver2(this.maze2, [0,0], [9,9]))
-        pathPrint(this.maze3, [0,0], [18,16], mazeSolver2(this.maze3, [0,0], [18,16]))
+        // pathPrint(this.maze, [0,0], [4,4], mazeSolver2(this.maze, [0,0], [4,4]))
+        // pathPrint(this.maze2, [0,0], [9,9], mazeSolver2(this.maze2, [0,0], [9,9]))
+        // pathPrint(this.maze3, [0,0], [18,16], mazeSolver2(this.maze3, [0,0], [18,16]))
     })
 })
