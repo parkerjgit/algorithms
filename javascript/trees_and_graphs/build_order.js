@@ -25,7 +25,7 @@ function buildGraph(prjs, deps) {
 
     deps.forEach(([dep,prj]) => {
         
-        // find or create projects required for dependancy
+        // find/create projects required for dependancy
         let {created: depNew, node: depNode} = findOrCreate(root, dep),
             {created: prjNew, node: prjNode} = findOrCreate(root, prj);
 
@@ -46,20 +46,17 @@ function buildGraph(prjs, deps) {
 
     })
 
-    // add unseen projects to graph
+    // add remaining projects to graph
     prjs.filter( prj => !seen.includes(prj))
         .forEach( prj => {
             root.dependancies.push(new Project(prj))
     })
 
-    console.log('---')
-    printGraph(root)
-
     return root;
 }
 
-function getDependancyIdx(prjNode, target) { // get idx or -1
-    return prjNode.dependancies
+function getDependancyIdx(project, target) { // get idx or -1
+    return project.dependancies
         .map(dep => dep.name)
         .indexOf(target)
 }
@@ -92,15 +89,16 @@ function getProject(root, target) {
 
 function dftPostOrder(root) {
     let order = [];
+    let visited = new Set();
     function _dft(root){
-        // visit unvisted dependancies
+        // visit dependancies
         root.dependancies.forEach(dep => {
-            if (!dep.visited) {
+            if (!visited.has(dep)) {
                 _dft(dep);
             }
         })
-        // then visit project
-        root.visited = true;
+        // visit project
+        visited.add(root);
         order.push(root.name)
     }   
     _dft(root);
