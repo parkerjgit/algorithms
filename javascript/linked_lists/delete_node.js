@@ -1,7 +1,7 @@
 /*
-delete node in linked list given only the node to delete.
+delete a middle node in a linked list given only the node to delete.
 
-source: CTCI
+source: CTCI 2.3 delete middle node
 */
 
 function Node(value) {
@@ -39,7 +39,7 @@ describe('deleteNode', function() {
             this.head = addNode(this.head, new Node(v));
         })
     })
-    it('delete', function() {
+    it('deletes a middle node in a linked list given only the node to delete.', function() {
         deleteNode(this.target)
         expect(this.head.next.next.next.next.value).toEqual(6)
     })
