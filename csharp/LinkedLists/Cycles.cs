@@ -40,7 +40,7 @@ namespace LinkedLists
                 while (fast != null && fast != slow)
                 {
                     slow = slow.Next;
-                    fast = fast.Next;
+                    fast = fast.Next.Next;
                 }
 
                 // return null or node on cycle.
