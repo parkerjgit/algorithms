@@ -1,5 +1,5 @@
 /*
-xxx
+Design an algorithm that takes a 2D sorted array and a number and checks whether that number appears in the array.
 
 source: EPI 11.6 search in a 2d sorted array
 */
@@ -37,36 +37,45 @@ function matrixSearch(matrix, target) {
 
     function _search(left, right, top, bottom) {
 
-        // down to a single row and col, so bin search them both
-        if (left == right && top == bottom) {
-
-            let topRow = getRow(matrix, top).splice(0,left),
-                leftCol = getCol(matrix, left).splice(0,top);
-
-            return [
-                binSearch(topRow, target),
-                binSearch(leftCol, target)
-            ].some(search => search)
-        }
-
         let midCol = Math.floor((left + right) / 2),
             midRow = Math.floor((top + bottom) / 2),
             curCell = matrix[midRow][midCol];
 
         // found it early
         if (curCell === target) {
-            return true;
+            return {contains: true, idx: [midRow, midCol]};
         }
 
-        // recurse
-        if (curCell < target) {
-            return _search(left, midCol, top, midRow);
+        // not in this region
+        if (left == right && top == bottom) {
+            return {contains: false, idx: [left, top]}
+        }
+
+        // check top-left and bottom-right regions
+        let results = (curCell < target)
+            ? _search(left, midCol, top, midRow)
+            : _search(midCol, right, midRow, bottom);
+
+        if (results.contains) {
+            return results;
+        } 
+        
+        let [pivRow, pivCol] = results.idx;
+
+        // check bottom-left and top-right regions   
+        let bottomLeft = _search(left, pivCol, pivRow, bottom)
+        let topRight = _search(pivCol, right, top, pivRow);
+
+        if (bottomLeft.contains) {
+            return bottomLeft
+        } else if (topRight.contains) {
+            return topRight
         } else {
-            return _search(midCol, right, midRow, bottom);
+            return {contains: false, idx: -1}
         }
-
     }
-    return _search(0, matrix[0].length - 1, 0, matrix.length - 1);
+    let {contains} = _search(0, matrix[0].length - 1, 0, matrix.length - 1);
+    return contains;
 }
 
 // test. tbd...
