@@ -9,3 +9,10 @@ const repeatString = (str, n) => {
 }
 
 
+const repeatstring = (str, n) => {
+  let res = '';
+  [...Array(n)].forEach(_ => {
+    res += str;
+  });
+  return res;
+}
