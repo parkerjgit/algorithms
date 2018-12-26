@@ -7,6 +7,7 @@ min() returns min value NOT node.
 
 source:
 McDowell, Gayle Laakmann, Cracking the Coding Interview: 189 Programming Questions and Solutions 6th Edition (2015) 236.
+EPI 8.8 Implement a queue usign stacks.
 """
 
 from stacks_and_queues.stack import Stack
@@ -25,8 +26,13 @@ class StackQueue:
     By pouring contents back and forth between stacks, order will be reversed when in stack 2 and preserved in push
     order in stack 1. enqueue is then a matter of making sure items are in forward order stack, s1, before pushing
     to it, while dequeue requires that we make sure items are in reverse-order stack, s2, before poping from it.
+    
     Time: O(n) - all operations are linear in the worst case, because if items are in wrong stack we have to move them.
     Space: O(n)
+
+    This solution can be improved by simply pushing to stack 1 on enqueue, and popping from stack 2 on dequeue! 
+    The only time we need to move items from one stack to another is when stack 2 is empty AND we are trying to dequeue. 
+    In that case pour items in stack 1 into 2 and proceded.
     """
 
     def __init__(self):

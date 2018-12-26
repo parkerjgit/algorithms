@@ -11,11 +11,11 @@
 // Top-down: fac(n) = n * fact(n-1)
 // Time: O(n!)
 // Space: O(n)
-const topDownFactorial = (n) => {
-    if (n === 0) return 1
-    if (n <= 2) return n;
-    return n * topDownFactorial(n-1);
-} 
+// const topDownFactorial = (n) => {
+//     if (n === 0) return 1
+//     if (n <= 2) return n;
+//     return n * topDownFactorial(n-1);
+// } 
 
 // Top-down with Memoization
 // Time: O(n)
@@ -70,3 +70,26 @@ describe('bottom up factorial', function() {
 // recall factorial(5) = 5 x 4 x 3 x 2 x 1 = 5 x factorial(4)
 // and factorial of n can be defined recursively as n x factorial(n-1)
 // *************************************************************************
+
+// bottom-up with reused cache
+// Time: O(n)
+// Space: O(1)
+
+const fib = (n) => {
+    return [...Array(n).keys()].slice(1)
+      .reduce(([minus2, minus1], next) => [
+          minus1,
+          minus2 + minus1,
+      ], [0,1])[1]
+  }
+
+  // flatten arbitrarly nested array
+
+  const flatten = array => array.reduce((a, b) => {
+    return (Array.isArray(b)) 
+      ? a.concat(flatten(b))
+      : a.concat(b)
+  }, [])
+  
+  const arr = [[1,[2,[3]]],4,[5,[6,[7]]]]
+  const flattenedArray = flatten(arr)
