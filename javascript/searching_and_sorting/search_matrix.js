@@ -4,6 +4,7 @@ Design an algorithm that takes a 2D sorted array and a number and checks whether
 source: EPI 11.6 search in a 2d sorted array
 */
 
+// not used
 function binSearch(arr, target) {
 
     function _search(left, right) {
@@ -30,6 +31,7 @@ function binSearch(arr, target) {
     return _search(0, arr.length - 1);
 }
 
+// not used
 const getRow = (matrix, row) => matrix[row];
 const getCol = (matrix, col) => matrix.map(row => row[col]);
 
@@ -41,7 +43,7 @@ function matrixSearch(matrix, target) {
             midRow = Math.floor((top + bottom) / 2),
             curCell = matrix[midRow][midCol];
 
-        // found it early
+        // found it!
         if (curCell === target) {
             return {contains: true, idx: [midRow, midCol]};
         }
@@ -56,13 +58,13 @@ function matrixSearch(matrix, target) {
             ? _search(left, midCol, top, midRow)
             : _search(midCol, right, midRow, bottom);
 
+        // find or pivot
         if (results.contains) {
             return results;
         } 
-        
         let [pivRow, pivCol] = results.idx;
 
-        // check bottom-left and top-right regions   
+        // check bottom-left and top-right regions 
         let bottomLeft = _search(left, pivCol, pivRow, bottom)
         let topRight = _search(pivCol, right, top, pivRow);
 
