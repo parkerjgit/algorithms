@@ -2,7 +2,19 @@
 find index of first occurance of substring
 */
 
-const findSubstring = (str, sub) => {
+// simplest
+const indexOf = (str, sub) => {
+  let [m, n] = [sub.length, str.length];
+  for (let i = 0; i <= n - m; i++) {
+    if (str.slice(i, i + m) === sub) {
+      return i;
+    }
+  }
+  return -1;
+}
+
+// optimized for time/space
+const indexOf2 = (str, sub) => {
 
   // is substring at index i
   const _subFound = (i) => {
@@ -18,12 +30,12 @@ const findSubstring = (str, sub) => {
     i++;
   }
 
-  return -1
+  return -1;
 }
 
 describe('findSubstring', function() {
   it('finds first occurance of substring and return index', function() {
-    expect(findSubstring('thisisafantasticstring', 'fantastic')).toEqual(7);
-    expect(findSubstring('thisisafantasticstring', 'bantastic')).toEqual(-1);
+    expect(indexOf('thisisafantasticstring', 'fantastic')).toEqual(7);
+    expect(indexOf('thisisafantasticstring', 'bantastic')).toEqual(-1);
   })
 })
