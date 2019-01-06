@@ -19,7 +19,7 @@ Space: O(E + V)
 
 ### Codework (Test)
 
-Javascript implementation. requires: non-empty graph represented by a javascript object (hash map), where keys correspond to single nodes and values correspond to a set of all predecessor nodes.
+Javascript implementation. requires non-empty adjacency list represented by a regular object (hash map), where keys correspond to nodes and values correspond to a set of all predecessor nodes in a directed graph.
 
 ```javascript
 function graphHasCycle(graph, seen = new Set()) {
