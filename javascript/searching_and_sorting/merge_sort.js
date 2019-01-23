@@ -74,18 +74,18 @@ function merge(arr, left, mid, right) {
 
 var mergeSort = function(arr) {
 
-function _sort(arr, left, right) {
+  function _sort(arr, left, right) {
 
-    //console.log(`left: ${left}, right: ${right}`);
-    if (left < right) {
-      console.log(`left: ${left}, right: ${right}`);
-      let mid = Math.floor((right - left) / 2);
-      _sort(arr, left, mid);
-      _sort(arr, mid + 1, right)
-      merge(arr, left, mid, right);
-      console.log(arr);
-    }
-}
+      //console.log(`left: ${left}, right: ${right}`);
+      if (left < right) {
+        console.log(`left: ${left}, right: ${right}`);
+        let mid = Math.floor((right - left) / 2);
+        _sort(arr, left, mid);
+        _sort(arr, mid + 1, right)
+        merge(arr, left, mid, right);
+        console.log(arr);
+      }
+  }
 
 return _sort(arr, 0, arr.length - 1);
 }
