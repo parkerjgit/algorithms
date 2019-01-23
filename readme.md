@@ -1,6 +1,6 @@
-### Algorithms and Data Structures ##################################
+# Algorithms and Data Structures ##################################
 
-#### Complexity
+## Complexity
 
 <details><summary>Review Performance Families</summary><br>
 
@@ -15,7 +15,7 @@
 
 ---
 
-</details>
+</details><br>
 
 1. cost of binary search
 2. cost of looking at each item once
@@ -24,7 +24,7 @@
 5. cost of looking at all subsets of n items
 6. cost of looking at all purmutations of n items
 
-#### String manipulation
+## String manipulation
 
 <details><summary>Review Notes</summary><br>
 
@@ -44,7 +44,7 @@
 
 ---
 
-</details>
+</details><br>
 
 Answer These Questions:
 
