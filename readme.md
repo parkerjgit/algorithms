@@ -1,5 +1,7 @@
 # Algorithms and Data Structures ##################################
 
+A list of question sets grouped by problem type. Each set is preceeded by concise notes and procedes from easy to medium difficultly (a few problems that might be considered hard). The list is intended to help candidates ramp up quickly for technical interviews.
+
 ## Complexity
 
 <details><summary>Review Performance Families</summary><br>
@@ -24,9 +26,9 @@
 5. cost of looking at all subsets of n items
 6. cost of looking at all purmutations of n items
 
-## String manipulation
+#### String manipulation
 
-<details><summary>Review Notes</summary><br>
+<details><summary>Review Notes on Javascript Strings</summary><br>
 
 * Strings are a primative type used to represent text as sequence of [Unicode](https://unicodelookup.com/) characters. Think of them as immutable character arrays. Get the decimal value of a unicode character in a string with `str.charCodeAt()`
 * You can use single quotes, double quotes, or backticks. Backtick-quoted strings, called template literals, can span lines and embed computed values using `${}`. Its [common practice](https://www.reddit.com/r/javascript/comments/4m715v/should_i_use_or/) to use single quotes for js and double quotes for jsx/html, but doesn't really matter, just be sure to escape whichever one you use (ie., escape single quotes if you use single quotes, eg., 'Hi \' ho'). 
@@ -46,9 +48,9 @@
 
 </details><br>
 
-Answer These Questions:
+Problems:
 
--> 1. [Reverse a string](https://medium.freecodecamp.org/how-to-reverse-a-string-in-javascript-in-3-different-ways-75e4763c68cb) using iteration/recursion/built-in.
+1. [Reverse a string](https://medium.freecodecamp.org/how-to-reverse-a-string-in-javascript-in-3-different-ways-75e4763c68cb) using iteration/recursion/built-in.
 2. [Repeat a string](https://medium.freecodecamp.org/three-ways-to-repeat-a-string-in-javascript-2a9053b93a2d) using iteration/recursion/built-in.
 3. [Find a substring(indexOf)](https://medium.freecodecamp.org/two-ways-to-confirm-the-ending-of-a-string-in-javascript-62b4677034ac) at begining/end/anywhere in string.
 4. Merge(interleave) two strings.
@@ -60,7 +62,7 @@ Answer These Questions:
 
 #### Arrays
 
-<details><summary>Review Basics</summary><br>
+<details><summary>Review Javascript Array Basics</summary><br>
 
 * JavaScript has list-like objects that it calls "arrays". Unlike real arrays, elements are *Not* stored in physically contiguous locations in memory (ie., structure is not optimized for iteration), memory is *Not* preallocated and size does *NOT* grow dynamically, the way dynammically allocated arrays do. Instead, elements are simply mapped to properties on a regular object. For example, the array ['A', 'B', 'C'] is represented with an object with properties '0', '1', '2', and those properties are assigned the values 'A', 'B', 'C'.
 * unlike traditional arrays, there is no enforcement or expectation that element types are homogeneous.
@@ -209,7 +211,7 @@ function foo3(arr, fn) {
 ---
 
 </details>
-<details><summary>ROTs</summary><br>
+<details><summary>Review Notes</summary><br>
 
 1. *Use* for **fast iteration**. Physical contiguity on single slab of memory helps exploit the high-speed cache memory.
 1. *Use* for **constant-time indexing**. Binary search also fast O(logn) *if* array is sorteddd.
@@ -242,8 +244,7 @@ function foo3(arr, fn) {
 
 ---
 
-</details>
-<details><summary>Warm-Up</summary>
+</details><br>
 
 1. pre-fill an array with 0's/null/range
 1. pre-fill an array with letters of alphabet
@@ -260,10 +261,6 @@ function foo3(arr, fn) {
 7. find max spread.
 5. implement stack/heap/map with an array.
 6. find kth smallest (in nlogk, and n time)
-
----
-
-</details>
 
 #### linked-list -
 
