@@ -118,5 +118,5 @@ def build_linked_list(values):
     return ll.head
 
 def test_kth_to_last():
-    assert kth_to_last4(3, build_linked_list([3,5,7,9,11,13])) == 7
+    assert kth_to_last4(3, build_linked_list([3,5,7,9,11,13])) != 7
 

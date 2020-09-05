@@ -2,9 +2,9 @@
 
 A list of question sets grouped by problem type. Each set is preceeded by concise notes and procedes from easy to medium difficultly (a few problems that might be considered hard). The list is intended to help candidates ramp up quickly for technical interviews.
 
-## Complexity
+#### Complexity
 
-<details><summary>Review Performance Families</summary><br>
+<details><summary>Review Performance Families (2 mins)</summary><br>
 
 * Constant - c - There is no dependence on n. 
 * Logarithmic - log(n) - great! grows slow as n gets big, eg Binary search.
@@ -28,16 +28,16 @@ A list of question sets grouped by problem type. Each set is preceeded by concis
 
 #### String manipulation
 
-<details><summary>Review Notes on Javascript Strings</summary><br>
+<details><summary>Review Notes on Javascript Strings (5 mins)</summary><br>
 
 * Strings are a primative type used to represent text as sequence of [Unicode](https://unicodelookup.com/) characters. Think of them as immutable character arrays. Get the decimal value of a unicode character in a string with `str.charCodeAt()`
+* Converty to/from character code with `'c'.charCodeAt(0)` and static method `String.fromCharCode(99)`
 * You can use single quotes, double quotes, or backticks. Backtick-quoted strings, called template literals, can span lines and embed computed values using `${}`. Its [common practice](https://www.reddit.com/r/javascript/comments/4m715v/should_i_use_or/) to use single quotes for js and double quotes for jsx/html, but doesn't really matter, just be sure to escape whichever one you use (ie., escape single quotes if you use single quotes, eg., 'Hi \' ho'). 
 * Strings inherit *methods* like `slice()` and `split()` from the [String.prototype](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/prototype) object. All string methods return a new string.
 * Use `indexOf("lmno");` to find first index of a character or substring.
 * Use `abc[2]` to get character by index, but strings are immutable so don't use for assignment!
 * Iterate over characters in a string with `for...of`.
 * Find and replace strings or patterns in string with `replace("abc","123")`
-* Converty to/from character code with `'c'.charCodeAt(0)` and static method `String.fromCharCode(99)`
 * Javascript converts, ie *coerses*, primatives into objects when needed and behind scenes in order to perform operations that require an object, e.g. `'asdf'.length`
 * Convert a string to/from an array of characters with `str.split('')` and `arr.join('')`. Convers to/from an array of words with `str.split(' ')` and `arr.join(' ')`
 * Use [`str.slice()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/slice) to extracts a section of a string. Prefer it to `substring()` and `substr()` b/c best support for negative indexing.
@@ -52,7 +52,7 @@ Problems:
 
 1. [Reverse a string](https://medium.freecodecamp.org/how-to-reverse-a-string-in-javascript-in-3-different-ways-75e4763c68cb) using iteration/recursion/built-in.
 2. [Repeat a string](https://medium.freecodecamp.org/three-ways-to-repeat-a-string-in-javascript-2a9053b93a2d) using iteration/recursion/built-in.
-3. [Find a substring(indexOf)](https://medium.freecodecamp.org/two-ways-to-confirm-the-ending-of-a-string-in-javascript-62b4677034ac) at begining/end/anywhere in string.
+>3. [Find a substring(indexOf)](https://medium.freecodecamp.org/two-ways-to-confirm-the-ending-of-a-string-in-javascript-62b4677034ac) at begining/end/anywhere in string.
 4. Merge(interleave) two strings.
 5. Merge(interleave) n strings (fullstack checkpoint-foundations)
 6. Wrap(rotate) a string by n places.
@@ -62,10 +62,10 @@ Problems:
 
 #### Arrays
 
-<details><summary>Review Javascript Array Basics</summary><br>
+<details><summary>Review Javascript Array Basics (10 mins)</summary><br>
 
 * JavaScript has list-like objects that it calls "arrays". Unlike real arrays, elements are *Not* stored in physically contiguous locations in memory (ie., structure is not optimized for iteration), memory is *Not* preallocated and size does *NOT* grow dynamically, the way dynammically allocated arrays do. Instead, elements are simply mapped to properties on a regular object. For example, the array ['A', 'B', 'C'] is represented with an object with properties '0', '1', '2', and those properties are assigned the values 'A', 'B', 'C'.
-* unlike traditional arrays, there is no enforcement or expectation that element types are homogeneous.
+* Unlike traditional arrays, there is no enforcement or expectation that element types are homogeneous.
 * Elements are accessed by index. The indices are converted to strings and used to retrieve elements by name within the object representing the array, eg. `arr[1] === arr['1']` 
 * Create and initialize an array with array literal syntax, eg. `[1,2,3]`. Initializze elements in an array of size *n* to some value *v* with `Array(n).fill(v)`. Do not use the `Array()` constructor function unless you are converting an array-like structure to an array.
 * Prefer constant-time `push`/`pop` (over `unshift`/`shift`) for adding/removing elements to/from the end of an array. 
@@ -211,7 +211,7 @@ function foo3(arr, fn) {
 ---
 
 </details>
-<details><summary>Review Notes</summary><br>
+<details><summary>Review Notes (10 mins)</summary><br>
 
 1. *Use* for **fast iteration**. Physical contiguity on single slab of memory helps exploit the high-speed cache memory.
 1. *Use* for **constant-time indexing**. Binary search also fast O(logn) *if* array is sorteddd.
@@ -248,7 +248,7 @@ function foo3(arr, fn) {
 
 1. pre-fill an array with 0's/null/range
 1. pre-fill an array with letters of alphabet
-1. map every element of array to another array of same size with el = fn(el), ie map to target domain, process every el w/fn
+>1. map every element of array to another array of same size with el = fn(el), ie map to target domain, process every el w/fn
 2. reduce elements of an array to single value: sum, factorial
 3. simultaneously process every element in two arrays of equal/unequal size
 4. implement a range function.
@@ -264,7 +264,7 @@ function foo3(arr, fn) {
 
 #### linked-list -
 
-<details><summary>Review Linked Lists</summary><br>
+<details><summary>Review Linked Lists (5 mins)</summary><br>
 
 1. Use for **fast update** (insertion and deletion) when you can afford the overhead (~40 bytes/node vs ~4 for an array cell)
 2. Use for more **run-time flexibility**, when not simply growing array from one end.
@@ -287,7 +287,7 @@ function foo3(arr, fn) {
 </details>
 
 1. implemnt linked list
-2. traverse iteratively/recursively
+>2. traverse iteratively/recursively
 3. find nth to last
 4. delete node in middle, given only node (not given head)
 4. find cycles

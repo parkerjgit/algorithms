@@ -14,5 +14,10 @@ const reverseString2 = (str) => {
   return reverseString2(str.slice(1)) + str.slice(0, 1);
 }
 
+// using built-in methods
+const reverseString3 = (str) => {
+  return str.split('').reverse().join('');
+}
+
 
 // test tbd...
