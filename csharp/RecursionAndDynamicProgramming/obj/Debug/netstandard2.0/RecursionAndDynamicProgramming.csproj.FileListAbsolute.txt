@@ -1,0 +1,9 @@
+E:\mydocs\dev\algorithms\csharp\RecursionAndDynamicProgramming\bin\Debug\netstandard2.0\RecursionAndDynamicProgramming.deps.json
+E:\mydocs\dev\algorithms\csharp\RecursionAndDynamicProgramming\bin\Debug\netstandard2.0\RecursionAndDynamicProgramming.dll
+E:\mydocs\dev\algorithms\csharp\RecursionAndDynamicProgramming\bin\Debug\netstandard2.0\RecursionAndDynamicProgramming.pdb
+E:\mydocs\dev\algorithms\csharp\RecursionAndDynamicProgramming\obj\Debug\netstandard2.0\RecursionAndDynamicProgramming.csprojResolveAssemblyReference.cache
+E:\mydocs\dev\algorithms\csharp\RecursionAndDynamicProgramming\obj\Debug\netstandard2.0\RecursionAndDynamicProgramming.csproj.CoreCompileInputs.cache
+E:\mydocs\dev\algorithms\csharp\RecursionAndDynamicProgramming\obj\Debug\netstandard2.0\RecursionAndDynamicProgramming.AssemblyInfoInputs.cache
+E:\mydocs\dev\algorithms\csharp\RecursionAndDynamicProgramming\obj\Debug\netstandard2.0\RecursionAndDynamicProgramming.AssemblyInfo.cs
+E:\mydocs\dev\algorithms\csharp\RecursionAndDynamicProgramming\obj\Debug\netstandard2.0\RecursionAndDynamicProgramming.dll
+E:\mydocs\dev\algorithms\csharp\RecursionAndDynamicProgramming\obj\Debug\netstandard2.0\RecursionAndDynamicProgramming.pdb

@@ -1,0 +1,26 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="stack_min pytest" type="tests" factoryName="py.test">
+    <option name="INTERPRETER_OPTIONS" value="" />
+    <option name="PARENT_ENVS" value="true" />
+    <envs />
+    <option name="SDK_HOME" value="C:\Users\Josh\AppData\Local\Programs\Python\Python35-32\python.exe" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/stacks_and_queues" />
+    <option name="IS_MODULE_SDK" value="false" />
+    <option name="ADD_CONTENT_ROOTS" value="true" />
+    <option name="ADD_SOURCE_ROOTS" value="true" />
+    <module name="data_structures_and_algorithms_in_python" />
+    <option name="SCRIPT_NAME" value="" />
+    <option name="CLASS_NAME" value="" />
+    <option name="METHOD_NAME" value="" />
+    <option name="FOLDER_NAME" value="" />
+    <option name="TEST_TYPE" value="TEST_SCRIPT" />
+    <option name="PATTERN" value="" />
+    <option name="USE_PATTERN" value="false" />
+    <option name="testToRun" value="E:\mydocs\dev\algorithms\python\stacks_and_queues\stack_min.py" />
+    <option name="keywords" value="" />
+    <option name="params" value="" />
+    <option name="USE_PARAM" value="false" />
+    <option name="USE_KEYWORD" value="false" />
+    <method />
+  </configuration>
+</component>

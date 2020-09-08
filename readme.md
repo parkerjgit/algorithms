@@ -429,10 +429,10 @@ yyy
 
 </details>
 
-0. When should you use map/weakmap over objects.
-1. When should you use set/weakset over array.
+0. When should you use map/weakmap over objects?
+1. When should you use set/weakset over array?
 2. Convert to/from Map/Object/Nested Array and Set/Array.
-1. validate a pattern, eg. validate(['tobe', 'ornot', 'tobe'], 'aba') => true
+1. validate a repeating pattern, eg. validate(['tobe', 'ornot', 'tobe'], 'aba') => true
 3. Count frequency of letters in a string.
 5. Get a list of unique characters found in a string.
 5. Count frequency of words in a sentence.
