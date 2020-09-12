@@ -7,16 +7,19 @@ Assume entries are distinct.
 
 source: EPI 11.8
 
-### Boardwork (Design)
+### Design
 
 ![](../../images/findkthlargest-2.jpg)
 
+Key insight here is that after partitioning around a random pivot, if pivot is in arr.length - k position, you are done!
+
 ### Analysis
 
-Time: O(n)
-Space: O(1)
+Time: O(n) - Partition is a linear time operation, *BUT* since we are throwing away half the array at each step, time complexity *NOT* `nlogn`, rather it is `n + n/2 + n/4 + ... ~ n!`
 
-### Codework (Test)
+Space: O(1) - Partition in-place.
+
+### Implementation
 
 Javascript implementation of in-place solution.
 

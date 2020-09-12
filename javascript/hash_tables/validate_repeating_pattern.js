@@ -60,7 +60,7 @@ const validateRepeatingPattern = (words, pattern) => {
             return false;
         }
 
-        // Add new char-to-word decoding
+        // Add new char-to-word mapping
         decoding.set(curChar, curWord);
 
         // Go to next word
@@ -74,5 +74,10 @@ const validateRepeatingPattern = (words, pattern) => {
 describe('validateRepeatingPattern', () => {
     it('validates a repeating pattern successfully', () => {
         expect(validateRepeatingPattern(['red', 'blue', 'red'], 'aba')).toEqual(true);
+        expect(validateRepeatingPattern(['red', 'blue', 'red'], 'ab')).toEqual(true);
+        expect(validateRepeatingPattern(['red', 'blue'], 'aba')).toEqual(true);
+        expect(validateRepeatingPattern(['red', 'blue', 'green'], 'aba')).toEqual(false);
+        expect(validateRepeatingPattern(['red', 'red', 'blue'], 'aba')).toEqual(false);
+        expect(validateRepeatingPattern([], '')).toEqual(true);
     })
 })

@@ -1,0 +1,14 @@
+{
+    "framework": "jasmine2",
+    "src_files": [
+        "arrays_and_strings/*.js",
+        "hash_tables/*.js",
+        "heaps/*.js",
+        "linked_lists/*.js",
+        "recursion_and_dynamic/*.js",
+        "searching_and_sorting/*.js",
+        "stacks_and_queues/*.js",
+        "trees_and_graphs/*.js",
+        "unsortted/*.js"
+    ]
+}
