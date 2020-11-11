@@ -84,3 +84,23 @@ function convertToRoman(num) {
         res += numeral.repeat(digit)
     })
 }
+
+// Convert letters A, B, ...Z to 0, 1, ...26 (base 10)
+const decodeLetter = (letter) => {
+    return letter.toLowerCase().charCodeAt() - 96
+}
+
+// Convert base 26 (hexavigesimal) to base 10
+const decodeHexavigesimal = (code) => {
+
+    // eg. 'DEF'
+
+    // eg. [2,1,0]
+    let place = [...Array(code.length).keys()].reverse();
+    
+    // eg. [4x26^2, 5x26^1, 6x26^0]
+    let partials = place.map((i) =>
+        decodeLetter(code[i]) * (26**i)
+    )
+    return partials.reduce((part, sum) => part + sum, 0)
+}

@@ -79,7 +79,7 @@ var mergeSort = function(arr) {
       //console.log(`left: ${left}, right: ${right}`);
       if (left < right) {
         console.log(`left: ${left}, right: ${right}`);
-        let mid = Math.floor((right - left) / 2);
+        let mid = left + Math.floor((right - left) / 2); // this should be l + (r - l)//2
         _sort(arr, left, mid);
         _sort(arr, mid + 1, right)
         merge(arr, left, mid, right);

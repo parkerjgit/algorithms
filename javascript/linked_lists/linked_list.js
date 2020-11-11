@@ -45,6 +45,18 @@ LinkedList.prototype.length = function() {
   return len;
 }
 
+LinkedList.prototype.values = function() {
+  let cur = this.head;
+  let values = [];
+
+  while (cur && cur.value) {
+    values.push(cur.value);
+    cur = cur.next;
+  }
+
+  return values;
+}
+
 // driver
 let myList = new LinkedList()
 let values = [1,2,3,4,5,6,7,8,9];

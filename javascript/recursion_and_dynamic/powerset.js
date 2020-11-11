@@ -11,6 +11,7 @@ const powerset = ([first, ...rest]) => {
     ]
   }
 
+  // return elements corresponding to 1's in bit mask
   const bitFilter = (mask, arr) => {
     let result = []
     let i = arr.length -1;
