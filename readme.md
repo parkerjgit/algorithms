@@ -4,7 +4,14 @@ A list of question sets grouped by problem type. Each set is preceeded by concis
 
 #### Complexity
 
-<details><summary>Review Performance Families (2 mins)</summary><br>
+1. cost of binary search
+2. cost of looking at each item once
+3. cost of divide and conquer algorithms
+4. cost of looking at all pairs/triples
+5. cost of looking at all subsets of n items
+6. cost of looking at all purmutations of n items
+
+<details><summary>Answers</summary><br>
 
 * Polynomial Time:
     * Constant - c - There is no dependence on n. 
@@ -17,40 +24,24 @@ A list of question sets grouped by problem type. Each set is preceeded by concis
     * Exponential - c<sup>n</sup> - very bad - cost of looking at all subsets of n items, e.g. building a powerset (set of all subsets of S, including the empty set and S itself)  
     * Factorial - n! - even worse - cost of looking at all purmutations of n items.
 
----
-
 </details><br>
-
-1. cost of binary search
-2. cost of looking at each item once
-3. cost of divide and conquer algorithms
-4. cost of looking at all pairs/triples
-5. cost of looking at all subsets of n items
-6. cost of looking at all purmutations of n items
 
 #### String manipulation
 
-<details><summary>Review Notes on Javascript Strings (5 mins)</summary><br>
+**Warm-up**
 
-* Strings are a primative type used to represent text as sequence of [Unicode](https://unicodelookup.com/) characters. Think of them as immutable character arrays. Get the decimal value of a unicode character in a string with `str.charCodeAt()`
-* Converty to/from character code with `'c'.charCodeAt(0)` and static method `String.fromCharCode(99)`
-* You can use single quotes, double quotes, or backticks. Backtick-quoted strings, called template literals, can span lines and embed computed values using `${}`. Its [common practice](https://www.reddit.com/r/javascript/comments/4m715v/should_i_use_or/) to use single quotes for js and double quotes for jsx/html, but doesn't really matter, just be sure to escape whichever one you use (ie., escape single quotes if you use single quotes, eg., 'Hi \' ho'). 
-* Strings inherit *methods* like `slice()` and `split()` from the [String.prototype](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/prototype) object. All string methods return a new string.
-* Use `indexOf("lmno");` to find first index of a character or substring.
-* Use `abc[2]` to get character by index, but strings are immutable so don't use for assignment!
-* Iterate over characters in a string with `for...of`.
-* Find and replace strings or patterns in string with `replace("abc","123")`
-* Javascript converts, ie *coerses*, primatives into objects when needed and behind scenes in order to perform operations that require an object, e.g. `'asdf'.length`
-* Convert a string to/from an array of characters with `str.split('')` and `arr.join('')`. Convers to/from an array of words with `str.split(' ')` and `arr.join(' ')`
-* Use [`str.slice()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/slice) to extracts a section of a string. Prefer it to `substring()` and `substr()` b/c best support for negative indexing.
-* To edit a string, the [split twice then concatinate](https://stackoverflow.com/a/21350614/1525466) method is perferable to converting to an array and using `arr.splice()`. 
-* Avoid [multiline string literals]() b/c a hidden space after "\" will break code, eg., "\ "! (Simpson)
+1. Convert word into a list of chars
+2. Convert sentence into list of words
+3. Convert text file into list of list of lines
+4. Partition string by a separator
+5. Get the shortest string of a list of strings
+6. Remove white space from ends of a string
+7. Check if string is numeric
+8. Replace characters in first string with corresponding characters in second
+9. Generate a random character
+10. Build a random string
 
----
-
-</details><br>
-
-Problems:
+**Easy**
 
 1. [Reverse a string](https://medium.freecodecamp.org/how-to-reverse-a-string-in-javascript-in-3-different-ways-75e4763c68cb) using iteration/recursion/built-in.
 2. [Repeat a string](https://medium.freecodecamp.org/three-ways-to-repeat-a-string-in-javascript-2a9053b93a2d) using iteration/recursion/built-in.
@@ -60,7 +51,12 @@ Problems:
 6. Wrap(rotate) a string by n places.
 5. is anagram
 6. is palindrome
+
+**Medium**
+
 7. get all palindromes
+8. Convert int (base 10) to string
+9. Convert a string to int (base 10)
 
 #### Arrays
 
@@ -426,6 +422,8 @@ yyy
 * `has` and `delete` are *particularly* important set/weakset operations because they compute them in constant time, where as arrays require linear time. (not sure what actual performance difference is. Since both are objects, both could be constant time ops???)
 * Set operations like *union*, *intersection* and *difference* are not currently implemented on Set.prototype, but are easily computed.
 * Iterate over a set like you do an array, ie., with `forEach` or `for...of`. Not necessary to iterate over `mySet.keys()`, because sets are themselves enumerable.
+
+* Find longest increasing/decreasing subsequence *in a descrete array* (EPI 16.12) by maintaining a map from item value to length of max subsequence up to item, then add entries for each item as you step thru array, using previous entries to determine max subsequence for each subsequent entry.
 
 ---
 
