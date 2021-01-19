@@ -28,6 +28,10 @@ A list of question sets grouped by problem type. Each set is preceeded by concis
 
 #### String manipulation
 
+**Notes**
+
+see notes on [strings](notes/strings.md)
+
 **Warm-up**
 
 1. Convert word into a list of chars
@@ -56,7 +60,8 @@ A list of question sets grouped by problem type. Each set is preceeded by concis
 
 7. get all palindromes
 8. Convert int (base 10) to string
-9. Convert a string to int (base 10)
+9. Convert a string (e.g., '340') to an int
+9. [Convert english representation of a number (e.g., 'three hundred forty') to int](.\javascript\arrays_and_strings\convert_string_to_int.js)
 
 #### Arrays
 

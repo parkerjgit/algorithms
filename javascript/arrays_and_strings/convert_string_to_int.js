@@ -29,6 +29,7 @@ const CARDINAL = {
     eight: 8,    eighteen:  18,    eighty:  80,
     nine:  9,    nineteen:  19,    ninety:  90
 };
+
 const MULTIPLIER = {
     hundred:    100, 
     thousand:   1000, 
