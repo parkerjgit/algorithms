@@ -10,6 +10,7 @@ let b = [...Array(15).keys()].slice(5)
 console.log(b)
 
 // prefill array with letters of alphabet
+
 let c = [...Array(36).keys()].splice(10).map(i=>i.toString(36));
 let d = [...Array(26).keys()].map(_=>(++i).toString(36),i=9);
 

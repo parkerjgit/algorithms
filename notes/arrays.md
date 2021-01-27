@@ -27,7 +27,6 @@ Arrays store *homogeneous* elements at *contiguous* locations. For an array of s
 15. Restore permutated array (i.e. look-up mapped elements) using `A[i] = A'[P[i]]`, i.e. `[A[i] for i in P]` ??Can't be right
 16. To check if all items in list are same equal, prefer `a.count(a[0]) == len(a)` over `len(set(a)) == 1` for better time/space efficiency.
 17. Consider mimicing an array with a hash table (with keys for indices) when indices == values for many elements, eg., when computing a random subset, to reduce space complexity. (EPI 5.14)
-
 18. its ok and useful (e.g. recursive solution to Scramblies Kata) to slice an array/string of size 1, it returns an empy array/string, e.g. `'a'[1:] == ''` and `['a'][1:] == []`
 19. its ok to create an empty range by specifying a start value >= end value, eg., `for i in range(5,2): ...`
 19. Use `min([a,b],key=len)` to get shortest of two (or more) arrays.

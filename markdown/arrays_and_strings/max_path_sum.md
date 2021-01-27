@@ -2,18 +2,20 @@
 
 ### Problem
 
-By starting at the top of the pyramid below and moving to adjacent numbers on the row below, the maximum total from top to bottom is 23.
+By starting at the top of the triangle below and moving to adjacent numbers on the row below, the maximum total from top to bottom is 23.
 
+```
    3
   7 4
  2 4 6
 8 5 9 3
 
 i.e., 3 + 7 + 4 + 9 = 23.
+```
 
-Given a pyramid, find the maximum path sum.
+Given a pyramid with one-hundred rows, find the maximum path sum.
 
-source: Maximum Path Sum II (project euler, problem 67) - https://projecteuler.net/problem=67
+source: Maximum Path Sum II (project euler, problem 18/67) - https://projecteuler.net/problem=67
 
 ### Boardwork (Design)
 
@@ -21,8 +23,8 @@ source: Maximum Path Sum II (project euler, problem 67) - https://projecteuler.n
 
 ### Analysis
 
-Time: O(x)
-Space: O(x)
+Time: O(n)
+Space: O(n) - constant for in-place solution
 
 ### Codework (Test)
 
@@ -31,7 +33,7 @@ Javascript implementation.
 ```javascript
 function maxPathSum(pyramid) {
 
-    // copy input array (can re-use input array instead if ok to mutate in-place)
+    // copy input array (can re-use if ok to mutate in-place)
     const memo = [
         ...pyramid.map(arr => [...arr]), 
         Array(pyramid[pyramid.length - 1].length + 1).fill(0)

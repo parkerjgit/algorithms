@@ -8,6 +8,18 @@
 [Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne](http://algs4.cs.princeton.edu/home/)
 [](https://gist.github.com/TSiege/cbb0507082bb18ff7e4b)
 [javascript-datastructures-algorithms](https://github.com/loiane/javascript-datastructures-algorithms)
+[code fights - interview practice](https://codefights.com/interview-practice)
+[App Academy Practice Problems](https://prepwork.appacademy.io/coding-test-1/practice-problems/)
+[Coderust 2.0](https://www.educative.io/collection/5642554087309312/5679846214598656)
+[LeetCode Online Judge](https://leetcode.com/)
+[Hired In Tech - Interview Prep Course](http://www.hiredintech.com/)
+[GeeksforGeeks - Algorithms w/ multiple implementations](http://www.geeksforgeeks.org/)
+[Project Euler - series of mathematical/computer programming problems](https://projecteuler.net/)
+[Hackerrank](https://www.hackerrank.com/) - Technical recruiting platform
+[codewars](https://www.codewars.com)
+[The 10 Best Coding Challenge Websites for 2018](https://medium.com/coderbyte/the-10-best-coding-challenge-websites-for-2018-12b57645b654)
+[interactive-coding-challenges](https://github.com/donnemartin/interactive-coding-challenges)
+[firecode](https://www.firecode.io/)
 
 ## Code
 
