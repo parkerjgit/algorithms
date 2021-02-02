@@ -29,12 +29,43 @@ const problems = [
 
             // prefered:
             (start, end) => [...Array(end).keys()].slice(start),
+
         ],
         tests: [
             {
                 expectation: 'returns correct range when valid start and end parameters are passed.',
                 params: [5, 10],
                 expected_output: [5,6,7,8,9]
+            }
+        ]
+    },
+    {
+        problem: `Fill an array with an integer range from start (inclusive) to end (exclusive) every step`,
+        solutions: [
+
+            // using modulo:
+            (start, end, step) => [...Array(end).keys()].slice(start).filter(x => (x-start) % step == 0),
+
+            // using generator:
+            (start, end, step) => {
+                function* range(start, end, step) {
+                    for (let i = start; i < end; i += step) 
+                        yield i;
+                }
+                return [...range(start, end, step)];
+            },
+
+        ],
+        tests: [
+            {
+                expectation: 'can count by 2',
+                params: [5, 10, 2],
+                expected_output: [5,7,9]
+            },
+            {
+                expectation: 'can count by 10',
+                params: [5, 50, 10],
+                expected_output: [5,15,25,35,45]
             }
         ]
     }
