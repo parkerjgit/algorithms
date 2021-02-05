@@ -5,7 +5,7 @@
 1. Sort to preprocess collection to make searching faster.
 2. Sort to identify like items.
 3. Naive Sorting algorithms run in O(n<sup>2</sup>), e.g., bubble sort, selection sort, insertion sort.
-4. Fast Sorting algorithms run in O(nlogn), e.g., heapsort, merge-sort, and quicksort.
+4. Fast Sorting algorithms run in O(nlogn), e.g., heapsort, merge-sort, and quicksort (quicksort is usually the best choice!)
 3. For some inputs, its possible to beat O(nlogn) with custom sorting routine, e.g., using min-heap to sort items known to be at most k places from final location in O(nlogk).
 4. For some inputs, its possibe to sort in O(n), e.g., for a small number of values or small range of values, e.g., ??? (see epi 181)
 5. [python] Sort a list in-place with sort() *method*. (see python_sorting.md)
