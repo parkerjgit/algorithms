@@ -46,18 +46,18 @@ Warm up problem set for arrays
 
 const problems = [ 
     {
-        problem: `Sort an array of objects by a numeric property`,
+        problem: `Sort an array of objects by a property`,
         solutions: [
-
-            // prefered
-            (objects, sortProp, compareFunction = (a, b) => a - b) => {
-                return objects.sort((a, b) => compareFunction(a[sortProp], b[sortProp]))
+            {
+                description: 'native sort with a compare function',
+                function: (objects, sortProp, compareFunction = (a, b) => a - b) => {
+                    return objects.sort((a, b) => compareFunction(a[sortProp], b[sortProp]))
+                }
             },
-
         ],
         tests: [
             {
-                expectation: 'can sort people by height.',
+                expectation: 'sorts people by height',
                 params: [[{name: 'a', height: 4.2}, {name: 'b', height: 3.5}, {name: 'c', height: 4}], 'height'],
                 expected_output: [{name: 'b', height: 3.5}, {name: 'c', height: 4}, {name: 'a', height: 4.2}]
             }
@@ -66,19 +66,19 @@ const problems = [
     {
         problem: `Sort one array by another array`,
         solutions: [
-
-            // Schwartzian transform, i.e., Decorate-Sort-Undecorate (DSU)
-            (itemsToSort, valuesToSortBy, compareFunction = (a, b) => a - b) => {
-                return itemsToSort
-                    .map((item, i) => ({ item: item, value: valuesToSortBy[i] }))
-                    .sort((a, b) => compareFunction(a.value, b.value))
-                    .map(temp => temp.item)
+            {
+                description: 'Schwartzian transform, i.e., Decorate-Sort-Undecorate (DSU)',
+                function: (itemsToSort, valuesToSortBy, compareFunction = (a, b) => a - b) => {
+                    return itemsToSort
+                        .map((item, i) => ({ item: item, value: valuesToSortBy[i] }))
+                        .sort((a, b) => compareFunction(a.value, b.value))
+                        .map(temp => temp.item)
+                }
             }
-
         ],
         tests: [
             {
-                expectation: 'can sort people by height.',
+                expectation: 'sorts people by height',
                 params: [['jane', 'john', 'amy'], [4.2, 3.5, 6.2]],
                 expected_output: ['john', 'jane', 'amy']
             }
@@ -89,11 +89,11 @@ const problems = [
 // Test
 
 problems.forEach(({problem, solutions, tests}) => {
-    describe(`Problem: ${problem}`, function() {
-        solutions.forEach((fut, i) => {
+    describe(`Warm-up: ${problem}`, function() {
+        solutions.forEach((solution, i) => {
             tests.forEach(test => {
-                it(`Method ${i} ${test.expectation}`, function() {
-                    expect(fut(...test.params)).toEqual(test.expected_output)
+                it(`Solution ${i+1} ${test.expectation} using ${solution.description}`, function() {
+                    expect(solution.function(...test.params)).toEqual(test.expected_output)
                 })
             })
         })
