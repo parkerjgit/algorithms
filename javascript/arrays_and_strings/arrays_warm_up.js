@@ -74,11 +74,14 @@ const problems = [
 // Test
 
 problems.forEach(({problem, solutions, tests}) => {
-    describe(`Problem: ${problem}`, function() {
+    describe(`Warm-up: ${problem}`, function() {
         solutions.forEach((fut, i) => {
             tests.forEach(test => {
-                it(`Method ${i} ${test.expectation}`, function() {
-                    expect(fut(...test.params)).toEqual(test.expected_output)
+                let t0 = performance.now();
+                let results = fut(...test.params);
+                let t1 = performance.now();
+                it(`Solution ${i} ${test.expectation} (timing: ${t1 - t0} ms)`, function() {
+                    expect(results).toEqual(test.expected_output)
                 })
             })
         })
