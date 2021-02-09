@@ -23,21 +23,24 @@ source: Palindromic Substrings (leetCode 647) - https://leetcode.com/problems/pa
  */
 var countPalindromicSubstrings = function(s) {
     
-    let cnt = s.length;
+    let cnt = s.length; // one-letter palindromes are trivial
     
     const grow = (l, r) => {
+
+        // if its a palindrome, count it and keep growing!
         if (l >= 0 && s[l] === s[r]) {
             cnt++;
             grow(l-1, r+1);
         }
-    }
+    };
     
+    // try to grow all two and three letter substrings
     for (let i = 0; i < s.length - 1; i++) {
         grow(i-1, i+1);
         grow(i, i+1);
     }
     
-    return cnt
+    return cnt;
 };
 
 // Test

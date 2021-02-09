@@ -14,7 +14,7 @@
 
 ### Trees and Graphs
 
-<a href="markdown/trees_and_graphs/maze_solver.md"><img src="images/maze_solver.jpg" width="33%" /></a> <a href="markdown/trees_and_graphs/maze_solver.md"><img src="images/maze_solver2.jpg" width="33%" /></a> <a href="markdown/trees_and_graphs/paint_bucket.md"><img src="images/paint_bucket.jpg" width="33%" /></a>
+<a href="markdown/trees_and_graphs/maze_solver.md"><img src="images/maze_solver.jpg" width="33%" /></a> <a href="markdown/trees_and_graphs/maze_solver.md"><img src="images/maze_solver2.jpg" width="33%" /></a> <a href="markdown/trees_and_graphs/paint_bucket.md"><img src="images/paint_bucket.jpg" width="33%" /></a><a href="markdown/trees_and_graphs/bin_tree_structure_permutations.md"><img src="images/bin_tree_structure_permutations.jpg" width="33%" /></a>
 
 ### Heaps
 
