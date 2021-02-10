@@ -1,7 +1,5 @@
-function BST(value=null, left=null, right=null) {
+function BST(value=null) {
   this.value = value;
-  this.left = left;
-  this.right = right;
 }
 
 BST.prototype.add = function(itemValue) {

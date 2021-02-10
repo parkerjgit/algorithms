@@ -172,12 +172,13 @@ describe('getProject', function() {
 //     })
 // })
 
-describe('buildOrder', function() {
-    it('gets topological order of set of projects and dependancies', function() {
-        expect(
-            buildOrder(['a','b','c','d','e','f'],[['a','d'],['f','b'],['b','d'],['f','a'],['d','c'],['e','b'],['b','a']])
-        ).toEqual(
-            ['f','e','b','a','d','c']
-        );
-    })
-})
+// TODO
+// describe('buildOrder', function() {
+//     it('gets topological order of set of projects and dependancies', function() {
+//         expect(
+//             buildOrder(['a','b','c','d','e','f'],[['a','d'],['f','b'],['b','d'],['f','a'],['d','c'],['e','b'],['b','a']])
+//         ).toEqual(
+//             ['f','e','b','a','d','c']
+//         );
+//     })
+// })
