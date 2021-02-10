@@ -141,6 +141,7 @@ see notes on [strings](notes/strings.md)
 1. implement a bst/arb graph
 2. traverse bst/grph with DFT, BFT iter/recursively
 3. find all paths of BST. sum numbers represented by paths
+4. generate all structural permutations of binary tree with n nodes - [solution](markdown\trees_and_graphs\bin_tree_structure_permutations.md)
 
 <details><summary>More Questions</summary><br>
 
