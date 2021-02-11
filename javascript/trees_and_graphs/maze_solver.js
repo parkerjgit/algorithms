@@ -1,6 +1,6 @@
 /*
-Given a 2D array of black and white entries representing a maze 
-with designated entrance and exit points, find [the shortest] path 
+Given a 2D array of black and white entries representing a maze
+with designated entrance and exit points, find [the shortest] path
 from the entrance to the exit, if one exist.
 
 source: problem adapted from EPI 18.1
@@ -21,11 +21,11 @@ function mazeSolver(maze, start, [end_row, end_col]) {
         if (row === end_row && col === end_col) {
             solution = [...path, [row,col]];
             return;
-        } 
-        
-        let [prev_row, prev_col] = (path.length > 0) 
-            ? path[path.length - 1] 
-            : [-1, -1];   
+        }
+
+        let [prev_row, prev_col] = (path.length > 0)
+            ? path[path.length - 1]
+            : [-1, -1];
 
         // valid move respects boundries and doesn't backtrack
         const isValidMove = ([row, col]) => (
@@ -41,7 +41,7 @@ function mazeSolver(maze, start, [end_row, end_col]) {
             [ row, col + 1 ],
             [ row, col - 1 ]
         ].filter( next => isValidMove(next) )
-        
+
         // try moving in every valid direction
         nexts.forEach(next => {
             _solve(next, [...path, [row,col]])
@@ -53,11 +53,11 @@ function mazeSolver(maze, start, [end_row, end_col]) {
 }
 
 // clumsy first attempt to optimize for cyclic mazes
-// finds solution ok using dfs, 
+// finds solution ok using dfs,
 // but caches non-determistically resulting in
 // non-optimal paths.
 function mazeSolver2(maze, start, [end_row, end_col]) {
-    
+
     let memo = [...Array(maze.length)].map( _ => (
         Array(maze[0].length).fill(null)
     ))
@@ -75,14 +75,14 @@ function mazeSolver2(maze, start, [end_row, end_col]) {
             row >= 0 && row < maze.length &&
             col >= 0 && col < maze[0].length &&
             maze[row][col] !== 1 &&
-            !seen.has(''.concat(row, '-', col)) 
+            !seen.has(''.concat(row, '-', col))
         )
 
         // cache and lookup path
         const lookupPath = ([row, col]) => {
             if (!memo[row][col])
                 memo[row][col] = _solve(new Set(seen), [row, col]);
-   
+
             return memo[row][col];
         }
 
@@ -96,18 +96,18 @@ function mazeSolver2(maze, start, [end_row, end_col]) {
                 return (b.length < a.length) ? b : a;
             }
         }
-        
+
         // select the shortest successful path from a valid next step to finish
         let minPath = [
             [ row + 1, col ],
             [ row, col + 1 ],
-            [ row - 1, col ], 
+            [ row - 1, col ],
             [ row, col - 1 ]
         ]
         .filter(next => isValidMove(next))
         .map(next => lookupPath(next))
         .reduce((minSoFar, path) => getMinPath(minSoFar, path), [null])
-            
+
         // return combination of this cell with min path to this cell
         return [[row, col], ...minPath]
     }
@@ -117,7 +117,7 @@ function mazeSolver2(maze, start, [end_row, end_col]) {
 
 
 // function mazeSolver3(maze, start, [end_row, end_col]) {
-    
+
 //     let score = [...Array(maze.length)].map( _ => (
 //         [...Array(maze[0].length)].map( _ => (
 //             {f: Infinity, g: Infinity}
@@ -128,21 +128,21 @@ function mazeSolver2(maze, start, [end_row, end_col]) {
 
 //         if (row === end_row && col === end_col) {
 //             return [[row,col]];
-//         } 
+//         }
 
 //         // valid move respects boundries and doesn't double back on itself
 //         const isValidMove = ([row, col]) => (
 //             row >= 0 && row < maze.length &&
 //             col >= 0 && col < maze[0].length &&
 //             maze[row][col] !== 1 &&
-//             !seen.has(''.concat(row, '-', col)) 
+//             !seen.has(''.concat(row, '-', col))
 //         )
 
 //         // cache and lookup path
 //         const lookupPath = ([row, col]) => {
 //             if (!score[row][col])
 //                 score[row][col] = _solve(new Set(seen), [row, col]);
-   
+
 //             return score[row][col];
 //         }
 
@@ -156,18 +156,18 @@ function mazeSolver2(maze, start, [end_row, end_col]) {
 //                 return (b.length < a.length) ? b : a;
 //             }
 //         }
-        
+
 //         // select the shortest successful path from a valid next step to finish
 //         let minPath = [
 //             [ row + 1, col ],
 //             [ row, col + 1 ],
-//             [ row - 1, col ], 
+//             [ row - 1, col ],
 //             [ row, col - 1 ]
 //         ]
 //         .filter(next => isValidMove(next))
 //         .map(next => lookupPath(next))
 //         .reduce((minSoFar, path) => getMinPath(minSoFar, path), [null])
-            
+
 //         // return combination of this cell with min path to this cell
 //         return [[row, col], ...minPath]
 //     }
@@ -251,11 +251,11 @@ describe('mazeSolver', function() {
             [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0],
         ]
     })
-    it('find shortest solution to maze', function() {
+    // it('find shortest solution to maze', function() {
         // expect(mazeSolver(this.maze, [0,0], [4,4])).toEqual([[0,0],[1,0],[2,0],[3,0],[3,1],[3,2],[2,2],[2,3],[2,4],[3,4],[4,4]])
         // expect(mazeSolver(this.maze, [0,0], [4,4])).toEqual([[0,0],[1,0],[2,0],[3,0],[3,1],[3,2],[2,2],[2,3],[2,4],[3,4],[4,4]])
         // pathPrint(this.maze, [0,0], [4,4], mazeSolver2(this.maze, [0,0], [4,4]))
         // pathPrint(this.maze2, [0,0], [9,9], mazeSolver2(this.maze2, [0,0], [9,9]))
         // pathPrint(this.maze3, [0,0], [18,16], mazeSolver2(this.maze3, [0,0], [18,16]))
-    })
+    // })
 })
