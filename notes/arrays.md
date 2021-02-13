@@ -12,10 +12,13 @@ Arrays store *homogeneous* elements at *contiguous* locations. For an array of s
 1. Consider writing values back-to-front, or alternately, reversing the array, especially if you are removing elements or splicing (back-to-front allows you to pop from end instead of remove/shift from front).
 2. Prefer overwriting and swaping to expensive insertions. (EPI 5.5)
 3. Use **Parallel logic** for rows and columns??? (EPI 38)
-4. Wrap (i.e. rotate) a list about kth element with `A[k:] + A[:k]`
-4. Convert 2D list to 1D list with `[x for row in M for x in row]`
-5. Iterate over 2D list with `[[f(x) for x in row] for row in M]`
-6. Partition an array in-place by indexing the first element of each partition, steping thru unsortted elements, swaping elements into correct partition as you go. (e.g. dutch flag problem, EPI 5.1)
+4. Wrap (i.e. rotate) a list about kth element with `A[k:] + A[:k]` (py), `A.slice(k) + A.slice(0,k)` (js)
+4. Flatten a 2d array (matrix) with a nested loop or equiv, e.g., `[x for row in matrix for x in row]` (py) (can also use `matrix.flat()`, `[].concat(...matrix)` or `matrix.reduce((acc, row) => acc.concat(row), [])` (js))
+5. Flatten an deep/arbitrarily nested array with recursion, e.g., [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flat#reduce_concat_isarray_recursivity)
+5. Process items in a 2D array with `[[f(x) for x in row] for row in M]` (py), `rows.forEach(row => row.forEach(x => f(x)))` (js)
+6. Partition an array in-place by indexing the first element of each partition, steping thru unsortted elements, swaping elements into correct partition as you go. (e.g. [dutch flag problem](
+ ../markdown/arrays_and_strings/dutch_flag.md), EPI 5.1)
+7. Process a sliding window of elements in an array using [inclusive] left and [exclusive] right pointers and a `while (right < length)` loop.
 7. Increment number encoded as an array of digits by stepping thru array in reverse order, incrementing digits and carrying the one until there is no carry. (EPI 5.2)
 8. Multiply two numbers encoded as arrays of digits by implemented long multiplication with nested for loop over reversed arrays. (EPI 5.3)
 9. Check if "advancement" game board is valid by keeping track of furthest position reached-so-far and checking if any earily positions can get you further (EPI 5.4)
@@ -39,11 +42,11 @@ Arrays store *homogeneous* elements at *contiguous* locations. For an array of s
 Timing for an array:
 
 ```
-Accessing:      O(1)  
-Search:         O(n) for Sequential Search (If unsortted) 
+Accessing:      O(1)
+Search:         O(n) for Sequential Search (If unsortted)
                 O(log n) for Binary Search (If sorted)
-Insertion:      O(n) 
-Deletion:       O(n) 
+Insertion:      O(n)
+Deletion:       O(n)
 ```
 
 When to use:

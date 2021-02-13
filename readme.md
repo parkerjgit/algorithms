@@ -14,14 +14,14 @@ A list of question sets grouped by problem type. Each set is preceeded by concis
 <details><summary>Answers</summary><br>
 
 * Polynomial Time:
-    * Constant - c - There is no dependence on n. 
+    * Constant - c - There is no dependence on n.
     * Logarithmic - log(n) - great! grows slow as n gets big, eg Binary search.
     * Linear - n - Cost of stepping through an array, ie. looking at each item once or twice (or fixed number of times)
     * Superlinear (or linearithmic) - nlog(n) - grow a little faster than linear - cost of divide and conquer algorithms, eg Mergesort and Quicksort
-    * Quadratic - n<sup>2</sup> - cost of looking at all pairs, i.e. combinations of two items, e.g. Insertion sort and Selection sort. 
+    * Quadratic - n<sup>2</sup> - cost of looking at all pairs, i.e. combinations of two items, e.g. Insertion sort and Selection sort.
     * Cubic - n<sup>3</sup> - cost of looking at all combinations of three items, eg. dynamic programming algorithms
 * Non-Polynomial time (use heuristics):
-    * Exponential - c<sup>n</sup> - very bad - cost of looking at all subsets of n items, e.g. building a powerset (set of all subsets of S, including the empty set and S itself)  
+    * Exponential - c<sup>n</sup> - very bad - cost of looking at all subsets of n items, e.g. building a powerset (set of all subsets of S, including the empty set and S itself)
     * Factorial - n! - even worse - cost of looking at all purmutations of n items.
 
 </details><br>
@@ -65,19 +65,30 @@ see notes on [strings](notes/strings.md)
 
 #### Arrays
 
-1. pre-fill an array with 0's/null/range
-1. pre-fill an array with a range of numbers 0 to 10, 5 to 15, etc.
-1. pre-fill an array with letters of alphabet
->1. map every element of array to another array of same size with el = fn(el), ie map to target domain, process every el w/fn
+**Notes**
+
+see notes on [Arrays](notes/arrays.md)
+
+**Warm-up**
+
+1. index first, exclusive middle, exclusive last elements
+1. pre-fill/generate an array with 0's/null/range
+1. pre-fill/generate an array with a range of numbers (implement a range function)
+1. pre-fill/generate an array with letters of alphabet
+2. implement zip/unzip function for two or more arrays.
+3. implement union/intersection/difference for two or more arrays.
+1. transform every element of an array
+4. transform every third element of an array of size n
+4. process a sliding window of elements in an array
+4. process mirror elements in an array
+>3. process corresponding elements from two or more arrays
 2. reduce elements of an array to single value: sum, factorial
-3. simultaneously process every element in two arrays of equal/unequal size
-4. implement a range function.
-4. process every third element of an array of size n
+5. flatten a matrix or jagged 2d array.
+6. flatten a deeply nested jagged array.
 5. apply/restore a permutation of an array
-4. process array efficiently with single pass + hash: two/three/zero sum
-4. process array with multiple pointers starting at same/op ends
 5. paritition an array into 2/3 with 1/2 pointers: even/odd, dutch flag, 3-stack, lt/gt around pivot
 6. delete dups from sorted/unsortted array.
+4. find some combination of items in an array (that satisfy a condition) with single pass + hash (e.g., two/three/zero sum)
 7. find max spread.
 5. implement stack/heap/map with an array.
 6. find kth smallest (in nlogk, and n time)
@@ -88,7 +99,7 @@ see notes on [strings](notes/strings.md)
 
 1. Use for **fast update** (insertion and deletion) when you can afford the overhead (~40 bytes/node vs ~4 for an array cell)
 2. Use for more **run-time flexibility**, when not simply growing array from one end.
-3. Use Linked list for **simplicity and stability** of moving pointers over content.  
+3. Use Linked list for **simplicity and stability** of moving pointers over content.
 2. Careful!: Linear random access time means updates will degrade to linear time also unless we know the location of node! (e.g. queue)
 3. *Use* for fast **queue implementation**
 4. A **Singly Linked List** is recursively defined as a ref to the first, or "head" node, where each node contains data and a ref to the "next" node.
@@ -99,7 +110,7 @@ see notes on [strings](notes/strings.md)
 9. Linked lists are not a standard type in python, but **collections.deque** does provide a double-ended queue (deque)
 10. Consider using a "dummy head", i.e. sentinal node, to avoid having to check for empty list. (EPI 7.1)
 11. Consider using two iterators, one ahead of other, or one quicker than other. (EPI 7.3)
-12. Merge sorted linked lists by traversing both and appending smaller at each step until one is empty, then append rest of the other by pointing tail at `L1 or L2` 
+12. Merge sorted linked lists by traversing both and appending smaller at each step until one is empty, then append rest of the other by pointing tail at `L1 or L2`
 13. Reverse a sublist in single pass by keeping index of head/first node, h/f of sublist, and stepping through each node pair i/j in sublist: pointing first f at j.next, pointing j node at previous node i, and pointing head h, at j. (e.g., EPI 7.2)
 
 ---
@@ -168,7 +179,7 @@ xxx
 7. A **topological ordering** of vertices in a DAG is such that each edge is from a vertex earlier in the ordering to a vertex later in the ordering.
 8. cont. on EPI pg 276 with basic concepts...
 9. A graph can be implemented using an **adjacency list/map** or an **adjacency matrix**. OK, you *could* also use a linked list structure but ONLY for acyclic connected graphs (*basically* trees), otherwise which node is the root and what if graph is not connected?
-10. If each vertice has at most one edge, implement the **adjacency map** with a dictionary where key/value pairs correspond to u,v edge pairs (or better yet, ***use an array*** if vertices map to array indices) (see EPI 277.) 
+10. If each vertice has at most one edge, implement the **adjacency map** with a dictionary where key/value pairs correspond to u,v edge pairs (or better yet, ***use an array*** if vertices map to array indices) (see EPI 277.)
 11. If vertices have multiple edges can still use dict, where dict values are lists of tuples corresponding to outgoing edges, or alternatively, maintain seperate lists of vertices and edges. May have to use multiple representations for more complex problems.
 12. If using graph to model a grid, or if graph is highly connected, consider an adjacency matrix.
 10. graphs are ideal for modeling **binary relationships between pairs of objects**
@@ -218,7 +229,7 @@ yyy
 
 </details>
 
-1. implement 
+1. implement
 
 #### hash maps and sets
 
@@ -230,14 +241,14 @@ yyy
 * A [Map]() is an iterable object that lets you store key/value pairs and traverse in-[insertion]-order.
 * Unlike Objects, there is no need to use `entries()` method to iterate key/value pairs. Using `for...of` and `forEach` on a Map, returns an [key, value] array for each item in map.
 * Unlike Objects, keys of a Map can be any value, including functions, objects, and any primitive.
-* Careful when using an object as a key b/c the key is a reference, so do not use for multi-param memoization! Instead serialize an array. 
+* Careful when using an object as a key b/c the key is a reference, so do not use for multi-param memoization! Instead serialize an array.
 * Unlike with objects, can get the *size* of a Map easily with the `size` property.
 * A Map *may* perform better in scenarios involving frequent additions and removals. ([mdn](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map))
-* **Weakmaps** are like Maps, but keys are weakly referenced to ***prevent leaks*** and ***reduce memory consumption***.  
+* **Weakmaps** are like Maps, but keys are weakly referenced to ***prevent leaks*** and ***reduce memory consumption***.
 * Unlike Map keys, WeakMap keys ***can only be objects*** AND are ***NOT iterable***.
 * Use [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) and [WeakSet](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet) for constant-time add/remove/inclusion (via `has()`) of distinct items.
-* A [Set] is an *iterable* object that lets you store *unique* values of *any* type (note, unlike python sets, values are stored in *insertion* order). 
-* [WeakSet]() objects are like sets, but they only store *weak* references to objects, and are ***NOT iterable*** (ie., can not be iterated over). 
+* A [Set] is an *iterable* object that lets you store *unique* values of *any* type (note, unlike python sets, values are stored in *insertion* order).
+* [WeakSet]() objects are like sets, but they only store *weak* references to objects, and are ***NOT iterable*** (ie., can not be iterated over).
 * Set does not have a literal form. To create an empty set you must construct it with the built-in constructor function `new Set()`. If an iterable is passed, all of its elements will be added to the new Set.
 * Can also pass a string, to get a set all unique chars. If want an array of unique chars just spread it out, eg., `[...(new Set('banana'))]`
 * Sets and arrays are both ordered collections implemented with objects. Functionally, the difference is that sets only store unique values, and the *Set.prototype* object supports fewer methods. Notably, arrays have a *length* and sets a *size*.
@@ -401,7 +412,7 @@ see [project euler](https://projecteuler.net/archives)
 6. [python] Get a new sorted list from an iterable using the sorted() *function*. (see python_sorting.md)
 7. [python] Sort non-comparable objects by passing a function to keyword argument "key", that maps complex objects (classes, tuples, etc.) to objects that *are* comparable (integers, strings, etc.). (see python_sorting.md)
 8. [python] Sort class objects implicitly by implementing a compare dunder method `__lt__`
-9. Find intersection of two sorted arrays by indexing start of both arrays and testing indexed elements for equality. If equal, append to result and advance both, otherwise advance smaller. Do until one or both arrays are exhausted. (see EPI 13.1 182) 
+9. Find intersection of two sorted arrays by indexing start of both arrays and testing indexed elements for equality. If equal, append to result and advance both, otherwise advance smaller. Do until one or both arrays are exhausted. (see EPI 13.1 182)
 10. Merge two sorted arrays (if one has enough empty spaces at end to hold the other) by filling buffered array back to front with merged elements starting at m + n + 1, where m and n are the number of elements in first and second array. (see EPI 13.2 183, CTCI 396)
 
 ---
@@ -415,3 +426,9 @@ see [project euler](https://projecteuler.net/archives)
 #### Bit Manipulation
 
 #### Parsing
+
+#### Fuctional Composition
+
+**warm-up**
+
+1. implement pipe, etc. etc.

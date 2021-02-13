@@ -1,23 +1,48 @@
 /*
-You have an array with up to 100,000 numbers. Write a function to determine how many fragments 
-have a sum of zero. A fragment is any number of sequential numbers in the array. For example 
-the array [2, 4, 1] has 6 fragments: (2), (2, 4), (2, 4, 1), (4), (4, 1), and (1). If the array 
+You have an array with up to 100,000 numbers. Write a function to determine how many fragments
+have a sum of zero. A fragment is any number of sequential numbers in the array. For example
+the array [2, 4, 1] has 6 fragments: (2), (2, 4), (2, 4, 1), (4), (4, 1), and (1). If the array
 contains over 100,000 sum zero fragments you should return -1.
 */
 
-const countSumZero = arr => {
-    let count = 0,
-        sum = 0,            // current sum
-        sums = {'0': 1};    // sums seen so far
 
-    arr.forEach(el => {
-        sum += el ; 
-        if (sums[sum]) 
-            count += sums[sum];
-        sums[sum] = sums[sum] ? ++sums[sum] : 1;
+const countSumZero = arr => {
+
+    // Key insight: substrings between elements (inclusively) with the same running sum have a zero sum!
+    // Every time we see a running sum that we have already seen increment zero sum count by the number
+    // of times we have already seen it.
+
+    let zeroSumCount = 0,
+        runSum = 0;
+
+    // initialize zero run sum count to 1, because the next time we see a zero run sum, we want to count it.
+    let runSumCounts = new Map([[0, 1]]);
+
+    arr.forEach(val => {
+
+        // update running sum
+        runSum += val;
+
+        if (runSumCounts.has(runSum)) {
+
+            // We have seen this sum before, get number of times seen so far
+            let count = runSumCounts.get(runSum);
+
+            // increment zero sum count by the number of times we've seen it
+            zeroSumCount += count;
+
+            // increment run sum count by 1
+            runSumCounts.set(runSum, count + 1)
+
+        } else { // New running sum
+
+            // init run sum count
+            runSumCounts.set(runSum, 1)
+        }
+
     })
 
-return count;
+    return zeroSumCount;
 }
 
 describe('countSumZero', function() {
