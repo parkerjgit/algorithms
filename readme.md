@@ -44,9 +44,6 @@ see notes on [strings](notes/strings.md)
 8. Replace characters in first string with corresponding characters in second
 9. Generate a random character
 10. Build a random string
-
-**Easy**
-
 1. [Reverse a string](https://medium.freecodecamp.org/how-to-reverse-a-string-in-javascript-in-3-different-ways-75e4763c68cb) using iteration/recursion/built-in.
 2. [Repeat a string](https://medium.freecodecamp.org/three-ways-to-repeat-a-string-in-javascript-2a9053b93a2d) using iteration/recursion/built-in.
 >3. [Find a substring(indexOf)](https://medium.freecodecamp.org/two-ways-to-confirm-the-ending-of-a-string-in-javascript-62b4677034ac) at begining/end/anywhere in string.
@@ -85,13 +82,16 @@ see notes on [Arrays](notes/arrays.md)
 2. reduce elements of an array to single value: sum, factorial
 5. flatten a matrix or jagged 2d array.
 6. flatten a deeply nested jagged array.
+
+**Problems**
+
 5. apply/restore a permutation of an array
 5. paritition an array into 2/3 with 1/2 pointers: even/odd, dutch flag, 3-stack, lt/gt around pivot
 6. delete dups from sorted/unsortted array.
-4. find some combination of items in an array (that satisfy a condition) with single pass + hash (e.g., two/three/zero sum)
+4. find/count some combination of items in an array (that satisfy a condition) with single pass + hash (e.g., two/three/zero sum)
 7. find max spread.
-5. implement stack/heap/map with an array.
 6. find kth smallest (in nlogk, and n time)
+5. implement stack/heap/map with an array.
 
 #### linked-list -
 
