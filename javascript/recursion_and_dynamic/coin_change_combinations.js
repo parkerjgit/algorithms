@@ -37,6 +37,42 @@ source: Counting Change Combinations (codewars) - https://www.codewars.com/kata/
     return countChange(change - coins[0], coins) + countChange(change, coins.slice(1))
   }
 
+  function countChangeFinite(target, candidates) {
+    let results = [];
+    candidates.sort();
+    
+    function _comboSum(target, startIdx, cur) {
+        
+        if (target < 0)
+            return;
+        
+        if (target == 0) {
+            results.push([...cur]);
+            return;
+        }
+        
+        for (let i = startIdx; i < candidates.length; i++) {
+            
+            // candidates are sortted, so if candidate at i is same as prev, 
+            // and previous not included this combination, then ignore it
+            // to avoid duplicate combinations.
+            if (i > startIdx && candidates[i] == candidates[i-1]) {
+                continue;
+            }
+            
+            cur.push(candidates[i]);
+            _comboSum(target - candidates[i], i + 1, cur);
+            cur.pop();
+
+                  
+        }
+    }
+    
+    _comboSum(target, 0, []);
+    return results;
+    
+};
+
   // Test
 
   const problems = [
@@ -67,6 +103,22 @@ source: Counting Change Combinations (codewars) - https://www.codewars.com/kata/
           expectation: 'no change case',
           params: [11, [5,7]],
           expected_output: 0
+        },
+      ]
+    },
+    {
+      problem: `Write a function that counts how many different ways you can make change for an amount of money, given an array of finite coins.`,
+      solutions: [
+        {
+          description: 'backtracking (by passing start index down)',
+          fn: countChangeFinite
+        },
+      ],
+      tests: [
+        {
+          expectation: 'simple case',
+          params: [8, [10,1,2,7,6,1,5]],
+          expected_output: [ [1,1,6], [1,2,5], [1,7], [2,6] ]
         },
       ]
     }
