@@ -7,7 +7,7 @@ source: Counting Change Combinations (codewars) - https://www.codewars.com/kata/
 {
 
   // Solution 1: backtracking (by passing start index down)
-  function countChange(change, coins) {
+  function countChange(change, denominations) {
     let count = 0;
 
     function combinationSum(target, startIndex) {
@@ -17,8 +17,8 @@ source: Counting Change Combinations (codewars) - https://www.codewars.com/kata/
       if (target == 0)
         count += 1;
       
-      for (let i = startIndex; i < coins.length; i++) {
-        combinationSum(target - coins[i], i)
+      for (let i = startIndex; i < denominations.length; i++) {
+        combinationSum(target - denominations[i], i)
       }
     }
 
@@ -27,48 +27,50 @@ source: Counting Change Combinations (codewars) - https://www.codewars.com/kata/
   }
   
   // Solution 2: backtracking (by slicing candidate array)
-  var countChange2 = function(change, coins) {
-    if(change < 0 || coins.length === 0)
+  function countChange2(change, denominations) {
+    if(change < 0 || denominations.length === 0)
       return 0
 
     if(change === 0)
       return 1
 
-    return countChange(change - coins[0], coins) + countChange(change, coins.slice(1))
+    return countChange(change - denominations[0], denominations) + countChange(change, denominations.slice(1))
   }
 
-  function countChangeFinite(target, candidates) {
+  // tbd changeCombinationsFromDenominations(...)
+
+  function changeCombinationsFromCoins(change, coins) {
     let results = [];
-    candidates.sort();
+    coins.sort();
     
-    function _comboSum(target, startIdx, cur) {
+    function _comboSum(target, startIdx, candidate) {
         
         if (target < 0)
             return;
         
         if (target == 0) {
-            results.push([...cur]);
+            results.push([...candidate]);
             return;
         }
         
-        for (let i = startIdx; i < candidates.length; i++) {
+        for (let i = startIdx; i < coins.length; i++) {
             
-            // candidates are sortted, so if candidate at i is same as prev, 
+            // coins are sortted, so if candidate at i is same as prev, 
             // and previous not included this combination, then ignore it
             // to avoid duplicate combinations.
-            if (i > startIdx && candidates[i] == candidates[i-1]) {
+            if (i > startIdx && coins[i] == coins[i-1]) {
                 continue;
             }
             
-            cur.push(candidates[i]);
-            _comboSum(target - candidates[i], i + 1, cur);
-            cur.pop();
+            candidate.push(coins[i]);
+            _comboSum(target - coins[i], i + 1, candidate);
+            candidate.pop();
 
                   
         }
     }
     
-    _comboSum(target, 0, []);
+    _comboSum(change, 0, []);
     return results;
     
 };
@@ -111,7 +113,7 @@ source: Counting Change Combinations (codewars) - https://www.codewars.com/kata/
       solutions: [
         {
           description: 'backtracking (by passing start index down)',
-          fn: countChangeFinite
+          fn: changeCombinationsFromCoins
         },
       ],
       tests: [
