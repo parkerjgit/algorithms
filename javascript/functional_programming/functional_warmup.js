@@ -29,7 +29,7 @@ Warm up problem set for arrays
     },
     {
       problem: `Write three binary functions, add , sub, and mul, that take two numbers and return their sum, difference, and product.`,
-      solutions: {add, sub, mul},
+      // solutions: {add, sub, mul},
       tests: {
         add: [{
           expectation: 'returns sum of two numbers',
@@ -53,7 +53,7 @@ Warm up problem set for arrays
     },
     {
       problem: `Write a function that takes an argument and returns a function that returns that argument, i.e., identity function factory`,
-      solutions: {identityFactory},
+      // solutions: {identityFactory},
       tests: {
         identityFactory: [{
           expectation: 'can take an integer and returns a function that returns that integer',
@@ -65,7 +65,7 @@ Warm up problem set for arrays
     },
     {
       problem: `Write a function curry that takes a binary function and an argument, and returns a function that can take a second argument`,
-      solutions: {curry},
+      // solutions: {curry},
       tests: {
         curry: [{
           expectation: 'can take a binary function and the first argument, and return a function that can take the second argument',
@@ -77,7 +77,7 @@ Warm up problem set for arrays
     },
     {
       problem: `Write a function liftf that takes a binary function, and makes it callable with two invocations`,
-      solutions: {lift},
+      // solutions: {lift},
       tests: {
         lift: [{
           expectation: 'can take a binary function, and makes it callable with two invocations',

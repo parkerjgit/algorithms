@@ -2,15 +2,14 @@
 
 A list of question sets grouped by problem type. Each set is preceeded by concise notes and procedes from easy to medium difficultly (a few problems that might be considered hard). The list is intended to help candidates ramp up quickly for technical interviews.
 
-#### High-Frequency front-end problems
+#### Front-end problems
 
 **warm-up**
 
 **problems**
 
-1. implement pagination on front and back-end
-2. implement debounce
-3. implement throttle function
+1. implement pagination, sorting, and filtering on front and back-end
+2. implement debounce, throttle function
 
 #### Complexity
 
@@ -315,7 +314,7 @@ yyy
 * Memoization and tabulation may be further optimized by recycling cache as you go, i.e., after you know there will be no more lookups, e.g. fibanacci (EPI 336). When tabulating data, always consider how much history you need to calculate each data point (often you only need previous data point, so recycle! )
 * Be sure there are only a polynomial number of different subproblems that you are caching, e.g., if there are only two integer arguments that range
 between 1 and n, then there can be at most n^2 different recursive calls!
-* Memoizing multiple args in python, use tuple. javascript, use nested array if args are positive integers.
+* Memoizing multiple args in python, use tuple. javascript, use nested array if args are positive integers, or use stringfied array as key. May be tempting to use Maps with arrays as keys but using mutable objects as keys will lookup the reference not the value, which will not work. Need to create hash from the value and easiest way to do that is stringify it.
 
 ---
 
@@ -458,6 +457,7 @@ tbd...
 3. implement function that returns input function with args reversed
 2. implement debounce, debounce leading, etc.
 3. implement throttle function
+5. implement memoization for single/multi params
 
 1. Write an identity function that takes an argument and returns that argument, e.g., `identity(3) // 3`
 2. Write three binary functions, add , sub, and mul, that take two numbers and return their sum, difference, and product, e.g., `add(3, 4) // 7`
