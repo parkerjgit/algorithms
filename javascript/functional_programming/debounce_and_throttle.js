@@ -160,6 +160,8 @@ const throttleTrailing = (fn, delay) => {
     }
     timer = setTimeout(() => {
       fn(...args);
+
+      // when function is called, reset timer, so subsequent call can restart timer
       timer = null;
     }, delay);
   }

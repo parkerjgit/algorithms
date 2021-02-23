@@ -2,7 +2,7 @@
 
 A list of question sets grouped by problem type. Each set is preceeded by concise notes and procedes from easy to medium difficultly (a few problems that might be considered hard). The list is intended to help candidates ramp up quickly for technical interviews.
 
-#### High-Frequency front-end problems
+#### Front-end problems
 
 **warm-up**
 
@@ -10,6 +10,7 @@ A list of question sets grouped by problem type. Each set is preceeded by concis
 
 **problems**
 
+<<<<<<< HEAD
 2. implement a component in react, vanilla
 3. implement inheritance using class, prototype, functional, behavior delegation
 2. implement debounce
@@ -42,6 +43,10 @@ function debounce(fn, delay) => {
 9. implement filter movie list by average rating, name.
 10. implement sort filtered list by any field inside movie object
 11 implement infinite scroll
+=======
+1. implement pagination, sorting, and filtering on front and back-end
+2. implement debounce, throttle function
+>>>>>>> d98b0107284376503c3566b67e1c22bcec80e50b
 
 #### Complexity
 
@@ -85,9 +90,6 @@ see notes on [strings](notes/strings.md)
 8. Replace characters in first string with corresponding characters in second
 9. Generate a random character
 10. Build a random string
-
-**Easy**
-
 1. [Reverse a string](https://medium.freecodecamp.org/how-to-reverse-a-string-in-javascript-in-3-different-ways-75e4763c68cb) using iteration/recursion/built-in.
 2. [Repeat a string](https://medium.freecodecamp.org/three-ways-to-repeat-a-string-in-javascript-2a9053b93a2d) using iteration/recursion/built-in.
 >3. [Find a substring(indexOf)](https://medium.freecodecamp.org/two-ways-to-confirm-the-ending-of-a-string-in-javascript-62b4677034ac) at begining/end/anywhere in string.
@@ -126,13 +128,16 @@ see notes on [Arrays](notes/arrays.md)
 2. reduce elements of an array to single value: sum, factorial
 5. flatten a matrix or jagged 2d array.
 6. flatten a deeply nested jagged array.
+
+**Problems**
+
 5. apply/restore a permutation of an array
 5. paritition an array into 2/3 with 1/2 pointers: even/odd, dutch flag, 3-stack, lt/gt around pivot
 6. delete dups from sorted/unsortted array.
-4. find some combination of items in an array (that satisfy a condition) with single pass + hash (e.g., two/three/zero sum)
+4. find/count some combination of items in an array (that satisfy a condition) with single pass + hash (e.g., two/three/zero sum)
 7. find max spread.
-5. implement stack/heap/map with an array.
 6. find kth smallest (in nlogk, and n time)
+5. implement stack/heap/map with an array.
 
 #### linked-list -
 
@@ -346,7 +351,7 @@ yyy
 * Memoization and tabulation may be further optimized by recycling cache as you go, i.e., after you know there will be no more lookups, e.g. fibanacci (EPI 336). When tabulating data, always consider how much history you need to calculate each data point (often you only need previous data point, so recycle! )
 * Be sure there are only a polynomial number of different subproblems that you are caching, e.g., if there are only two integer arguments that range
 between 1 and n, then there can be at most n^2 different recursive calls!
-* Memoizing multiple args in python, use tuple. javascript, use nested array if args are positive integers.
+* Memoizing multiple args in python, use tuple. javascript, use nested array if args are positive integers, or use stringfied array as key. May be tempting to use Maps with arrays as keys but using mutable objects as keys will lookup the reference not the value, which will not work. Need to create hash from the value and easiest way to do that is stringify it.
 
 ---
 
@@ -489,6 +494,7 @@ tbd...
 3. implement function that returns input function with args reversed
 2. implement debounce, debounce leading, etc.
 3. implement throttle function
+5. implement memoization for single/multi params
 
 1. Write an identity function that takes an argument and returns that argument, e.g., `identity(3) // 3`
 2. Write three binary functions, add , sub, and mul, that take two numbers and return their sum, difference, and product, e.g., `add(3, 4) // 7`
