@@ -17,11 +17,11 @@ Warm up problem set for arrays
   const problems = [
     {
       problem: `Write an identity function that takes an argument and returns that argument.`,
-      solutions: {identity},
+      solution: {identity},
       tests: {
         identity: [{
           expectation: 'can take an integer and return that integer',
-          procedure: identity,
+          procedure: function(x) {return this.identity(x)},
           params: [3],
           expected_output: 3
         }]
@@ -29,23 +29,23 @@ Warm up problem set for arrays
     },
     {
       problem: `Write three binary functions, add , sub, and mul, that take two numbers and return their sum, difference, and product.`,
-      solutions: {add, sub, mul},
+      solution: {add, sub, mul},
       tests: {
         add: [{
           expectation: 'returns sum of two numbers',
-          procedure: add,
+          procedure: function(a,b) {return this.add(a,b)},
           params: [3, 9],
           expected_output: 12
         }],
         sub: [{
           expectation: 'returns difference of two numbers',
-          procedure: sub,
+          procedure: function(a,b) {return this.sub(a,b)},
           params: [8, 5],
           expected_output: 3
         }],
         mul: [{
           expectation: 'returns product of two numbers',
-          procedure: mul,
+          procedure: function(a,b) {return this.mul(a,b)},
           params: [6, 7],
           expected_output: 42
         }],
@@ -53,11 +53,11 @@ Warm up problem set for arrays
     },
     {
       problem: `Write a function that takes an argument and returns a function that returns that argument, i.e., identity function factory`,
-      solutions: {identityFactory},
+      solution: {identityFactory},
       tests: {
         identityFactory: [{
           expectation: 'can take an integer and returns a function that returns that integer',
-          procedure: (x) => identityFactory(x)(),
+          procedure: function(x) { return this.identityFactory(x)() },
           params: [3],
           expected_output: 3
         }]
@@ -65,11 +65,11 @@ Warm up problem set for arrays
     },
     {
       problem: `Write a function curry that takes a binary function and an argument, and returns a function that can take a second argument`,
-      solutions: {curry},
+      solution: {curry},
       tests: {
         curry: [{
           expectation: 'can take a binary function and the first argument, and return a function that can take the second argument',
-          procedure: (fn, a, b) => curry(fn, a)(b),
+          procedure: function(fn, a, b) { return this.curry(fn, a)(b) },
           params: [mul, 5, 6],
           expected_output: 30
         }]
@@ -77,11 +77,11 @@ Warm up problem set for arrays
     },
     {
       problem: `Write a function liftf that takes a binary function, and makes it callable with two invocations`,
-      solutions: {lift},
+      solution: {lift},
       tests: {
         lift: [{
           expectation: 'can take a binary function, and makes it callable with two invocations',
-          procedure: (fn,a,b) => lift(fn)(a)(b),
+          procedure: function(fn,a,b) { return this.lift(fn)(a)(b) },
           params: [mul, 5, 6],
           expected_output: 30
         }]
@@ -89,7 +89,7 @@ Warm up problem set for arrays
     },
     // {
     //   problem: `xxx`,
-    //   solutions: {fn},
+    //   solution: {fn},
     //   tests: {
     //     fn: [{
     //       expectation: 'can xxx',
@@ -102,12 +102,12 @@ Warm up problem set for arrays
 
   ];
 
-  problems.forEach(({ problem, solutions, tests }) => {
+  problems.forEach(({ problem, solution, tests }) => {
     describe(`Warm-up: ${problem}`, function () {
       Object.keys(tests).forEach((fut, i) => {
         tests[fut].forEach(test => {
           let t0 = performance.now();
-          let results = test.procedure(...test.params);
+          let results = test.procedure.call(solution, ...test.params);
           let t1 = performance.now();
           it(`${fut} ${test.expectation} (timing: ${t1 - t0} ms)`, function () {
             expect(results).toEqual(test.expected_output)
