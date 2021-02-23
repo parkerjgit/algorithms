@@ -2,6 +2,15 @@
 
 A list of question sets grouped by problem type. Each set is preceeded by concise notes and procedes from easy to medium difficultly (a few problems that might be considered hard). The list is intended to help candidates ramp up quickly for technical interviews.
 
+#### Daily Problems
+
+1. **Complexity:** Cost of bin search, merge sort, looking at each item once, looking at all pairs/triplets/subsets/purmutations.
+1. **Front-end:** component that makes api call, and performs pagination, sort, and filter on front-end/back-end.
+2. **Strings:** Palindrome checker, interleave n strings, length of longest substring with unique characters
+2. **Functional:** implement debounce, throttle, pipe, compose, memoization for single/multi params
+3. **Linked-List:** implement with class/prototype/object/function and traverse iteratively/recursivly
+
+
 #### Front-end problems
 
 **warm-up**
@@ -449,6 +458,8 @@ tbd...
 #### Parsing
 
 #### Fuctional
+
+**daily**
 
 **warm-up**
 
