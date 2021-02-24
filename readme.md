@@ -5,11 +5,30 @@ A list of question sets grouped by problem type. Each set is preceeded by concis
 #### Daily Problems
 
 1. **Complexity:** Cost of bin search, merge sort, looking at each item once, looking at all pairs/triplets/subsets/purmutations.
+1. **Strings:** Palindrome checker, find a substring, find the longest substring with unique characters.
+1. **Arrays:** flatten an array, partion an array (Dutch flag problem), apply/restore a permutation of an array.
+1. **Linked-List:** implement with class/prototype/object/function and traverse iteratively/recursively
+1. **Trees:** implement BT/BST with class/prototype/object/function and traverse DFT/BFT iterative/recursively, is BST valid
+1. **Heap:** implement minheap, k most frequent words, sort k sortted
+1. **Stack:** normalize pathnames, rpn, test for well-formed expression, implement min/max API
+1. **Queue:** implement queue with array, stack, implement min/max API
+1. **Trie:** prefix search, autocomplete, sort words
+1. **Graphs:** represent graph as adjacency list, adjacency map, and adjecency matrix. traverse with DFT/BFT, determine if path/cycle exists.
+1. **Matrix:** prefill matrix, convert betwee 2d/1d array representations, traverse/transpose matrix, 
+1. **Hash Maps:** 2/3 sum problem, longest distinct and min-covering subarray, validate pattern
+1. **Recursion:** traverse jagged tree, dft of tree/graph, demonstrate bottom-up and top-down recursion
+1. **Dynamic:** fibonacci, combination sum (find/count combinations), three-step, knapsack
+1. **Searching:** find kth largest, implement native find using binSearch iter/recursively to accept comparitor and target value
+1. **Sorting:** implement a quadradic and super-linear time sort. sort an array of objects by prop, one array by another array, sort numbers/words (hint: trie)
+1. **Math:** GCF, LCM, factorize, enum primes, factorial, fibonacci, compute subsets (powerset), combinations, permutations
+1. **Divide and Concuer:** implement merge sort (bin search and quick sort can also be considered divide and conceur), tower of hanoi
+1. **Greedy:** task assignment, scheduling, interval covering, ...
+1. **Objects:** demonstrate class-based/prototypal/functional inheritance, and object delegation
 1. **Front-end:** component that makes api call, and performs pagination, sort, and filter on front-end/back-end.
-2. **Strings:** Palindrome checker, interleave n strings, length of longest substring with unique characters
-2. **Functional:** implement debounce, throttle, pipe, compose, memoization for single/multi params
-3. **Linked-List:** implement with class/prototype/object/function and traverse iteratively/recursivly
+1. **Functional:** implement debounce, throttle, pipe, compose, memoization for single/multi params.
+1. **Bit-Wise:** insert m into n, filter a collection with bitmask, ...
 
+testing for each
 
 #### Front-end problems
 
@@ -508,5 +527,5 @@ tbd...
 
 #### Web Constructs
 
-1. implement redux
+1. implement redux, reselect, thunk
 2. implement finite state machine
