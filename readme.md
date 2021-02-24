@@ -14,7 +14,7 @@ A list of question sets grouped by problem type. Each set is preceeded by concis
 1. **Queue:** implement queue with array, stack, implement min/max API
 1. **Trie:** prefix search, autocomplete, sort words
 1. **Graphs:** represent graph as adjacency list, adjacency map, and adjecency matrix. traverse with DFT/BFT, determine if path/cycle exists.
-1. **Matrix:** prefill matrix, convert betwee 2d/1d array representations, traverse/transpose matrix, 
+1. **Matrix:** prefill matrix, convert betwee 2d/1d array representations, traverse/transpose matrix,
 1. **Hash Maps:** 2/3 sum problem, longest distinct and min-covering subarray, validate pattern
 1. **Recursion:** traverse jagged tree, dft of tree/graph, demonstrate bottom-up and top-down recursion
 1. **Dynamic:** fibonacci, combination sum (find/count combinations), three-step, knapsack
@@ -33,6 +33,8 @@ testing for each
 #### Front-end problems
 
 **warm-up**
+
+1.
 
 **problems**
 
@@ -519,7 +521,9 @@ Most warm-up questions taken from: The Good Parts of Javascript and the Web, Fro
 
 **problems**
 
-1. tbd...
+1. Write a function that turns a fn into async fn that executes after some delay following burst (debounce). Why is this useful?
+2. Write a function that turns a fn into async fn that executes immediately then prevents execution until some delay following burst (debounce leading). Why is this useful?
+2. Write a function that turns a fn into fn that only fires at some max rate (throttle). Why is this useful?
 
 #### Regex
 
