@@ -34,10 +34,47 @@ testing for each
 
 **warm-up**
 
+1.
+
 **problems**
 
+<<<<<<< HEAD
+2. implement a component in react, vanilla
+3. implement inheritance using class, prototype, functional, behavior delegation
+2. implement debounce
+
+```js
+function debounce(fn, delay) => {
+    return function() {
+        if (ready) {
+            return fn();
+            ready = false;
+            let timer = setTimeout(() => {
+                ready = true;
+            }, delay)
+        }
+
+
+    }
+}
+```
+
+3. implement throttle
+4. implement redux
+5. implement filter, map, reduce
+5. implement call, apply, bind
+6. two sum, three sum problem
+7. create todo/flash card app
+8. fetch movies and display in list.
+1. implement pagination on back-end, consume on front-end
+9. implement search, autocomplete.
+9. implement filter movie list by average rating, name.
+10. implement sort filtered list by any field inside movie object
+11 implement infinite scroll
+=======
 1. implement pagination, sorting, and filtering on front and back-end
 2. implement debounce, throttle function
+>>>>>>> d98b0107284376503c3566b67e1c22bcec80e50b
 
 #### Complexity
 
@@ -519,7 +556,9 @@ Most warm-up questions taken from: The Good Parts of Javascript and the Web, Fro
 
 **problems**
 
-1. tbd...
+1. Write a function that turns a fn into async fn that executes after some delay following burst (debounce). Why is this useful?
+2. Write a function that turns a fn into async fn that executes immediately then prevents execution until some delay following burst (debounce leading). Why is this useful?
+2. Write a function that turns a fn into fn that only fires at some max rate (throttle). Why is this useful?
 
 #### Regex
 
