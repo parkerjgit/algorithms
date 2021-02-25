@@ -55,7 +55,7 @@ Partition an unsortted array into three groups given two pivots, such that eleme
 ```
 Javascript implementation
 ```js
-function partitionIntoThree(arr, pivots) {
+function 3partition(arr, pivots) {
 
   // maintain pointer at first element of each partition
   // define partitions as (invariants):
@@ -69,20 +69,20 @@ function partitionIntoThree(arr, pivots) {
   const swap = (a,b) => {
     let temp = arr[a];
     arr[a] = arr[b];
-    arr[b] = temp;l
+    arr[b] = temp;
   }
 
   // loop thru each el in array:
   // if el in part 1 (el < p1) -> swap(l, r), swap(c, l), incr lrc
   // if el in part 2 (p1 <= el < p2), swap(c, r) -> incr r
   // if el in part 3 (el >= p2) -> incr rc
-  arr.forEach(el => {
+  arr.forEach((el,i) => {
     if (el < p1) { // partition 1
       swap(mid, last);
-      swap(el, mid);
+      swap(i, mid);
       l++; r++;
     } else if (p1 >= el && el < p1) { // partition 2
-      swap(el, last);
+      swap(i, last);
       r++;
     } else { // partition 3
       // no nothing
