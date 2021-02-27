@@ -9,8 +9,8 @@ A list of question sets grouped by problem type. Each set is preceeded by concis
 1. **Arrays:** flatten an array, partion an array (Dutch flag problem), apply/restore a permutation of an array.
 1. **Linked-List:** implement with class/prototype/object/function and traverse iteratively/recursively - [solution](./markdown/linked_lists/linked_lists.md)
 1. **Trees:** implement BT/BST and traverse DFT/BFT iterative/recursively in pre/in/post order, is BST valid
-1. **Heap:** implement minheap, k most frequent words, sort k sortted
-1. **Stack:** normalize pathnames, rpn, test for well-formed expression, implement min/max API
+1. **Heap:** implement minheap, implement priority queue, find k most frequent words, sort k sortted
+>1. **Stack:** normalize pathnames, rpn, test for well-formed expression, implement min/max API
 1. **Queue:** implement queue with array, stack, implement min/max API
 1. **Trie:** prefix search, autocomplete, sort words
 1. **Graphs:** represent graph as adjacency list, adjacency map, and adjecency matrix. traverse with DFT/BFT, determine if path/cycle exists.

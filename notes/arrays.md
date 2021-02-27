@@ -35,6 +35,8 @@ Arrays store *homogeneous* elements at *contiguous* locations. For an array of s
 19. Use `min([a,b],key=len)` to get shortest of two (or more) arrays.
 20. Use `[int(c) for c in str(n)]` or `map(int,str(n))` to convert number into an array of digits.
 
+A **subsequence** of an array is an ordered subset of the array's elements having the same sequential ordering as the original array
+
 ---
 
 ### Use arrays for fast access/iteration and space efficiency!

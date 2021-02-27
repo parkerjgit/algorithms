@@ -2,23 +2,6 @@
 
 ## Implement a singly linked list
 
-### Problem
-
-Implemnt with class, prototype, object delegation, regular function
-
-API: add, insert, delete
-
-### Boardwork (Design)
-
-![](../../images/xxx.jpg)
-
-### Analysis
-
-Time: O(x)
-Space: O(x)
-
-### Codework (Test)
-
 Javascript implementation fragment using class
 
 ```js
@@ -123,21 +106,6 @@ myList.add(5);
 ```
 
 ## Traverse Linked List
-
-### Problem
-
-Traverse Linked list iterative and recursively
-
-### Boardwork (Design)
-
-![](../../images/xxx.jpg)
-
-### Analysis
-
-Time: O(x)
-Space: O(x)
-
-### Codework (Test)
 
 Javascript implementation of iterative solution
 

@@ -117,13 +117,3 @@ stack.push(1)
 stack.pop()
 ```
 
-#### Applications of Stacks, include parenthesis balanancing and backtracking.
-
-* Balancing of parentheses in an expression (Dijkstra's two-strack algorithm)
-* Infix to Postfix /Prefix conversion
-* Redo/undo in applications.
-* Forward/backward in web browsers
-* Used in many algorithms like Tower of Hanoi, tree traversals, stock span problem, histogram problem.
-* Other applications incl. Backtracking, Knight tour problem, rat in a maze, N queen problem and sudoku solver
-
-[Stack Data Structure, GeeksforGeeks](http://cdngquiz.geeksforgeeks.org/stack-data-structure/)
