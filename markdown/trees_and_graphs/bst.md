@@ -8,7 +8,38 @@
 
 ## Get all levels
 
-## Validate and Balance BST
+## Validate BST
+
+1. Visit BST nodes in-order (i.e. sorted order).
+2. If any node is less than previous node, BST is invalid.
+3. Stop traversing as soon as BST is invalidated.
+
+```js
+var isValidBST = function(root) {
+    
+    let prev = Number.NEGATIVE_INFINITY,
+        isValid = true;
+    
+    const inorder = (root) => {
+        if (root && isValid) {
+            inorder(root.left);
+            
+            if (root.val <= prev) {
+                isValid = false;
+            } else {
+                prev = root.val;
+            }
+            
+            inorder(root.right);
+        }
+    }
+    
+    inorder(root);
+    return isValid;
+};
+```
+
+## Balance BST
 
 ## Applications of BST
 

@@ -9,14 +9,14 @@ A list of question sets grouped by problem type. Each set is preceeded by concis
 1. **Arrays:** flatten an array, partion an array (Dutch flag problem), apply/restore a permutation of an array.
 1. **Linked-List:** implement with class/prototype/object/function and traverse iteratively/recursively - [solution](./markdown/linked_lists/linked_lists.md)
 1. **Trees:** implement BT/BST and traverse DFT/BFT iterative/recursively in pre/in/post order, is BST valid
-1. **Heap:** implement minheap, implement priority queue, find k most frequent words, sort k sortted
->1. **Stack:** normalize pathnames, rpn, test for well-formed expression, implement min/max API
+1. **Heap:** implement minheap, implement priority queue, find k most frequent words, sort k sortted - [solution](./markdown/heaps/heaps.md)
+1. **Stack:** normalize pathnames, rpn, test for well-formed expression, implement min/max API - [solution](./markdown/stacks/stacks.md)
 1. **Queue:** implement queue with array, stack, implement min/max API
 1. **Trie:** prefix search, autocomplete, sort words
 1. **Graphs:** represent graph as adjacency list, adjacency map, and adjecency matrix. traverse with DFT/BFT, determine if path/cycle exists.
 1. **Matrix:** prefill matrix, convert betwee 2d/1d array representations, traverse/transpose matrix,
 1. **Hash Maps:** 2/3 sum problem, longest distinct and min-covering subarray, validate pattern
-1. **Recursion:** traverse jagged tree, dft of tree/graph, demonstrate bottom-up and top-down recursion
+>1. **Recursion:** traverse jagged tree, dft of tree/graph, demonstrate bottom-up and top-down recursion
 1. **Dynamic:** fibonacci, combination sum (find/count combinations), three-step, knapsack
 1. **Searching:** find kth largest, implement native find using binSearch iter/recursively to accept comparitor and target value
 1. **Sorting:** implement a quadradic and super-linear time sort. sort an array of objects by prop, one array by another array, sort numbers/words (hint: trie)
