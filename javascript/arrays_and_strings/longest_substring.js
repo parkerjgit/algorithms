@@ -28,25 +28,24 @@ function longestSubstring(str) {
   return longSoFar;
 }
 
-function longestSubstring2(str) {
+function longestSubstring(str) {
 
-  var [i,j] = [0,1];
-  var lsf = [i,j]; // indices of longest so far
+  var [left, right] = [0,1];
+  var longest = [left, right];    // indices of longest so far (excluding right!)
 
-  const repeating = (i,j) => str.slice(i,j).includes(str[j]);
-  const lsfLength = () => lsf.reduce((i,j)=>j-i)
+  const isRepeating = (left, right) => str.slice(left, right).includes(str[right]);
 
-  while (j < str.length) {
-    if (repeating(i,j)) {
-      if (j-i > lsfLength()) {
-        lsf = [i, j];
-      }
-      i++; // repeating, so shrink window from back
+  while (right < str.length) { 
+
+    if (isRepeating(left, right)) {
+      longest = Math.max(right - left, longest[1] - longest[0])
+      left++;                     // repeating, shrink slinky
+
     } else {
-      j++; // not repeating, so grow window
+      right++;                    // not repeating, grow slinky
     }
   }
-  return str.slice(...lsf);
+  return str.slice(...longest);   // exclude right
 }
 
 //console.log(longestSubstring2('abcabcbb'));

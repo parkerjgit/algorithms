@@ -15,11 +15,16 @@ source: Container With Most Water (leetcode #11) - https://leetcode.com/problems
  * @return {number}
  */
 var maxTrappedWater = function(height) {
+
   let [maxArea, left, right] = [0, 0, height.length - 1];
+
   while (left < right) {
+
       maxArea = Math.max(maxArea, (right - left) * Math.min(height[left], height[right]));
+
       if (height[left] < height[right]) {
           left++;
+          
       } else { // height[right] < height[left]
           right--;
       }

@@ -10,7 +10,8 @@ A greedy algorithm use heuristic to make a locally optimal choice at each step w
 7. Find majority element in linear time and constant space complexity (i.e. without using a hash map), by designating first element the majority candidate, incrementing a count on occurances and decrementing on non-occurances while count is non-zero. If count hits zero, take next item as candidate and procede. (e.g. EPI 17.5)
 8. Find the "ample" city in gas-up problem by making one pass through cities, tracking gas remaining, and returning city with the min gas remaining before gassing up. (e.g. EPI 17.6)
 9. Find max water trapped by an array, representing equally spaced vertical lines, by indexing first/last elements and working inward by advancing the end with the shorter line, i.e. eliminating advancements of the taller, and keeping track of max water trapped so far. (e.g. EPI 17.7)
-
+10. Find longest substring with unique characters 
+---
 ## US Coin change
 
 1. Sort denominations by size
@@ -29,7 +30,7 @@ def change_making(cents):
 
     return num_coins
 ```
-
+---
 ## Min covering set
 
 1. Sort intervals by end time
@@ -68,9 +69,9 @@ def _min_covering_set_size(intervals):
   return size
 ```
 
+---
 ## task scheduling
 
-not greedy:
 1. count tasks by type
 2. allocate idle slots based on most frequently occuring task
 3. loop through rest of tasks, filling idle slots as you go
@@ -98,5 +99,67 @@ var countScheduledTasks = function(tasks, n) {
 
     return Math.max(tasks.length + idle, tasks.length);
 };
+```
+
+---
+## max trapped water
+
+1. Track left and *inclusive right* sides of container, starting at full width.
+2. While container has a width (ie left < right)
+3. _advance the shorter side inward and update max water contained (ie area) so far.
+
+**Javascript:**
+
+```js
+var maxTrappedWater = function(height) {
+
+  let [maxArea, left, right] = [0, 0, height.length - 1];
+
+  while (left < right) {
+
+      maxArea = Math.max(maxArea, (right - left) * Math.min(height[left], height[right]));
+
+      if (height[left] < height[right]) {
+          left++;
+          
+      } else { // height[right] < height[left]
+          right--;
+      }
+  }
+  return maxArea;
+};
+```
+
+---
+## find longest substring with unique characters
+
+1. Track *left* and *exclusive right* ends of slinky
+2. While room to expand right:  
+3. _if unique, expand slinky by advancing right
+3. _if duplicate, shrink slinky by advancing left
+
+**Javascript:**
+
+```js
+function longestSubstring(str) {
+
+  var [left, right] = [0,1];
+  var longest = [left, right];    // indices of longest so far (excluding right!)
+
+  // TODO: optimize this to use indices rather than slice
+  const isRepeating = (left, right) => str.slice(left, right).includes(str[right]);
+
+  while (right < str.length) { 
+
+    if (isRepeating(left, right)) {
+      longest = Math.max(right - left, longest[1] - longest[0])
+      left++;                     // repeating, shrink slinky
+
+    } else {
+      right++;                    // not repeating, grow slinky
+    }
+  }
+  return str.slice(...longest);   // exclude right
+}
 ```
 
