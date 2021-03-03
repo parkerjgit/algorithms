@@ -10,7 +10,7 @@ A greedy algorithm use heuristic to make a locally optimal choice at each step w
 7. Find majority element in linear time and constant space complexity (i.e. without using a hash map), by designating first element the majority candidate, incrementing a count on occurances and decrementing on non-occurances while count is non-zero. If count hits zero, take next item as candidate and procede. (e.g. EPI 17.5)
 8. Find the "ample" city in gas-up problem by making one pass through cities, tracking gas remaining, and returning city with the min gas remaining before gassing up. (e.g. EPI 17.6)
 9. Find max water trapped by an array, representing equally spaced vertical lines, by indexing first/last elements and working inward by advancing the end with the shorter line, i.e. eliminating advancements of the taller, and keeping track of max water trapped so far. (e.g. EPI 17.7)
-10. Find longest substring with unique characters 
+10. Find longest substring with unique characters
 ---
 ## US Coin change
 
@@ -121,7 +121,7 @@ var maxTrappedWater = function(height) {
 
       if (height[left] < height[right]) {
           left++;
-          
+
       } else { // height[right] < height[left]
           right--;
       }
@@ -134,7 +134,7 @@ var maxTrappedWater = function(height) {
 ## find longest substring with unique characters
 
 1. Track *left* and *exclusive right* ends of slinky
-2. While room to expand right:  
+2. While room to expand right:
 3. _if unique, expand slinky by advancing right
 3. _if duplicate, shrink slinky by advancing left
 
@@ -149,7 +149,7 @@ function longestSubstring(str) {
   // TODO: optimize this to use indices rather than slice
   const isRepeating = (left, right) => str.slice(left, right).includes(str[right]);
 
-  while (right < str.length) { 
+  while (right < str.length) {
 
     if (isRepeating(left, right)) {
       longest = Math.max(right - left, longest[1] - longest[0])
@@ -160,6 +160,39 @@ function longestSubstring(str) {
     }
   }
   return str.slice(...longest);   // exclude right
+}
+```
+
+---
+## min-covering subarray
+
+Find the smallest subarray that covers the target set
+
+```js
+function minCoveringSubarr(arr, set) {
+
+  const isSetCovered = (left, right) {...}
+
+  if (!isSetCovered(0, arr.length))
+    return -1
+
+  let sub = {left: 0, right: 1};                                      // current subarray
+  let minSub = {left: 0, right: arr.length};                          // min subarray so far
+
+  while (sub.right < arr.length) {
+
+    if (isSetCovered(sub.left, sub.right)) {                             // set is covered!
+      minSub = (sub.right - sub.left < minSub.right - minSub.left)
+          ? {...sub}
+          : minSub;
+      sub.left++;
+
+    } else {                                                          // set not covered
+      sub.right++
+    }
+  }
+
+  return [minSub.left, minSub.right];
 }
 ```
 
