@@ -15,10 +15,10 @@ A list of question sets grouped by problem type. Each set is preceeded by concis
 1. **Trie:** prefix search, autocomplete, sort words
 1. **Graphs:** represent graph as adjacency list, adjacency map, and adjecency matrix. traverse with DFT/BFT, determine if path/cycle exists.
 1. **Matrix:** prefill matrix, convert betwee 2d/1d array representations, traverse/transpose matrix,
->1. **Hash Tables:** word/char counter, 2/3 sum problem, longest distinct and min-covering subarray, validate pattern
+1. **Hash Tables:** word/char counter, 2/3 sum problem, longest distinct and min-covering subarray, validate pattern - [solution](.\markdown\hash_tables\hash_tables.md)
 1. **Recursion:** flatten jagged array, dft of tree/graph, merge sort, binary search, powerset, bottom-up vs top-down recursion - [solution](./markdown/recursion_and_dynamic/recursion.md)
 1. **Dynamic:** fibonacci, combination sum (find/count combinations), three-step, knapsack
-1. **Searching:** find kth largest, implement native find using binSearch iter/recursively to accept comparitor and target value
+> 1. **Searching:** find kth largest, implement native find using binSearch iter/recursively to accept comparitor and target value - [solution](.\markdown\searching_and_sorting\searching.md)
 1. **Sorting:** implement a quadradic and super-linear time sort. sort an array of objects by prop, one array by another array, sort numbers/words (hint: trie)
 1. **Math:** GCF, LCM, factorize, enum primes, factorial, fibonacci, compute subsets (powerset), combinations, permutations
 1. **Divide and Concuer:** implement merge sort (bin search and quick sort can also be considered divide and conceur), tower of hanoi
