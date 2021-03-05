@@ -154,18 +154,7 @@ var searchMatrix = function(matrix, target) {
 search a cyclically-sorted array for min/max 
 
 ```js
-function searchCyclicArr(arr, target) {
-  let [left, right] = [0, arr.length]; // left to exclusive right
-
-  if (arr[left] > arr[right]) { // not cyclical
-    return {min: left, max: right}
-  } 
-  
-  return binSearchCyclicArr(arr, target, left, right);
-
-}
-
-function binSearchCyclicArr(arr, target, left, right) {
+function findMinMax(arr, left, right) {
 
   let mid = left + Math.floor((right - left)/2);
 
@@ -180,9 +169,9 @@ function binSearchCyclicArr(arr, target, left, right) {
   }
 
   if (arr[mid + 1] > arr[right]) {
-    binSearchCyclicArr(arr, target, mid + 1, right);
+    findMinMax(arr, mid + 1, right);
   } else {
-    binSearchCyclicArr(arr, target, left, mid);
+    findMinMax(arr, left, mid);
   }
 }
 ```

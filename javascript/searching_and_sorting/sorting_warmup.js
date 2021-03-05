@@ -70,9 +70,9 @@ const problems = [
                 description: 'Schwartzian transform, i.e., Decorate-Sort-Undecorate (DSU)',
                 function: (itemsToSort, valuesToSortBy, compareFunction = (a, b) => a - b) => {
                     return itemsToSort
-                        .map((item, i) => ({ item: item, value: valuesToSortBy[i] }))
-                        .sort((a, b) => compareFunction(a.value, b.value))
-                        .map(temp => temp.item)
+                        .map((item, i) => ({ item: item, value: valuesToSortBy[i] })) // creates new arr, and returns it
+                        .sort((a, b) => compareFunction(a.value, b.value))            // sorts new arr in-place and returns ref
+                        .map(tempObj => tempObj.item)                                 // creates another arr, and returns it
                 }
             }
         ],
