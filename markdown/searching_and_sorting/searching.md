@@ -182,3 +182,7 @@ function findMinMax(arr, left, right) {
 
 ## Find the kth largest 
 
+## Find Shortest Path in Directed Graph 
+
+see [Graphs](.\markdown\trees_and_graphs\graphs.md)
+

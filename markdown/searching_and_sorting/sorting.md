@@ -343,3 +343,8 @@ arrToSort
 
 ## Group people by age (counting sort)
 
+## Topological Sort
+
+is this same as build order?
+
+see [Graphs](.\markdown\trees_and_graphs\graphs.md)

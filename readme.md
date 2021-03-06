@@ -7,14 +7,15 @@ A list of question sets grouped by problem type. Each set is preceeded by concis
 1. **Complexity:** Cost of bin search, merge sort, looking at each item once, looking at all pairs/triplets/subsets/purmutations.
 1. **Strings:** Palindrome checker, find a substring, find the longest substring with unique characters.
 1. **Arrays:** flatten an array, partion an array (Dutch flag problem), apply/restore a permutation of an array.
+1. **Matrix:** prefill matrix, convert betwee 2d/1d array representations, traverse/transpose matrix, maze solver, paint bucket, etc.
 1. **Linked-List:** implement with class/prototype/object/function and traverse iteratively/recursively - [solution](./markdown/linked_lists/linked_lists.md)
 1. **Trees:** implement BT/BST and traverse DFT/BFT iterative/recursively in pre/in/post order, is BST valid
 1. **Heap:** implement minheap, implement priority queue, find k most frequent words, sort k sortted - [solution](./markdown/heaps/heaps.md)
 1. **Stack:** normalize pathnames, rpn, test for well-formed expression, implement min/max API - [solution](./markdown/stacks/stacks.md)
 1. **Queue:** implement queue with array, stack, implement min/max API
 1. **Trie:** prefix search, autocomplete, sort words
-1. **Graphs:** represent graph as adjacency list, adjacency map, and adjecency matrix. traverse with DFT/BFT, determine if path/cycle exists.
-1. **Matrix:** prefill matrix, convert betwee 2d/1d array representations, traverse/transpose matrix,
+1. **[Graphs](.\markdown\trees_and_graphs\graphs.md):** represent graph as adjacency list, adjacency map, and adjecency matrix. traverse with DFT/BFT, determine if path/cycle exists.
+
 1. **Hash Tables:** word/char counter, 2/3 sum problem, longest distinct and min-covering subarray, validate pattern - [solution](.\markdown\hash_tables\hash_tables.md)
 1. **Recursion:** flatten jagged array, dft of tree/graph, merge sort, binary search, powerset, bottom-up vs top-down recursion - [solution](./markdown/recursion_and_dynamic/recursion.md)
 1. **Dynamic:** fibonacci, combination sum (find/count combinations), three-step, knapsack
