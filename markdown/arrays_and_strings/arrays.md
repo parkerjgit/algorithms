@@ -156,6 +156,27 @@ function 3partition(arr, pivots) {
 }
 ```
 
+## reverse array elements from i to j in-place
+
+```js
+const swap = (arr, a, b) => {
+    let temp = arr[a];
+    arr[a] = arr[b];
+    arr[b] = temp;
+}
+
+const reverse = (arr, from, to = arr.length) => {
+    let [left, right] = [from, to - 1];
+    while (left < right) {
+        swap(arr, left, right);
+        left++;
+        right--;
+    }
+}
+```
+
+see https://leetcode.com/problems/next-permutation/submissions/
+
 ## Apply/restore permutation of an array
 
 
