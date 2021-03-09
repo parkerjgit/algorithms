@@ -178,6 +178,48 @@ function findMinMax(arr, left, right) {
 
 ## Find Magic Number in sorted array
 
+## Pick probabalistically based on weights - https://leetcode.com/problems/random-pick-with-weight
+
+```js
+/**
+ * @param {number[]} w
+ */
+function WeightedIndices(w) {
+    this.sums = [];
+    
+    let runningSum = 0;
+    for (weight of w) {
+        runningSum += weight;
+        this.sums.push(runningSum);
+    }
+    
+    this.totalSum = runningSum;
+};
+
+WeightedIndices.prototype.pickIndex = function() {
+    
+  const _closetUpperBound = (arr, left, right, target) => {
+
+    let mid = left + Math.floor((right - left)/2);
+    
+    if (left === right) {
+      return right;
+    }
+    
+    if (arr[mid] < target) {
+      return _closetUpperBound(arr, mid + 1, right, target);
+    } else {
+      return _closetUpperBound(arr, left, mid, target);
+    }
+  }
+  
+  return _closetUpperBound(this.sums, 0, this.sums.length, Math.random() * this.totalSum);
+};
+
+let weightedIndices = new WeightedIndices([1,3,5,10])
+let idx = weightedIndices.pickIndex()
+```
+
 ## Find Min/Max
 
 ## Find the kth largest 

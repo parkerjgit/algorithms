@@ -120,6 +120,79 @@ def validate_wellformedness(str):
   return not stack
 ```
 
+## Decode String Problem -  https://leetcode.com/problems/decode-string
+
+wip js solution: 
+
+```js
+function decode(str) {
+    
+  let tokens = tokenize(str);
+
+	let alphaStack = [],
+	    numStack = [],
+      nextStrToRepeat = '';
+      // lastNum = '';
+    
+  for (token in tokens) {
+
+    if (isNumber(token)) { // 0-300
+      numStack.push(lastNum);
+
+    } else if (isAlpha(token)) { // alpha string: 1 <= s.length <= 30
+      nextStrToRepeat = token;
+
+    } else if (token === '[') {
+      alphaStack.push(nextStrToRepeat);
+      nextStrToRepeat = '',
+      // lastNum = '';
+
+    } else { // token === ']'
+      nextStrToRepeat = alphaStack.pop() + nextStrToRepeat.repeat(numStack.pop());
+    }
+  }
+
+	return nextStrToRepeat;
+}
+```
+
+above based on py solution
+
+```py
+def decodeString(self, s: str) -> str:
+  # instantiate stacks to store the number and the string to repeat.
+  repeatStr = []
+  numRepeat = []
+  
+  # initialize empty strings. One to store a multidigit number and other one to store the decoded string. 
+  tempNum = ''
+  decodedStr = ''        
+  
+  # start iterating throught the encoded string
+  for char in s:
+      # check if the char is a digit. 
+      if char.isdigit():
+          tempNum += char # add the number to tempNum
+          
+      # check if the char is an opening bracket
+      elif char == '[':
+          repeatStr.append(decodedStr)
+          numRepeat.append(tempNum)
+          tempNum = ''
+          decodedStr = ''
+          
+      # check when the bracket closes
+      elif char == ']':
+          decodedStr = repeatStr.pop() + (decodedStr * int(numRepeat.pop()))
+          
+      # else build the substring to repeat
+      else:
+          decodedStr += char            
+          
+  return decodedStr
+```
+(solution from https://leetcode.com/problems/decode-string/discuss/714732/Python-solution-using-stacks.-O(n))
+
 ## Implement min/max stack API
 
 ## other problems:

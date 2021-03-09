@@ -1,5 +1,7 @@
 # Strings
 
+## Notes
+
 1. Convert int (base 10) to string by iteratively extracting right-most digit with `x % 10` and `x // 10` (see epi 6.1)
 1. Convert a string to int (base 10) by iteratively adding `10^i x next_digit` right-to-left. (see epi 6.1)
 1. Convert a string to int (base 10) bit faster by reducing string left-to-right with `10*sum + next_digit`. (see epi 6.1)
@@ -26,10 +28,14 @@
 See [js-primatives](./javascript/js-primatives.md)
 
 ---
-## Palindrome checker
+## Palindrome / Anagram checker
+
+1. get exclusive middle index
+2. iterate 0 to exclusive middle, for each step:
+3. _if el at i not equal to its complement (at len - 1 - i), not a palindrome 
 
 ---
-## Find substring (indexOf)
+## Find substring (indexOf) - 5 min
 
 1. Use nested for loop to slide a window along string looking for substring match
 2. Break out of substring pattern match as soon as possible.
@@ -53,8 +59,11 @@ function indexOf(str, substr) {
 }
 ```
 
+Note:
+*  for sliding window iterate from 0 - to - **arr length - window length**
+
 ---
-## Find longest substring with unique characters
+## Find longest substring with unique characters - 5 min
 
 1. Track *left* and *exclusive right* ends of slinky
 2. While room to expand right:  
@@ -69,7 +78,7 @@ function longestSubstring(str) {
   var [left, right] = [0,1];
   var longest = [left, right];    // indices of longest so far (excluding right!)
 
-  // TODO: optimize this to use indices rather than slice
+  // TODO: optimize this to use indices rather than slice. Better yet maintain set!
   const isRepeating = (left, right) => str.slice(left, right).includes(str[right]);
 
   while (right < str.length) { 
@@ -86,8 +95,11 @@ function longestSubstring(str) {
 }
 ```
 
+Notes:
+* Greedy algorithm, compare with other slinky problems
+
 ---
-## Convert char to/from UTF-16 and Base 36 encoding.
+## Convert char to/from UTF-16 and Base 36 encoding - 2 min
 
 Typical to use UTF-16 to encode alpha-numeric characters in javascript, but Base 36 or hexatridecimal is also useful b/c digits are represented with numerals 0-9 and letters a-z, so for example its very easy to generate a random alpha-numeric id.
 
@@ -106,7 +118,7 @@ parseInt('z', 36) // 35
 ```
 
 ---
-## Generating random character
+## Generating random character - 3 min
 
 ```js
 let alphabet = 'abcdefghijklmnopqrstuvwxyz';                // 'abc...z'
@@ -123,12 +135,14 @@ let alphabet =
     .map(i=>String.fromCharCode(i))                         // ['a','b', ...'z']
     .join('');                                              // 'abc...z'
 
-let randomChar = alphabet(Math.floor(Math.random() * 26));  // random lowercase
+let randomLetter = alphabet[Math.floor(Math.random() * 26)];  // random lowercase
+let randomLetter = String.fromCharCode(Math.random() * 25 + 'a'.charCodeAt(0));  // better
+
 let randomAlphaNumeric = Math.random().toString(36)[2];     // random alpha-numeric
 ```
 
 ---
-## Generate a random english word / and a random alpha-numeric id
+## Generate a random english word / and a random alpha-numeric id -  2 min
 
 Prefer manipulating a list of chars over an immutable string to improve performance. (see epi 6.1)
 
@@ -150,4 +164,14 @@ def build_random_string2(k):
     return ''.join(chars)
 ```
 
+```js
+[...Array(n)].map( _ => randomChar()).join('')    // Better yet
+```
+
 ## More Problems
+
+1. Convert int (base 10) to string (e.g. 340 -> '340') (implement toString)
+2. Convert a string (e.g., '340' -> 340) to an int (implement parseInt)
+3. [Convert english representation of a number (e.g., 'three hundred forty' -> 340 ) to int](.\javascript\arrays_and_strings\convert_string_to_int.js)
+
+tokenize string to be decoded
