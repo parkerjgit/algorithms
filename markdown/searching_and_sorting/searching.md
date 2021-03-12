@@ -1,5 +1,7 @@
 # Searching
 
+## Notes
+
 **General**
 
 * Ask if data dynamic, if so, consider using a heap or bst?
@@ -11,7 +13,7 @@
 * Find first occurance of k in sorted array using binary search, except when value is found, don't stop searching, eliminate values to right and keep going. - EPI 11.1 145
 * Find "magic index" (ie., element == index) using binary search with target value replaced by index m at each step, ie., go left when a[m] > m, and go right when a[m] < m. - EPI 11.2 146
 * Search a cylindrical array for smallest value (ie., the seam) using divide and conquer, discarding the half with no seam (first < last) until l == r (== smallest). - EPI 11.3 147
-* Pattern: Binary Search used in many ways by modifying the conditions for which you go left or right.
+* Pattern: Binary Search used in many ways by modifying the conditions for which you go left or right, and modifying whether you return closestest item to left/right if not found, and whether you are returning index or value.
 
 **Javascript**
 
@@ -22,6 +24,7 @@
 
 **C#**
 
+---
 ## Search a sorted array (Binary Search)
 
 Recursive Passing Indices
@@ -66,7 +69,7 @@ function binSearch(arr, left, right, target) {
   return -1;
 }
 ```
-
+---
 ## Search unsorted array (indexOf)
 
 Can't do better than O(n) time complexity, BUT:
@@ -103,7 +106,7 @@ function hashSearchFactory(arr) {
 let hashSearch = hashSearchFactory(arr);
 let indexOfTarget = hashSearch(target)
 ```
-
+---
 ## Seach 1d-sorted matrix (ie if flattened, the result would be a sorted array, eg. `[[1,2,3],[4,5,6],[7,8,9]]`)
 
 ```js
@@ -126,7 +129,7 @@ function matrixSearch(matrix, left, right, target) {
     }
 }
 ```
-
+---
 ## search a 2d-sorted matrix (ie accending along rows and cols, ie min at upper left, max at lower right)
 
 linear search + search space trimming - O(n+m) - this can be improved by doing bin search instead of stepping!! tbd.. but this is prob good starting point
@@ -148,7 +151,7 @@ var searchMatrix = function(matrix, target) {
     return false;
 };
 ```
-
+---
 ## Search a cyclic array
 
 search a cyclically-sorted array for min/max 
@@ -175,9 +178,12 @@ function findMinMax(arr, left, right) {
   }
 }
 ```
-
+---
 ## Find Magic Number in sorted array
 
+asd
+
+---
 ## Pick probabalistically based on weights - https://leetcode.com/problems/random-pick-with-weight
 
 ```js
@@ -220,11 +226,24 @@ let weightedIndices = new WeightedIndices([1,3,5,10])
 let idx = weightedIndices.pickIndex()
 ```
 
+---
 ## Find Min/Max
 
+asd
+
+---
 ## Find the kth largest 
 
+asdf
+
+---
 ## Find Shortest Path in Directed Graph 
 
 see [Graphs](.\markdown\trees_and_graphs\graphs.md)
+
+---
+## More problems
+
+1. snapshot subarray - see [full implementation](javascript\searching_and_sorting\snapshot_array.js)
+2. add interval = see [full imlpementation](javascript\searching_and_sorting\add_interval.js)
 

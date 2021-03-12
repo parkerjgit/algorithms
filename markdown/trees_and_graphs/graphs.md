@@ -17,6 +17,8 @@
 12. Prefer **DFS** for graph problems that entail analyzing sturcture (e.g. looking for cycles, connected components, topological ordering of a DAG, etc.)
 13. Prefer **BFS** for optimization problems (e.g. shortest path, minimum spanning tree, etc.), which often involve computing dist from start vertex
 14. DFS and BFS both compute in linear time **O(m + n)** for m edges and n vertices (or nodes)
+15. Consider union-find as alternative to DFS in undirected graphs, eg. for cycle detection in **undirected graph**
+16. Use DFT with backtracking for cycle detection in **directed graph** (Use recursion when backtracking for now. seems more intuitive.)
 
 **Javascript**
 
@@ -24,6 +26,12 @@
 
 **C#**
 
+---
+## Warm-up
+
+1.
+
+---
 ## Represent a graph as adjacency list, adjacency map, and adjecency matrix and convert between
 
 ```js
@@ -31,19 +39,19 @@ let node = {adj: [node2, node3, ...]}               // recursive node repr. (of 
 let node = {adj: [2,3]}
 
 let nodeMap = {1: node1, 2: node2, ...}             // map node id to node. Req. for adjacency list/map/matrix 
-let nodeMapEntries = [{id: 1, node: node1}, ...]  // don't think would ever see this
+let nodeMapEntries = [{id: 1, node: node1}, ...]    // don't think would ever see this
 
-let adjList = [(1, 2), (1, 3), (2, 4), ...]        // tuple repr. edge in graph. tuple should be integer tuples repr id pairs.
-let adjList = [{src: 1, dest: 2}, ...]
+let edges = [(1, 2), (1, 3), (2, 4), ...]           // tuple repr. edge in graph. tuple should be integer tuples repr id pairs.
+let edges = [{u: 1, v: 2}, ...]
 
-let adjMap = {1: [2,3], 2: [4], ...}               // key/value pair maps node to its neighbors
+let adjMap = {1: [2,3], 2: [4], ...}                // key/value pair maps node to its neighbors
 let dataMap = {1: 100, 2: 120, ...}
 let adjMap = {1: {data: 100, adj: [2,3]}}           // dodn't like this
 
 let adjMapEntries = [[1, [2, 3]], ...]              // need to build map before, 
 let adjMapObjects = [{id: 1, adj: [2, 3]}, ...]              // need to build map before, 
 
-let adjMatrix = [[0,0,1,...], ...]                 // "1" repr. edge between nodes mapped to row & col
+let adjMatrix = [[0,0,1,...], ...]                  // "1" repr. edge between nodes mapped to row & col
 let data = [100, 120, ...]
 let nodeIds = [1,2,3,...]
 let hashFn = (nodeId) => arrayIdx
@@ -51,6 +59,7 @@ let revHashFn = (arrayIdx) => nodeId
 let dataLookup = (nodeId) => data(hashFn(nodeId));
 ```
 
+---
 ## Get Employee Importance
 
 ```js
@@ -82,22 +91,102 @@ function GetImportance(employees, id) {
 ```
 (see [full implementation](javascript\trees_and_graphs\employee_importance.js))
 
-## Validation: Does graph have cycles?
+---
+## Validation: Does DAG have cycles (or redundant connections)?
 
-intuition:
-1. first thought: if you visit a node that has already been visited, it has a cycle -> works for tree (or spanning tree!) but not any directed graph
-2. better: search every spanning tree by recursively searching from every node:
+search every spanning tree by recursively searching from every node:
     * mark nodes visited in spanning tree - if visit a node twice in spanning tree (ie subtree), it has cycle
     * mark nodes visited by function - skip nodes that have already been visited
 
+```js
+var detectCycleInDAG = function(adjMap) {
+    
+  let visited = new Set(); // visited in graph globally
+  
+  for (let prereq of Object.keys(adjMap)){
+      if (detectCycleInPath(prereq, adjMap, visited, new Set())) {
+          return true;
+      }
+  }
+  
+  return false;
+};
+
+function detectCycleInPath(node, adjMap, visited = new Set(), path = new Set()) {
+  
+  if (path.has(node)) return true;      // found cycle
+  if (visited.has(node)) return false;  // ignore visted nodes
+  
+  visited.add(node);                    // mark visited
+  
+  for (let adj of adjMap[node]) {
+      path.add(parseInt(node));
+      if (detectCycleInPath(adj, adjMap, visited, path)) {
+          return true;
+      }
+      path.delete(node);                // backtrack!
+  }
+  
+  return false;                         // no cycles!
+}
+```
+
+**Notes:**
+* related problems: Course Schedule
+
+---
+## Validation: Does Undirected Graphy have cycles (or redundant edges)?
+
+**union-find w/ parents array**
+
+```js
+var findRedundantConnection = function(edges) {
+    let parents = Array(edges.length + 1).fill(-1);
+    
+    const find = (x) => {
+        if (parents[x] < 0) {
+            return x;
+        }
+        return find(parents[x])
+    }
+    
+    const union = (a, b) => {
+        let rootA = find(a);
+        let rootB = find(b);
+        
+        // cycle check has to go here btween lookup and union!!!
+        if (rootA == rootB) {
+            return false;
+        }
+        
+        parents[rootB] = rootA;
+        return true;
+    }
+    
+    // build graph
+    for (let [u, v] of edges) {
+        if (!union(u, v)) {
+            return [u,v];
+        }
+    }
+    
+    return -1;
+};
+```
+see [full implementation](.\javascript\trees_and_graphs\redundant_connections.js)
+
+---
 ## Validation: Is graph bipartite
 
+---
 ## Searching: Find all Paths in Directed Graph.
 
+---
 ## Searching: Does path exist between two nodes?
 
 intuition: dft 
 
+---
 ## Searching: Find Shortest Path (or path with minimum distance/cost/effort/etc between two nodes) in Directed Graph.
 
 intuition: bft
@@ -106,17 +195,77 @@ intuition: bft
 
 DIJKSTRA’S algorithm, is a *GREEDY* algorithm finds the shortest path from a node to all other nodes in a directed graph, although the search may be halted once shortest path to a target node is known. 
 
+---
 ## Searching: Find minimum cost to connect all/muliple nodes (minimum spanning tree) in undirected graph?
 
 see https://leetcode.com/problems/min-cost-to-connect-all-points/
 
+---
 ## Searching: Count number of connected components.
 
+---
 ## Searching: Find least/most connected node (e.g. city with smalles number of neighbors)
 
+---
 ## Sorting: Topological Sorting
+
+https://www.interviewcake.com/concept/java/topological-sort
 
 course schedule - https://leetcode.com/problems/course-schedule-ii/solution/
 build order - 
 
 see https://leetcode.com/problems/course-schedule-ii/discuss/680933/topologically-sort-the-directed-graph
+
+---
+## Disjointed Undirected Graphs: Merge Accounts
+
+**Union-Find via hash table**
+
+```js
+var accountsMerge = function (accounts) {
+  const parents = {};       // email -> parent (root b/c collapsed)
+  const names = {};         // email -> name
+  const allEmails = {};     // root -> all emails (including root)
+
+  // implement union/find...
+
+  // 1. initialize disjoint nodes
+  for (let [name, ...emails] of accounts) {
+      for (let email of emails) {
+          parents[email] = email; // no-op if email already initialized
+          names[email] = name;
+      }
+  }
+
+  // 2. build graph, ie perform unions
+  for (let [_, firstEmail, ...restOfEmails] of accounts) {
+    for (let email of restOfEmails) {
+        union(firstEmail, email);
+    }
+  }
+
+  // 3. group emails by root
+  for (let email of Object.keys(parents)) {
+      let root = find(email);
+      if (root in allEmails) {
+          allEmails[root].push(email);
+      } else {
+          allEmails[root] = [email];
+      }
+  }
+
+  let result = [];
+  for (let [root, emails] of Object.entries(allEmails)) {
+    result.push([names[root], ...emails.sort()])
+  }
+  return result;
+};
+```
+see [full implementation](.\javascript\trees_and_graphs\merge_account.js)
+
+**dft**
+
+tbd...
+
+---
+## adf

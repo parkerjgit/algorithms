@@ -196,3 +196,27 @@ function minCoveringSubarr(arr, set) {
 }
 ```
 
+## Add Interval
+
+Note: there is a faster solution using bin search to find left and right endpoints. see javascript\searching_and_sorting\add_interval.js
+
+```js
+const addInterval = (intervals, toAdd) => {
+    intervals = insertInterval(intervals, toAdd); // insert into set without merging
+    let [s,e] = intervals[0];
+    let result = [];
+    intervals.slice(1).forEach( ([start,end]) => {
+        if (start > e) {
+            result.push([s,e]);
+            [s,e] = [start,end];
+        } else if (end > e) {
+            e = end;
+        } else {
+            // skip
+        }
+    })
+    result.push([s,e]);
+    return result;
+}
+```
+

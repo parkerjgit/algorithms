@@ -36,6 +36,51 @@ const addInterval = (intervals, toAdd) => {
     return result;
 }
 
+// using binary search to find left and right insertion points - https://leetcode.com/problems/insert-interval/submissions/
+
+var addInterval = function(intervals, [newStart, newEnd]) {
+    let starts = intervals.map(int => int[0]); 
+    let ends = intervals.map(int => int[1]);
+
+    // intervals on left and right of new interval
+    let left = binSearch(ends, newStart, 0, intervals.length, true); // ceiling
+    let right = binSearch(starts, newEnd, 0, intervals.length, false); // floor
+    
+    // new interval is non-overlappping
+    if (left > right) { 
+        return [...intervals.slice(0, left), [newStart, newEnd], ...intervals.slice(left)];
+    }
+
+    // new merged interval
+    let mergedStart = Math.min(newStart, intervals[left][0]);
+    let mergedEnd = Math.max(newEnd, intervals[right][1]);
+
+    return [...intervals.slice(0, left), [mergedStart, mergedEnd],...intervals.slice(right + 1)]
+};
+
+function binSearch(arr, target, left, right, ceiling) {
+  
+  while (left < right) {
+    let mid = left + Math.floor((right-left)/2);
+
+    if (arr[mid] == target) {
+      return mid;
+    }
+
+    if (arr[mid] < target) {
+      left = mid + 1;
+    } else {
+      right = mid;
+    }
+  }
+
+  if (ceiling) {
+    return left;
+  } else { // floor
+    return left - 1;
+  }
+}
+
 // test
 
 describe('insertInterval', function() {
