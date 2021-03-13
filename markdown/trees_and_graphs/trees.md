@@ -275,3 +275,5 @@ If computing number represented by root-to-leaf paths shift number over (at each
 (see EPI 9.5 on pg 120)
 
 If computing leaf-to-root representation, then add new_digit*base^depth to number (at each step), e.g., to add bit in MSB position of binary number `x = x + newbit*(2**d)`, where d is 2's position of MSB (i.e., the current depth) 
+
+1. book time (my calendar problem in leetcode) - see [full implementation](javascript\trees_and_graphs\book_time.js)

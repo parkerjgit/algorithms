@@ -5,6 +5,7 @@
 * Designing good hash function is not easy, but given a good one like **MD5^2**, we can efficiently map to n memory locations with `h(x) mod n`, where n is number of slots provisioned, in constant time, or O(1 + n/m), where n is number of objects and m is number of slots, provided m >~ n.
 * If n is dynamic, we can **rehash dynamically** for a reasonable amortized cost and maintain O(1) *average* time-complexity (e.g., python dictionary)
 * For *very* dynamic applications (e.g., web caching), consider **consistent hashing** so items don't reshuffled as they do with a rehashing. (see notes on consistant hashing)
+* Hash tables work great if you are looking up specific key, BUT if you need to look up closest key, you will be tempted to search keys using bin search for logn lookup, but you will have a problem if keys are not in sorted order. In this case consider using an array implementation of hash if key range is small. Consider a balanced tree (or just maintain a sorted link list) if not! e.g. https://leetcode.com/problems/my-calendar-i
 
 ## Javascript Objects, Maps, and Sets
 
