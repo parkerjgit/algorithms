@@ -17,7 +17,7 @@ https://stackoverflow.com/a/4279606/1525466
 
 ## C#
 
-## word/char counter
+## Create factory takes an array of items and makes a function that returns count by item
 
 create a function that takes an array of items and returns a hash of item counts
 
@@ -38,17 +38,32 @@ const Counter = (items) => {
 const charCounter = (chars, lowerCase = true) => {
 
   // mapping fn to map char to index (case-insensative)
-  const charToIdx = (char) => char.toLowerCase().charCodeAt(0) - ('a').charCodeAt(0)
+  const charToIdx = (c) => c.toLowerCase().charCodeAt(0) - ('a').charCodeAt(0)
 
   // count chars
   const arr = Array(26).fill(0);
-  chars.forEach((arr,char) => arr[charIdx(char)]++);
+  chars.forEach((arr,c) => arr[charIdx(c)]++);
 
   // return function that takes a char and returns count
-  return (char) => arr[charToIdx(char)];
+  return (c) => arr[charToIdx(c)];
 }
+```
 
+## create a countructor that constructs an object that support increment and retrieval by id
 
+```js
+function Counter() {
+    return {
+        map: {},
+        current(id) {
+            return this.map[id] || 0;
+        },
+        incr(id) {
+            this.map[id] = (this.map[id]) ? ++this.map[id] : 1;
+        }
+    }
+}
+let counter = new Counter();
 ```
 
 ## 2/3 sum problem
