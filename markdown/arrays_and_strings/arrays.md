@@ -27,7 +27,7 @@ Disadvantages:
 * cannot adjust size at runtime
 * insertion/deletion slow when compared to linked list because all elements after inserted/deleted element have to be shifted over.
 
-## Notes
+## Notes - 15 min
 
 1. *Use* for **fast iteration**. Physical contiguity on single slab of memory helps exploit the high-speed cache memory.
 1. *Use* for **constant-time indexing**. Binary search also fast O(logn) *if* array is sorteddd.
@@ -43,13 +43,11 @@ Disadvantages:
 5. Process items in a 2D array with `[[f(x) for x in row] for row in M]` (py), `rows.forEach(row => row.forEach(x => f(x)))` (js)
 6. Partition an array in-place by indexing the first element of each partition, steping thru unsortted elements, swaping elements into correct partition as you go. (e.g. [dutch flag problem](
  ../markdown/arrays_and_strings/dutch_flag.md), EPI 5.1)
-7. Process a sliding window of elements in an array using [inclusive] left and [exclusive] right pointers and a `while (right < n)` loop.
-
-
+7. Process a sliding window of elements in an array using [inclusive] left and [exclusive] right pointers and a `while (right < n)` or `while (left < n - window size)`
 7. Increment number encoded as an array of digits by stepping thru array in reverse order, incrementing digits and carrying the one until there is no carry. (EPI 5.2)
-8. Multiply two numbers encoded as arrays of digits by implemented long multiplication with nested for loop over reversed arrays. (EPI 5.3)
+8. Multiply two numbers encoded as arrays of digits by implementing long multiplication with nested for loop over reversed arrays. (EPI 5.3)
 9. Check if "advancement" game board is valid by keeping track of furthest position reached-so-far and checking if any earily positions can get you further (EPI 5.4)
-10. Delete duplicates from a sorted array by overwriting elements using a  cursor to keep track of write index. (EPI 5.5)
+10. Delete duplicates from a sorted array by overwriting elements using a cursor to keep track of write index. (EPI 5.5)
 11. Find maximum spread within an array by checking the spread between each element and the min-so-far (EPI 5.6 Buy and Sell Stock once)
 12. Alternate values in an array by stepping through each element pair and alternate sorting high-low and low-high, i.e. `A[i:i+2] = sorted(A[i:i+2], reverse=i%2)` (EPI 5.8)
 13. Enumerate primes (i.e., > 1) ***up to n*** by initializing a bool array of size n to `[False, False] + [True]*(n-1)`, then stepping thru numbers 2 to n. If number corresponds to True, its a prime, append to result array and set multiples to False, i.e. `for m in range(i,n+1,i): is_prime[m] = False` (EPI 5.9)
@@ -64,6 +62,29 @@ Disadvantages:
 
 A **subsequence** of an array is an ordered subset of the array's elements having the same sequential ordering as the original array
 
+---
+## Warm-up - 5 min
+
+1. index first, exclusive middle, exclusive last elements
+1. pre-fill/generate an array with 10 undefined/0/null
+    1. `[...Array(10)], Array(10).fill(0)`
+1. pre-fill/generate an array with a range of numbers (implement a range function)
+    1. `[...Array(10).keys()]`
+1. pre-fill/generate an array with letters of alphabet
+    1. `[...Array(36).keys()].slice(10).map(x => x.toString(36))`
+    2. `[...Array(26).keys()].map(x => String.fromCharCode('a'.charCodeAt(0) + x))`
+2. implement zip/unzip function for two or more arrays.
+3. implement union/intersection/difference for two or more arrays.
+1. transform every element of an array
+4. transform every third element of an array of size n
+4. process a sliding window of elements in an array
+4. process mirror elements in an array
+>3. process corresponding elements from two or more arrays
+2. reduce elements of an array to single value: sum, factorial
+5. flatten a matrix or jagged 2d array.
+6. flatten a deeply nested jagged array.
+
+---
 ## Flatten an array
 
 Flatten an arbitrarily nested array, e.g.,
@@ -110,6 +131,7 @@ const flatten = (arr) => reduce((res, el) => {
 ```
 (from [xxx](../../javascript/xxx))
 
+---
 ## Partition an array (dutch flag problem)
 
 Partition an unsortted array into three groups given two pivots, such that elements in partition 1 are < pivot 1, elements in parition 2 are >= to pivot 1 and < than pivot 3, and elements in partition 3 are >= pivot 2, e.g.:
@@ -156,6 +178,10 @@ function 3partition(arr, pivots) {
 }
 ```
 
+**related**
+* into 2/3 with 1/2 pointers: even/odd, dutch flag, 3-stack, lt/gt around pivot
+
+---
 ## reverse array elements from i to j in-place
 
 ```js
@@ -177,7 +203,51 @@ const reverse = (arr, from, to = arr.length) => {
 
 see https://leetcode.com/problems/next-permutation/submissions/
 
-## Apply/restore permutation of an array
+---
+## Apply/restore permutation of an array in-place in constant space
+
+**immutable**
+
+```js
+// apply a permutation
+let permuted = [];
+for (i in original) {
+  permuted[p[i]] = original[i];
+}
+
+// restore a permutation
+let original = [];
+for (i in p) {
+  original[i] = permuted[p[i]];
+}
+```
+
+**in-place & constant space**
+
+```js
+function applyPermutation (arr, perm) {
+  for (let i = 0; i < arr.length; i++) { // for i in range(n)
+
+    // keep relocating element at i until element at i is the right element
+    // this results in neg value at i, which breaks the while loop.
+    let j = i;
+    while (perm[j] >= 0) {
+
+      // 1. swap j with perm[j]
+      swap(arr, j, perm[j]);
+
+      // 2. set j to perm[j] and perm[j] to -1 so we don't do again
+      [j, perm[j]] = [perm[j], -1]
+
+      // equiv to:
+      // let temp = perm[j];
+      // perm[j] -= arr.length; // why not just set to -1???
+      // j = temp;  // when j == i again, we do one more waisted loop, swapping element with itself, before breaking out
+    }
+  }
+  return arr;
+}
+```
 
 ## Is x a subsequence of y
 
@@ -234,6 +304,60 @@ var numMatchingSubseq = function(s, words) {
 };
 ```
 
+---
+## Compute next permutation (under dictionary ordering)
+
+```js
+var nextPermutation = function(nums) {
+
+    if (nums.length == 1) return nums;
+    if (nums.length == 2) return swap(nums,0,1);
+
+    // 1. <- find first descreasing left
+    let i = nums.length - 2;
+    while(i >= 0 && nums[i] >= nums[i+1]) {
+        i--;
+    }
+    let left = i;
+
+    // 2. -> find last right > left
+    if (i >= 0) {
+        let j = i;
+        while(j < nums.length && nums[j+1] > nums[i]) {
+            j++;
+        }
+        let right = j;
+
+        // 3. swap left and right
+        swap(nums, left, right);
+    }
+
+    // 4. reverse sequence after left
+    reverse(nums, left+1);
+};
+```
+
+see https://leetcode.com/submissions/detail/465467973/
+
+---
+## increment number encoded as an array of digits
+## multiply two numbers encoded as an array of digits
+## Delete dups from sorted/unsortted array.
+## Find max spread (EPI 5.6 Buy and Sell Stock once)
+## Enumerate primes upto n.
+
+---
 ## More Problems
 
 1. Count number of matching subsequences in pool of candidates -  maintain bucket that maps char to chars remaining for each candidate. see [full implementation](javascript/arrays_and_strings/count_matching_subsequences.js)
+
+4. find/count some combination of items in an array (that satisfy a condition) with single pass + hash (e.g., two/three/zero sum)
+
+6. find kth smallest (in nlogk, and n time)
+5. implement stack/heap/map with an array.
+
+sample online data (design packet sniffer)
+generate a random subset (sample offline data)
+generate a random permutation
+
+

@@ -70,7 +70,7 @@ def _min_covering_set_size(intervals):
 ```
 
 ---
-## task scheduling
+## Find the minimum time to complete a set of tasks (task scheduling)
 
 1. count tasks by type
 2. allocate idle slots based on most frequently occuring task
@@ -91,7 +91,7 @@ var countScheduledTasks = function(tasks, n) {
 
     // fill idle slots with rest of tasks
     for (let i = 0; i < restCounts.length; i++) {
-        idle -= Math.min(maxCount - 1, restCounts[i]);
+        idle -= Math.min(maxCount - 1, restCounts[i]); // handle multiple tasks with max frequency
         if (idle <= 0) {
             break;
         }
@@ -100,13 +100,14 @@ var countScheduledTasks = function(tasks, n) {
     return Math.max(tasks.length + idle, tasks.length);
 };
 ```
+(see [full implementation](javascript\greedy\scheduleTasks.js))
 
 ---
 ## max trapped water
 
 1. Track left and *inclusive right* sides of container, starting at full width.
 2. While container has a width (ie left < right)
-3. _advance the shorter side inward and update max water contained (ie area) so far.
+3. _advance the shorter side inward and update max water contained so far.
 
 **Javascript:**
 
@@ -130,6 +131,9 @@ var maxTrappedWater = function(height) {
 };
 ```
 
+**Notes:**
+* intuition to advance short: short determines the volume, so we can't do better using that height b/c we are moving outward-in.
+
 ---
 ## find longest substring with unique characters
 
@@ -145,23 +149,27 @@ function longestSubstring(str) {
 
   var [left, right] = [0,1];
   var longest = [left, right];    // indices of longest so far (excluding right!)
+  var included = new Set();
 
-  // TODO: optimize this to use indices rather than slice
-  const isRepeating = (left, right) => str.slice(left, right).includes(str[right]);
+  // const isRepeating = (left, right) => str.slice(left, right).includes(str[right]);
+  const isRepeating = (right) => included.has(str[right])
 
-  while (right < str.length) {
+  while (right < str.length) { 
 
-    if (isRepeating(left, right)) {
+    if (isRepeating(right)) {
       longest = Math.max(right - left, longest[1] - longest[0])
+      included.remove(str[left]);
       left++;                     // repeating, shrink slinky
 
     } else {
+      included.add(str[right]);
       right++;                    // not repeating, grow slinky
     }
   }
   return str.slice(...longest);   // exclude right
 }
 ```
+(see [full implementation](javascript\arrays_and_strings\longest_substring.js))
 
 ---
 ## min-covering subarray
@@ -193,6 +201,30 @@ function minCoveringSubarr(arr, set) {
   }
 
   return [minSub.left, minSub.right];
+}
+```
+
+## Add Interval
+
+Note: there is a faster solution using bin search to find left and right endpoints. see javascript\searching_and_sorting\add_interval.js
+
+```js
+const addInterval = (intervals, toAdd) => {
+    intervals = insertInterval(intervals, toAdd); // insert into set without merging
+    let [s,e] = intervals[0];
+    let result = [];
+    intervals.slice(1).forEach( ([start,end]) => {
+        if (start > e) {
+            result.push([s,e]);
+            [s,e] = [start,end];
+        } else if (end > e) {
+            e = end;
+        } else {
+            // skip
+        }
+    })
+    result.push([s,e]);
+    return result;
 }
 ```
 

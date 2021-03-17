@@ -6,7 +6,7 @@ xxx
 
 source: xxx
 
-### Boardwork (Design)
+### Design
 
 ![](../../images/xxx.jpg)
 
@@ -15,9 +15,9 @@ source: xxx
 Time: O(x)
 Space: O(x)
 
-### Codework (Test)
+### Implementation
 
-Javascript implementation of in-place solution.
+Javascript implementation...
 
 ```javascript
 xxx

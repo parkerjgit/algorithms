@@ -39,7 +39,18 @@ const dft = (node) => {
   }
 }
 
-// graph
+// equiv to:
+const dft = (node) => {
+  let stack = [node];
+  while (stack.length) {
+    let cur = stack.pop();
+    process(cur);
+    stack.push(node.left);
+    stack.push(node.right);
+  }
+}
+
+// graph nodes
 const dft = (node) => {
   if (node) {
     process(node);
@@ -48,7 +59,56 @@ const dft = (node) => {
     }
   }
 }
+
+// equiv to:
+const dft = (node) => {
+  let stack = [node];
+  while (stack.length) {
+    let cur = stack.pop();
+    for (child of node.children) {
+      stack.push(child);
+    }
+  }
+}
+
+// graph - adjacency map
+const dft = (adjMap, nid) => {
+  // do smth w/ data[nid]
+  for (let adj of adjMap[nid]) {
+    dft(adjMap, adj);
+  }
+}
+
+// equiv to
+const dft = (adjMap, nid) => {
+  let stack = [nid];
+  while (stack.length) {
+    let cur = stack.pop();
+    for (let adj of adjMap[nid]) {
+      stack.push(adj)
+    }
+  }
+}
+
+// matrix (undirected)
+const dft = (matrix, row, col) => {
+  for (let [r,c] of unvisitedNeighbors(row, col)) {
+    dft(matrix, r, c)
+  }
+}
+
+const def = (matrix, row, col) => {
+  let stack = [hash(row,col)];
+  while (stack.length) {
+    let cur = revHash(stack.pop());
+    for (let nei of unvisitedNeighbors(...cur)) {
+      stack.push(hash(...nei));
+    }
+  }
+}
 ```
+
+
 
 ## Implement merge sort
 

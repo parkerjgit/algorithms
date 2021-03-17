@@ -42,4 +42,4 @@ function subTreeHasCycles(graph, root, seenInSubtree = new Set(), seenInGraph) {
     )).some(x => x);
 }
 
-// test tbd...
+// test tbd... don't think this works. need to backtrack, see javascript\trees_and_graphs\course_schedule.js

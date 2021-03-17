@@ -5,6 +5,7 @@
 * Designing good hash function is not easy, but given a good one like **MD5^2**, we can efficiently map to n memory locations with `h(x) mod n`, where n is number of slots provisioned, in constant time, or O(1 + n/m), where n is number of objects and m is number of slots, provided m >~ n.
 * If n is dynamic, we can **rehash dynamically** for a reasonable amortized cost and maintain O(1) *average* time-complexity (e.g., python dictionary)
 * For *very* dynamic applications (e.g., web caching), consider **consistent hashing** so items don't reshuffled as they do with a rehashing. (see notes on consistant hashing)
+* Hash tables work great if you are looking up specific key, BUT if you need to look up closest key, you will be tempted to search keys using bin search for logn lookup, but you will have a problem if keys are not in sorted order. In this case consider using an array implementation of hash if key range is small. Consider a balanced tree (or just maintain a sorted link list) if not! e.g. https://leetcode.com/problems/my-calendar-i
 
 ## Javascript Objects, Maps, and Sets
 
@@ -16,7 +17,7 @@ https://stackoverflow.com/a/4279606/1525466
 
 ## C#
 
-## word/char counter
+## Create factory takes an array of items and makes a function that returns count by item
 
 create a function that takes an array of items and returns a hash of item counts
 
@@ -37,17 +38,32 @@ const Counter = (items) => {
 const charCounter = (chars, lowerCase = true) => {
 
   // mapping fn to map char to index (case-insensative)
-  const charToIdx = (char) => char.toLowerCase().charCodeAt(0) - ('a').charCodeAt(0)
+  const charToIdx = (c) => c.toLowerCase().charCodeAt(0) - ('a').charCodeAt(0)
 
   // count chars
   const arr = Array(26).fill(0);
-  chars.forEach((arr,char) => arr[charIdx(char)]++);
+  chars.forEach((arr,c) => arr[charIdx(c)]++);
 
   // return function that takes a char and returns count
-  return (char) => arr[charToIdx(char)];
+  return (c) => arr[charToIdx(c)];
 }
+```
 
+## create a countructor that constructs an object that support increment and retrieval by id
 
+```js
+function Counter() {
+    return {
+        map: {},
+        current(id) {
+            return this.map[id] || 0;
+        },
+        incr(id) {
+            this.map[id] = (this.map[id]) ? ++this.map[id] : 1;
+        }
+    }
+}
+let counter = new Counter();
 ```
 
 ## 2/3 sum problem

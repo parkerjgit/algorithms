@@ -6,7 +6,7 @@
 1. Convert a string to int (base 10) by iteratively adding `10^i x next_digit` right-to-left. (see epi 6.1)
 1. Convert a string to int (base 10) bit faster by reducing string left-to-right with `10*sum + next_digit`. (see epi 6.1)
 
-[PYTHON]
+**Python**
 
 1. convert string to list by simply casting to list: `list('asdf')`
 2. split space-separated substrings into list with `'asdf a s fd lkj'.split()`
@@ -23,16 +23,45 @@
 1. Generate a random character with `random.choice(string.ascii_lowercase)` or `chr(random.randint(ord('a'), ord('z')))`
 1. Prefer manipulating a list of chars over an immutable string to improve performance. (see epi 6.1)
 
-[JAVASCRIPT]
+**Javascript**
 
 See [js-primatives](./javascript/js-primatives.md)
 
 ---
-## Palindrome / Anagram checker
+## Warm-up
+
+1. Convert word into a list of chars
+2. Convert sentence into list of words
+3. Convert text file into list of list of lines
+4. Partition string by a separator - use array
+5. Get the shortest string of a list of strings - `strings.slice(1).reduce((shortest, next) => (next.length < shortest.length) ? next : shortest, strings[0])`
+6. Remove white space from ends of a string - `string.trimRight()`
+7. Check if string is numeric /using regex - `!isNaN(str)`
+8. Check if string is alphabetic /using regex  - `str.every(char => alphabet.includes(char))` or `!/[^a-z]/i.test(str);`
+8. Replace characters in first string with corresponding characters in second
+9. Generate a random character - `String.fromCharCode(Math.random() * 25 + 97)`
+10. Build a random string - `[...Array(n)].map( _ => getRandomChar()).join('')`
+1. [Reverse a string](https://medium.freecodecamp.org/how-to-reverse-a-string-in-javascript-in-3-different-ways-75e4763c68cb) using iteration/recursion/built-in.
+2. [Repeat a string](https://medium.freecodecamp.org/three-ways-to-repeat-a-string-in-javascript-2a9053b93a2d) using iteration/recursion/built-in.
+>3. [Find a substring(indexOf)](https://medium.freecodecamp.org/two-ways-to-confirm-the-ending-of-a-string-in-javascript-62b4677034ac) at begining/end/anywhere in string.
+4. Merge(interleave) two strings.
+5. Merge(interleave) n strings (fullstack checkpoint-foundations)
+6. Wrap(rotate) a string by n places.
+
+---
+## Validate Palindrome
 
 1. get exclusive middle index
 2. iterate 0 to exclusive middle, for each step:
 3. _if el at i not equal to its complement (at len - 1 - i), not a palindrome 
+
+---
+## Validate anagrams
+
+```js
+sortStr = (str) => str.split('').sort().join('');
+isAnagram = (a,b) => sortStr(a) === sortStr(b);
+```
 
 ---
 ## Find substring (indexOf) - 5 min
@@ -77,17 +106,20 @@ function longestSubstring(str) {
 
   var [left, right] = [0,1];
   var longest = [left, right];    // indices of longest so far (excluding right!)
+  var included = new Set();
 
-  // TODO: optimize this to use indices rather than slice. Better yet maintain set!
-  const isRepeating = (left, right) => str.slice(left, right).includes(str[right]);
+  // const isRepeating = (left, right) => str.slice(left, right).includes(str[right]);
+  const isRepeating = (right) => included.has(str[right])
 
   while (right < str.length) { 
 
-    if (isRepeating(left, right)) {
+    if (isRepeating(right)) {
       longest = Math.max(right - left, longest[1] - longest[0])
+      included.remove(str[left]);
       left++;                     // repeating, shrink slinky
 
     } else {
+      included.add(str[right]);
       right++;                    // not repeating, grow slinky
     }
   }
@@ -168,6 +200,7 @@ def build_random_string2(k):
 [...Array(n)].map( _ => randomChar()).join('')    // Better yet
 ```
 
+---
 ## More Problems
 
 1. Convert int (base 10) to string (e.g. 340 -> '340') (implement toString)

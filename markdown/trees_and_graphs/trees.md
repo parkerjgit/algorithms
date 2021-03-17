@@ -1,6 +1,6 @@
 # Trees: Binary Trees and BSTs
 
-**Binary trees** are “linked list” with two (or three) pointers per node: a left and right pointer, and an (optional) parent pointer. Binary Tree elements are called "nodes" and hold a single value, but unlike BSTs are not sortted.
+**Binary trees** are “linked list” with two (or three) pointers per node: a left and right pointer, and an (optional) parent pointer. Binary Tree elements are called "nodes" and typically hold a single value (two in the case of interval), but unlike BSTs are not sortted.
 
 ```py
 class Node:
@@ -20,12 +20,13 @@ A **Binary Search Tree (BST)** is a sortted binary tree such that: for any node 
 
 ## Notes
 
-1. Binary trees are linked lists with left and right pointers (plus optional parent pointer).
-2. Binary Search Tree (BST) is a sorted binary tree with **no duplicates**.
+1. Binary trees are linked lists with left and right pointers (plus optional parent pointer). They typically hold a single value (two in the case of interval), and unlike BSTs are not sortted.
+2. Binary Search Tree (BST) is a sorted binary tree with **no duplicates**, such that: for any node with key x, all nodes in the left subtree have key values < x while all nodes in the right subtree have key values > x.
 3. BSTs are fast to search AND update - Sorted arrays allow for fast search, and [double] linked lists support flexible update, but neither support *both* fast search and flexible update. **BSTs address this need**. Lookup, insert and delete all take time proportional to height or logn for balanced trees.
+3. **Think of BSTs as an alternative to hash tables!**
 4. BSTs are fundamentally recursive - An important observation of BSTs is that the top-most node is the root, and all other nodes are the root of a subtree that is also a binary search tree. This of course describes a recursive structure. Furthermore, since a node defines a tree, functions that operate on trees often take the root as the argument rather than the tree, so take note of which is being passed.
-5. Search a BST by recursing left *or* right until item is found or node is null.
-6. Insert into BST by recursing left or right until the empty spot is found.
+5. Search a BST in O(logn) by recursing left *or* right until item is found or node is null.
+6. Insert into BST in O(logn) by recursing left or right until the empty spot is found.
 7. Unlike Hash table, its easy to find Min/Max of BST (the leftmost/rightmost element). Of course hash table wins with O(1) lookup (vs. O(logn))
 8. Both BSTs and hash tables use O(n) space (BSTs use little more in practice)
 8. There are two ways to traverse a BST: breadth-first traversal (BFT) or depth-first traversal (DFT)
@@ -33,10 +34,10 @@ A **Binary Search Tree (BST)** is a sortted binary tree such that: for any node 
 10. Implement a DFT iteratively with a Stack: push root to stack, then while stack is not empty pop a node and push its children.
 11. Implement a DFT by recursing left AND right until no more nodes.
 12. Implement In-, Pre- and Post- order DFTs by changing the order in which you visit node and recurse on children.
-14. Avoid putting mutable objects in BST or be sure to remove mutable object before updating it and adding it back. (otherwise it will be in wrong spot and lookup will likely fail!)
+14. **Avoid putting mutable values in BST** or be sure to remove mutable object before updating it and adding it back. (otherwise it will be in wrong spot and lookup will likely fail!)
 13. Compute all paths of Binary Tree with a pre-order DFT, handing approp. parent data (partial sum, path concat, etc.) off to children recursively as you go down tree. (if computing number represented by root-to-leaf paths shift number over by multiplying by base then adding next digit. If computing leaf-to-root representation, then  add next digit times base^depth to number) (EPI 9.5)
 
-## Python
+**Python**
 
 13. [Python] No BST implementation in stdlib. In practice, prefer [sortedcontainers.SortedList](https://pypi.python.org/pypi/sortedcontainers) over custom implementation for fast lookup and update (implemented as list of sublists but functions/performs like a balanced BST).
 
@@ -129,6 +130,10 @@ def findMax(node):
     return max
 ```
 
+## Implement delete
+
+https://leetcode.com/problems/delete-node-in-a-bst/discuss/556767/Python3-simple-solution
+
 ## Traverse BST in level-order (BFT)
 
 Visiting all the nodes in a rooted binary tree is an important component of many algorithms. It is a special case of traversing all the nodes and edges in a graph. One application of tree traversal is listing the nodes of a tree in order. There are four ways to move through a tree, which produces four distinct node orderings that fall under categories of *breadth-first* and *depth-first*:
@@ -218,6 +223,89 @@ todo: in-order, and post-order
 
 ## Get all levels
 
+## Serialize/Deserialize a tree using DFS and BFS
+
+* Serialization of trees:
+    * if bst, serialize preorder or postorder
+    * if complete bt, serialize level order
+    * if full bt, store preorder + bit for leaf nodes
+    * else (general bt), store preorder + marker for null pointers
+
+```js
+// serialize
+function serialize(root) {
+    if (!root) {
+        return '#';
+    }
+
+    return [
+        root.value,
+        serialize(root.left),
+        serialize(root.right)
+    ].join(',')
+}
+
+// deserialize
+// note: resist urge to pass portion of list to recursive calls!
+function deserialize(id) {
+
+    let nodes = data.split(',').reverse();
+
+    const _dfs(){
+        let cur = nodes.pop();
+        if (cur === '#') {
+            return null;
+        }
+
+        let root = new Node(rootId)
+
+        root.left = _dfs();
+        root.right = _dfs();
+
+        return root;
+    }
+
+    return _dfs();
+}
+```
+
+## Find duplicate subtrees in binary tree
+
+```js
+var findDuplicateSubtrees = function(root) {
+
+    let history = {};
+    let dups = [];
+
+    const serialize = (root) => {
+
+        if (!root) {
+            return '#';
+        }
+
+        // serialize tree
+        let id = [root.val, serialize(root.left), serialize(root.right)].join(',');
+
+        // increment count
+        if (history[id]) {
+            history[id]++;
+        } else {
+            history[id] = 1;
+        }
+
+        // only count if 2, b/c 1 is no dup, and 3+ is dup we already counted
+        if (history[id] == 2) {
+            dups.push(root);
+        }
+
+        return id;
+    }
+
+    serialize(root);
+    return dups;
+};
+```
+
 ## Get all paths
 
 Compute all paths of Binary Tree with a pre-order DFT, handing approp. parent data (partial sum, path concat, etc.) off to children recursively as you go down tree. (if computing number represented by root-to-leaf paths shift number over by multiplying by base then adding next digit. If computing leaf-to-root representation, then  add next digit times base^depth to number) (EPI 9.5)
@@ -253,9 +341,87 @@ var isValidBST = function(root) {
 };
 ```
 
+
+## Build BST from sorted array
+
+```js
+function BSTFromSortedArr(arr, left, right) {
+
+    if (left >= right) { // prob only need == here
+        return null
+    }
+
+    let mid = left + Math.floor((right-left)/2);
+
+    let node = new Node(arr[mid]);
+
+    node.left = BSTFromSorted(arr, left, mid);
+    node.right = BSTFromSorted(arr, mid+1, right);
+
+    return node;
+}
+```
+
+---
 ## Balance BST
 
+1. We use DFS (in-order) to extract node values while preserving the order.
+2. We build the balanced tree by recursively taking the middle element of the ordered list as root.
+
+```js
+function balanceBST(node) {
+    let sortedArr = inOrderDFT(node);
+    return BSTFromSortedArr(sorted);
+}
+```
+
+---
 ## Lookup range
+
+## Book a time in calendar
+
+```js
+function Interval(start=null, end=null){
+  this.start = start;
+  this.end = end;
+  this.left = null;
+  this.right = null;
+}
+
+Node.prototype.insertInterval = function(start,end) {
+
+  if (this.start == null) {                     // empty tree
+      this.start = start;
+      this.end = end;
+
+  } else if (start >= this.end) {               // ----this.end   start----
+      if (this.right) {
+          this.right.insert(start, end);
+      } else {
+          this.right = new Interval(start, end);
+      }
+
+  } else if (end <= this.start) {               // ----end   this.start----
+      if (this.left) {
+          this.left.insert(start, end);
+      } else {
+          this.left = new Interval(start, end);
+      }
+
+  } else {                                      // conflict!
+      // handle
+  }
+}
+
+function MyCalendar() {
+  this.bookings = new Interval();
+}
+
+MyCalendar.prototype.book = function(start, end) {
+  return this.bookings.insert(start,end);
+}
+```
+(see [full implementation](javascript\trees_and_graphs\book_time.js))
 
 ## Applications of BST
 
@@ -277,3 +443,7 @@ If computing number represented by root-to-leaf paths shift number over (at each
 If computing leaf-to-root representation, then add new_digit*base^depth to number (at each step), e.g., to add bit in MSB position of binary number `x = x + newbit*(2**d)`, where d is 2's position of MSB (i.e., the current depth)
 
 1. alphabet board path - see [full implementation](javascript/trees_and_graphs/alphabet_board_path.js)
+If computing leaf-to-root representation, then add new_digit*base^depth to number (at each step), e.g., to add bit in MSB position of binary number `x = x + newbit*(2**d)`, where d is 2's position of MSB (i.e., the current depth)
+
+1. delete nodes - see [full implementation](javascript\trees_and_graphs\delete_nodes.js)
+

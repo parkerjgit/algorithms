@@ -7,10 +7,10 @@ A list of question sets grouped by problem type. Each set is preceeded by concis
 1. **Complexity:** Cost of bin search, merge sort, looking at each item once, looking at all pairs/triplets/subsets/purmutations.
 1. **[Strings](.\markdown\arrays_and_strings\strings.md):** Palindrome checker, find a substring, find the longest substring with unique characters.
 1. **[Arrays](.\markdown\arrays_and_strings\arrays.md):** flatten an array, partion an array (Dutch flag problem), apply/restore a permutation of an array.
-1. **Matrix:** prefill matrix, convert betwee 2d/1d array representations, traverse/transpose matrix, maze solver, paint bucket, etc. count sqr submatrices, maximal sqr
+1. **Matrix:** prefill matrix, convert betwee 2d/1d array representations, traverse/transpose matrix, maze solver, paint bucket, etc. count sqr submatrices, maximal sqr, surrounded regions
 1. **[Linked-List](./markdown/linked_lists/linked_lists.md):** implement with class/prototype/object/function and traverse iteratively/recursively
 >1. **[Trees](markdown\trees_and_graphs\trees.md):** implement BT/BST and traverse DFT/BFT iterative/recursively in pre/in/post order, is BST valid
-1. **[Stack](./markdown/stacks/stacks.md):** normalize pathnames, rpn, test for well-formed expression, implement min/max API -
+1. **[Stack](./markdown/stacks_and_queues/stacks.md):** normalize pathnames, rpn, test for well-formed expression, implement min/max API -
 1. **[Queue](markdown\stacks_and_queues\queues.md):** implement queue with array, stack, implement min/max API
 1. **[Heap](./markdown/heaps/heaps.md):** implement minheap, implement priority queue, find k most frequent words, sort k sortted -
 1. **Trie:** prefix search, autocomplete, sort words
@@ -27,6 +27,7 @@ A list of question sets grouped by problem type. Each set is preceeded by concis
 1. **Front-end:** component that makes api call, and performs pagination, sort, and filter on front-end/back-end.
 1. **Functional:** implement debounce, throttle, pipe, compose, memoization for single/multi params., map, filter, reduce
 1. **Bit-Wise:** insert m into n, filter a collection with bitmask, ...
+1. **[Backtracking]()** -
 
 testing for each
 
@@ -77,25 +78,7 @@ see notes on [strings](notes/strings.md)
 
 **Warm-up**
 
-1. Convert word into a list of chars
-2. Convert sentence into list of words
-3. Convert text file into list of list of lines
-4. Partition string by a separator
-5. Get the shortest string of a list of strings - `strings.slice(1).reduce((shortest, next) => (next.length < shortest.length) ? next : shortest, strings[0])`
-6. Remove white space from ends of a string - `string.trimRight()`
-7. Check if string is numeric /using regex - `!isNaN(str)`
-8. Check if string is alphabetic /using regex
-8. Replace characters in first string with corresponding characters in second
-9. Generate a random character - `String.fromCharCode(Math.random() * 25 + 97)`
-10. Build a random string - `[...Array(n)].map( _ => getRandomChar()).join('')`
-1. [Reverse a string](https://medium.freecodecamp.org/how-to-reverse-a-string-in-javascript-in-3-different-ways-75e4763c68cb) using iteration/recursion/built-in.
-2. [Repeat a string](https://medium.freecodecamp.org/three-ways-to-repeat-a-string-in-javascript-2a9053b93a2d) using iteration/recursion/built-in.
->3. [Find a substring(indexOf)](https://medium.freecodecamp.org/two-ways-to-confirm-the-ending-of-a-string-in-javascript-62b4677034ac) at begining/end/anywhere in string.
-4. Merge(interleave) two strings.
-5. Merge(interleave) n strings (fullstack checkpoint-foundations)
-6. Wrap(rotate) a string by n places.
-5. is anagram
-6. is palindrome
+
 
 **Medium**
 
@@ -112,30 +95,11 @@ see notes on [Arrays](notes/arrays.md)
 
 **Warm-up**
 
-1. index first, exclusive middle, exclusive last elements
-1. pre-fill/generate an array with 10 undefined/0/null - `[...Array(10)], Array(10).fill(0)`
-1. pre-fill/generate an array with a range of numbers (implement a range function) - `[...Array(10).keys()]`
-1. pre-fill/generate an array with letters of alphabet - `[...Array(36).keys()].slice(10).map(x => x.toString(36))`
-2. implement zip/unzip function for two or more arrays.
-3. implement union/intersection/difference for two or more arrays.
-1. transform every element of an array
-4. transform every third element of an array of size n
-4. process a sliding window of elements in an array
-4. process mirror elements in an array
->3. process corresponding elements from two or more arrays
-2. reduce elements of an array to single value: sum, factorial
-5. flatten a matrix or jagged 2d array.
-6. flatten a deeply nested jagged array.
+
 
 **Problems**
 
-5. apply/restore a permutation of an array
-5. paritition an array into 2/3 with 1/2 pointers: even/odd, dutch flag, 3-stack, lt/gt around pivot
-6. delete dups from sorted/unsortted array.
-4. find/count some combination of items in an array (that satisfy a condition) with single pass + hash (e.g., two/three/zero sum)
-7. find max spread.
-6. find kth smallest (in nlogk, and n time)
-5. implement stack/heap/map with an array.
+
 
 #### linked-list -
 
