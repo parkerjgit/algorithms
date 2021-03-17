@@ -51,11 +51,11 @@ Search a BST by recursing left or right until node is null or item is found. Sin
 
 ```py
 def search(node, value):
-     
+
     # Base Cases: node is null or item is found
     if node is None or node.val == value:
         return node
- 
+
     # Recurse left or right
     if value > node.value:
         return search(node.right, value)
@@ -156,7 +156,7 @@ Here is simple bfs implementation for arbitrary graph:
 
 ```py
 def dequeue(arr): arr.pop()
-def enqueue(arr, x): arr.insert(0,x) 
+def enqueue(arr, x): arr.insert(0,x)
 def printLevelOrder(root):
     q = [root]
     while q:
@@ -165,7 +165,7 @@ def printLevelOrder(root):
         '...'                   # 3. enqueue children
 ```
 
-Time complexity is linear O(n) for tree (and for arbitrary graph *if* we mark nodes visited to prevent visiting same node twice) because we are visiting each node once and performing constant time enqueue/dequeue functions for on each node. The alternative is a brute-force traversal of tree for each level, which has a worst-case quadradic O(n<sup>2</sup>) runtime for highly skewed tree where number of levels is equal to number of nodes. 
+Time complexity is linear O(n) for tree (and for arbitrary graph *if* we mark nodes visited to prevent visiting same node twice) because we are visiting each node once and performing constant time enqueue/dequeue functions for on each node. The alternative is a brute-force traversal of tree for each level, which has a worst-case quadradic O(n<sup>2</sup>) runtime for highly skewed tree where number of levels is equal to number of nodes.
 
 ## impl in pre-order, in-order, post-order using recursion (DFT)
 
@@ -177,13 +177,13 @@ def printInorder(root):
         printInorder(root.left)
         print(root.val),            # Print node in order
         printInorder(root.right)
- 
-def printPostorder(root): 
+
+def printPostorder(root):
     if root:
         printPostorder(root.left)
         printPostorder(root.right)
         print(root.val),            # Print node last, ie POST recursion
- 
+
 # again here is typical pre-order:
 def printPreorder(root):
     if root:
@@ -195,7 +195,7 @@ def printPreorder(root):
 Each item is processed once during the course of traversal, which runs in O(n)
 time, where n denotes the number of nodes in the tree.
 
-#### Implement a DFT iteratively in (pre-order, in-order, post-order)
+## Implement a DFT iteratively in (pre-order, in-order, post-order)
 
 Can turn a BFT into an iterative implementation of pre-order Depth-first Traversal (DFT) by just swapping out queue for a stack!
 
@@ -230,24 +230,24 @@ Compute all paths of Binary Tree with a pre-order DFT, handing approp. parent da
 
 ```js
 var isValidBST = function(root) {
-    
+
     let prev = Number.NEGATIVE_INFINITY,
         isValid = true;
-    
+
     const inorder = (root) => {
         if (root && isValid) {
             inorder(root.left);
-            
+
             if (root.val <= prev) {
                 isValid = false;
             } else {
                 prev = root.val;
             }
-            
+
             inorder(root.right);
         }
     }
-    
+
     inorder(root);
     return isValid;
 };
@@ -264,14 +264,16 @@ var isValidBST = function(root) {
 1. Fix a BST with 2 swapped nodes. (lc 99) - perform in-order traversal, find and mark nodes in violation of bst, then fix.
 1. Are 2 trees the same? (lc 100) - if roots are the same and the left and right subtrees are the same, then the trees are same.
 1. Are 2 trees symmetric? (lc 101) - tree is symmetric if subtrees are mirror reflections, two trees are mirror reflections if (a) roots are same and (b) right subtree is mirror reflection of left subtree (and vis-versa).
-1. 
+1.
 
 https://leetcode.com/tag/tree/
 
-If trying to compute all paths, or find the sum/product/etc. of all numbers represented by the paths of a binary tree, should perform pre-order DFT, handing approp. parent data (partial sum, etc.) off to children recursively as you go down tree. 
+If trying to compute all paths, or find the sum/product/etc. of all numbers represented by the paths of a binary tree, should perform pre-order DFT, handing approp. parent data (partial sum, etc.) off to children recursively as you go down tree.
 
 If computing number represented by root-to-leaf paths shift number over (at each step) by multiplying it by the base then adding new_digit, e.g., to add next bit in LSB position of binary number `x = x*2 + newbit`
 
 (see EPI 9.5 on pg 120)
 
-If computing leaf-to-root representation, then add new_digit*base^depth to number (at each step), e.g., to add bit in MSB position of binary number `x = x + newbit*(2**d)`, where d is 2's position of MSB (i.e., the current depth) 
+If computing leaf-to-root representation, then add new_digit*base^depth to number (at each step), e.g., to add bit in MSB position of binary number `x = x + newbit*(2**d)`, where d is 2's position of MSB (i.e., the current depth)
+
+1. alphabet board path - see [full implementation](javascript/trees_and_graphs/alphabet_board_path.js)

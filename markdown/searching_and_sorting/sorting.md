@@ -18,7 +18,7 @@
 8. [python] Sort class objects implicitly by implementing a compare dunder method `__lt__`
 
 
-9. Find intersection of two sorted arrays by indexing start of both arrays and testing indexed elements for equality. If equal, append to result and advance both, otherwise advance smaller. Do until one or both arrays are exhausted. (see EPI 13.1 182) 
+9. Find intersection of two sorted arrays by indexing start of both arrays and testing indexed elements for equality. If equal, append to result and advance both, otherwise advance smaller. Do until one or both arrays are exhausted. (see EPI 13.1 182)
 10. Merge two sorted arrays (if one has enough empty spaces at end to hold the other) by filling buffered array back to front with merged elements starting at m + n + 1, where m and n are the number of elements in first and second array. (see EPI 13.2 183, CTCI 396)
 
 ## Bubble Sort
@@ -39,7 +39,7 @@ Bubble sort has quadradic O(n<sup>2</sup>) runtime, but is an in-place sorting a
 
 ## Selection Sort
 
-The selection sort algorithm sorts an array A, by stepping through n - 1 elements of the n-element array, and for each element A[i], finds the minimum element to the right, i.e. in the n - i unsortted elements, and swaps it with A[i]. 
+The selection sort algorithm sorts an array A, by stepping through n - 1 elements of the n-element array, and for each element A[i], finds the minimum element to the right, i.e. in the n - i unsortted elements, and swaps it with A[i].
 
 ```
   i j ->
@@ -52,13 +52,13 @@ The selection sort algorithm sorts an array A, by stepping through n - 1 element
 
 ```py
 for i in range(len(A)):
-     
+
     min_id = i
     for j in range(i+1, len(A)): # find smallest to right
         if  A[j] < A[min_id]:
             min_id = j
-                    
-    A[i], A[min_id] = A[min_id], A[i] # swap with 
+
+    A[i], A[min_id] = A[min_id], A[i] # swap with
 ```
 
 So for an n element array we have an upper bound on run time of
@@ -73,11 +73,11 @@ So, selection sort has a quadradic upper bound on runtime, or:
 Insertion sort steps through n - 1 elements of n-element array, removes each element and finds the location it belongs within the sorted list, and inserts it there. It repeats until no input elements remain. **This is typically how we sort playing cards.** Insertion sort has quadradic runtime but is more efficient in practice than most other simple quadratic algorithms such as selection sort or bubble sort. (wikipedia)
 
 ```
-  j 
+  j
 | * * * * * * * * * * * |
    <- j (take next and find its place in sorted)
 | 0 | * * * * * * * * * |
-         <- j 
+         <- j
 | 0 1 3 4 | * * * * * * |
 ```
 
@@ -117,7 +117,7 @@ We store at most 1 element at time, so we have constant auxiliary space complexi
 Merge sort, like Quick sort, is classic example of **divide and conquer** algorithm. It divides input array in two halves, calls itself for the two halves and then merges the two sorted halves in sorted order:
 
 1. divide into halves
-2. sort each half 
+2. sort each half
 3. merge them together
 
 **Javascript (in-place)**
@@ -133,7 +133,7 @@ var mergeSort = function(arr) {
 
         // 1. divide in half
         let mid = left + Math.floor((right - left) / 2);
-        
+
         // 2. sort each half (in-place)
         _sort(arr, left, mid);
         _sort(arr, mid + 1, right);
@@ -144,7 +144,7 @@ var mergeSort = function(arr) {
   }
 
 _sort(arr, 0, arr.length - 1);
-}    
+}
 ```
 
 reference:
@@ -166,12 +166,12 @@ def partition(arr, l, r):
     arr[pid],arr[i] = arr[i],arr[pid]
     return i
 
-def sort(arr,l,r):   
+def sort(arr,l,r):
     if(l<r):
         pid = partition(arr, l, r)
         sort(arr, l, pid-1)
         sort(arr, pid+1, r)
-        
+
 def quicksort(arr):
     sort(arr, 0, len(arr)-1)
     return arr
@@ -180,7 +180,7 @@ test = [21, 4, 1, 3, 9, 20, 25, 6, 21, 14]
 print quicksort(test)
 ```
 
-Quicksort like merge sort has superlinear nlog(n) runtime (provided the split point is near the middle) *and* without the need for additional memory as with merge sort. As a trade off though it has a worst case quadradic runtime, where as merge sort can guarantee nlog(n) runtime. This is because in the worst case, the split points are not in the middle, but on the ends, leaving a very uneven division. In this case, we are not halving the list so much as we are stepping through it. The result is an O(n2) sort *plus* all of the overhead that recursion requires. 
+Quicksort like merge sort has superlinear nlog(n) runtime (provided the split point is near the middle) *and* without the need for additional memory as with merge sort. As a trade off though it has a worst case quadradic runtime, where as merge sort can guarantee nlog(n) runtime. This is because in the worst case, the split points are not in the middle, but on the ends, leaving a very uneven division. In this case, we are not halving the list so much as we are stepping through it. The result is an O(n2) sort *plus* all of the overhead that recursion requires.
 
 reference:
 http://algs4.cs.princeton.edu/23quicksort/
@@ -215,7 +215,7 @@ for (let hashId = 0; hashId < ageCounts.length; hashId++) {
 **sort people by age**
 
 ```js
-/* 
+/*
   // map pid -> person
   people = [
     0: {name: 'joe', age: 61},
@@ -230,8 +230,8 @@ for (let hashId = 0; hashId < ageCounts.length; hashId++) {
   }
 */
 
-const hashTable = Array(100-50).fill(null); 
-const hashFn = (person) => person.age - 50; 
+const hashTable = Array(100-50).fill(null);
+const hashFn = (person) => person.age - 50;
 
 // 1. hash people: hashFn(person) -> array<pid> - corresponding to people in this age group
 people.forEach((person, pid) => {
@@ -251,12 +251,12 @@ let results = hashTable
 
 using object
 
-NOTE: 
-* have to use Map to traverse in order!!! 
+NOTE:
+* have to use Map to traverse in order!!!
 * have to initialize because in-order traversal is insertionorder!!!
 
 ```js
-let hashMap = new Map([...Array(50).keys()].map(key => [key, []])); 
+let hashMap = new Map([...Array(50).keys()].map(key => [key, []]));
 let hashFn = (person) => person.age - 50;
 
 // 1. hash people: hashFn(person): hashId -> pids of people in this age group
@@ -284,17 +284,17 @@ Note, this can be solved in single pass by partitioning with multiple pointers (
 
 ```js
 var sortColors = function(nums) {
-    
+
     let counts = [0,0,0];
-    
+
     // 1. count colors
     nums.forEach(color => counts[color]++);
-    
-    // 2. overwrite nums 
+
+    // 2. overwrite nums
     let i = 0;
     while (i < nums.length) {
         let color;
-        
+
         if (counts[0] > 0 ) {
             color = 0;
         } else if (counts[1] > 0 ) {
@@ -302,17 +302,17 @@ var sortColors = function(nums) {
         } else {
             color = 2;
         }
-        
+
         nums[i] = color;
         counts[color]--; // this is not nec (see https://leetcode.com/problems/sort-colors/discuss/683155/JavaScript-O(n)-1-pass-and-2-pass)
         i++;
     }
-    
+
 };
 ```
 (from https://leetcode.com/problems/sort-colors)
 
-## Bucket Sort (part of radix sort) 
+## Bucket Sort (part of radix sort)
 
 Bucket sort is a distribution sort. Bucket sort can be seen as a generalization of counting sort; in fact, if each bucket has size 1 then bucket sort degenerates to counting sort. Bucket sort with two buckets is effectively a version of quicksort where the pivot value is always selected to be the middle value of the value range.
 
@@ -321,7 +321,6 @@ Bucket sort is a distribution sort. Bucket sort can be seen as a generalization 
 ```js
 [...arr.sort()]
 ```
-
 ## Sort an objects by props
 
 ```js
@@ -341,6 +340,9 @@ arrToSort
   .map((obj) => obj[item])
 ```
 
+**notes:**
+* related: [car fleet](javascript/searching_and_sorting/car_fleet.js)
+
 ## Group people by age (counting sort)
 
 ## Topological Sort
@@ -348,3 +350,5 @@ arrToSort
 is this same as build order?
 
 see [Graphs](.\markdown\trees_and_graphs\graphs.md)
+
+## Sort the points of a rectangle

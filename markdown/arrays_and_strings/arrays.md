@@ -179,6 +179,61 @@ see https://leetcode.com/problems/next-permutation/submissions/
 
 ## Apply/restore permutation of an array
 
+## Is x a subsequence of y
 
+```js
+var isSubsequence = function(subseq, str) {
+    let i = 0;
+    for (let ch of str) {
+        if (ch == subseq[i]) {
+            if (i == subseq.length - 1) {
+                return true;
+            }
+            i++;
+        }
+    }
+    return false;
+};
+```
+
+## Count Subsequences
+
+```js
+var numMatchingSubseq = function(s, words) {
+  let count = 0;
+
+  // maps char -> array index
+  const hashfn = (ch) => ch.charCodeAt(0) - 'a'.charCodeAt(0);
+
+  // group words by first letter, eg. [0: ['ab', 'abc'], 1: ['b', 'bag'], ...]
+  let buckets = [...Array(26)].map(_ => new Array());
+  for (let word of words) {
+      buckets[hashfn(word[0])].push(word);
+  }
+
+  for (let ch of s) {
+      let bucketCopy = [...buckets[hashfn(ch)]];
+
+      // clear bucket
+      buckets[hashfn(ch)] = [];
+
+      // process words
+      for (let word of bucketCopy) {
+          if (word.length == 1) {
+              // found one!
+              count++;
+          } else {
+              // move rest of word to approp. bucket
+              let [first, ...rest] = [word[1], word.slice(1)];
+              buckets[hashfn(first)].push(rest)
+          }
+      }
+  }
+
+  return count;
+};
+```
 
 ## More Problems
+
+1. Count number of matching subsequences in pool of candidates -  maintain bucket that maps char to chars remaining for each candidate. see [full implementation](javascript/arrays_and_strings/count_matching_subsequences.js)

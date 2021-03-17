@@ -33,7 +33,7 @@ tbd...
 
 ## Normalize pathnames
 
-1. Process parts of pathname left-to-right: 
+1. Process parts of pathname left-to-right:
   a. if `'..'`, **pop** stack
   b. if `'.'`, ignore
   c. else its a directory/file name, e.g., `'lib'`, **push** to stack
@@ -122,18 +122,18 @@ def validate_wellformedness(str):
 
 ## Decode String Problem -  https://leetcode.com/problems/decode-string
 
-wip js solution: 
+wip js solution:
 
 ```js
 function decode(str) {
-    
+
   let tokens = tokenize(str);
 
 	let alphaStack = [],
 	    numStack = [],
       nextStrToRepeat = '';
       // lastNum = '';
-    
+
   for (token in tokens) {
 
     if (isNumber(token)) { // 0-300
@@ -163,37 +163,63 @@ def decodeString(self, s: str) -> str:
   # instantiate stacks to store the number and the string to repeat.
   repeatStr = []
   numRepeat = []
-  
-  # initialize empty strings. One to store a multidigit number and other one to store the decoded string. 
+
+  # initialize empty strings. One to store a multidigit number and other one to store the decoded string.
   tempNum = ''
-  decodedStr = ''        
-  
+  decodedStr = ''
+
   # start iterating throught the encoded string
   for char in s:
-      # check if the char is a digit. 
+      # check if the char is a digit.
       if char.isdigit():
           tempNum += char # add the number to tempNum
-          
+
       # check if the char is an opening bracket
       elif char == '[':
           repeatStr.append(decodedStr)
           numRepeat.append(tempNum)
           tempNum = ''
           decodedStr = ''
-          
+
       # check when the bracket closes
       elif char == ']':
           decodedStr = repeatStr.pop() + (decodedStr * int(numRepeat.pop()))
-          
+
       # else build the substring to repeat
       else:
-          decodedStr += char            
-          
+          decodedStr += char
+
   return decodedStr
 ```
 (solution from https://leetcode.com/problems/decode-string/discuss/714732/Python-solution-using-stacks.-O(n))
 
 ## Implement min/max stack API
 
-## other problems:
+## backspace string compare:
 
+my solution: use input string as stack.
+
+maintain two pointers, i and write cursor, init both 0
+iter thru, for each:
+* if char: overwrite @ cursor and cursor++
+* if #, cursor--
+
+another very cool solution not using stack:
+
+```py
+def backspaceCompare(self, S, T):
+  def F(S):
+    skip = 0
+    for x in reversed(S):
+      if x == '#':
+        skip += 1
+      elif skip:
+        skip -= 1
+      else:
+        yield x
+
+  return all(x == y for x, y in itertools.izip_longest(F(S), F(T)))
+```
+(copied from https://leetcode.com/problems/backspace-string-compare/solution/)
+
+## other problems:

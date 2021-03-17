@@ -10,23 +10,22 @@ A list of question sets grouped by problem type. Each set is preceeded by concis
 1. **Matrix:** prefill matrix, convert betwee 2d/1d array representations, traverse/transpose matrix, maze solver, paint bucket, etc. count sqr submatrices, maximal sqr
 1. **[Linked-List](./markdown/linked_lists/linked_lists.md):** implement with class/prototype/object/function and traverse iteratively/recursively
 >1. **[Trees](markdown\trees_and_graphs\trees.md):** implement BT/BST and traverse DFT/BFT iterative/recursively in pre/in/post order, is BST valid
-1. **[Stack](./markdown/stacks/stacks.md):** normalize pathnames, rpn, test for well-formed expression, implement min/max API - 
+1. **[Stack](./markdown/stacks/stacks.md):** normalize pathnames, rpn, test for well-formed expression, implement min/max API -
 1. **[Queue](markdown\stacks_and_queues\queues.md):** implement queue with array, stack, implement min/max API
-1. **[Heap](./markdown/heaps/heaps.md):** implement minheap, implement priority queue, find k most frequent words, sort k sortted - 
+1. **[Heap](./markdown/heaps/heaps.md):** implement minheap, implement priority queue, find k most frequent words, sort k sortted -
 1. **Trie:** prefix search, autocomplete, sort words
 1. **[Graphs](.\markdown\trees_and_graphs\graphs.md):** represent graph as adjacency list, adjacency map, and adjecency matrix. traverse with DFT/BFT, determine if path/cycle exists.
-
-1. **[Hash Tables](.\markdown\hash_tables\hash_tables.md):** word/char counter, 2/3 sum problem, longest distinct and min-covering subarray, validate pattern - 
-1. **[Recursion](./markdown/recursion_and_dynamic/recursion.md):** flatten jagged array, dft of tree/graph, merge sort, binary search, powerset, bottom-up vs top-down recursion - 
-1. **Dynamic:** fibonacci, combination sum (find/count combinations), three-step, knapsack, count sqr submatrices, maximal sqr
-1. **[Searching](.\markdown\searching_and_sorting\searching.md):** find kth largest, implement native find using binSearch iter/recursively to accept comparitor and target value - 
+1. **[Hash Tables](.\markdown\hash_tables\hash_tables.md):** word/char counter, 2/3 sum problem, longest distinct and min-covering subarray, validate pattern -
+1. **[Recursion](./markdown/recursion_and_dynamic/recursion.md):** flatten jagged array, dft of tree/graph, merge sort, binary search, powerset, bottom-up vs top-down recursion -
+1. **Dynamic:** fibonacci, combination sum (find/count combinations), three-step, knapsack, count sqr submatrices, maximal sqr, longest string chain
+1. **[Searching](.\markdown\searching_and_sorting\searching.md):** find kth largest, implement native find using binSearch iter/recursively to accept comparitor and target value -
 1. **[Sorting](markdown\searching_and_sorting\sorting.md)**: implement insertion sort, merge sort, and quick sort. sort an array of objects by prop, one array by another array, sort numbers/words (hint: trie)
 1. **Math:** GCF, LCM, factorize, enum primes, factorial, fibonacci, compute subsets (powerset), combinations, permutations
 1. **Divide and Concuer:** implement merge sort (bin search and quick sort can also be considered divide and conceur), tower of hanoi
-1. **[Greedy](.\markdown\greedy\greedy.md):** coin change, task assignment, scheduling, interval covering, ... - 
+1. **[Greedy](.\markdown\greedy\greedy.md):** coin change, task assignment, scheduling, interval covering, ... -
 1. **Objects:** demonstrate class-based/prototypal/functional inheritance, and object delegation
 1. **Front-end:** component that makes api call, and performs pagination, sort, and filter on front-end/back-end.
-1. **Functional:** implement debounce, throttle, pipe, compose, memoization for single/multi params.
+1. **Functional:** implement debounce, throttle, pipe, compose, memoization for single/multi params., map, filter, reduce
 1. **Bit-Wise:** insert m into n, filter a collection with bitmask, ...
 
 testing for each
@@ -496,6 +495,7 @@ tbd...
 2. implement debounce, debounce leading, etc.
 3. implement throttle function
 5. implement memoization for single/multi params
+1. implement map/filter/reduce
 
 1. Write an identity function that takes an argument and returns that argument, e.g., `identity(3) // 3`
 2. Write three binary functions, add , sub, and mul, that take two numbers and return their sum, difference, and product, e.g., `add(3, 4) // 7`
