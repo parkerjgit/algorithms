@@ -1,12 +1,17 @@
 # Sorting
 
+## Notes
+
 1. Sort to preprocess collection to make searching faster.
 2. Sort to identify like items, eg. ...
-3. Naive Sorting algorithms run in O(n<sup>2</sup>), e.g., bubble sort, selection sort, insertion sort.
+3. Naive Sorting algorithms *generally* run in O(n<sup>2</sup>), e.g., bubble sort, selection sort, insertion sort.
 4. Fast Sorting algorithms run in O(nlogn), e.g., heapsort, merge-sort, and quicksort (quicksort is usually the best choice even though it degrades to exponential in worst case!)
 3. For some inputs, its possible to beat O(nlogn) with custom sorting routine, e.g., using min-heap to sort items known to be at most k places from final location in O(nlogk).
-4. For some inputs, its possibe to sort in O(n), e.g., for a small number of values or small range of values, e.g., sort people by age using counting sort
+4. For some inputs, its possibe to sort in O(n), e.g., for a small number of values or small range of values, e.g., sort people by age using counting sort.
+4. Count sorting in javascript doesn't require a hashfn b/c arrays do not have to be preallocated and indices do not have to be sequential or start at 0!
 4. For very small number of values (< 10), insertion sort is easier to code and faster than asymptocally superior algorithms!
+4. For very small range of values, also consider insertion sort with multiple pointers, e.g. dutch flag problem.
+4. For sorting values with elaborate tie-breaking logic, consider decorating an object or array, e.g. [valueToSortBy, sortByIfTie, sortByIfStillTie], before sorting, e.g. bike assignment problem
 
 **Javascript**
 
@@ -21,6 +26,7 @@
 9. Find intersection of two sorted arrays by indexing start of both arrays and testing indexed elements for equality. If equal, append to result and advance both, otherwise advance smaller. Do until one or both arrays are exhausted. (see EPI 13.1 182)
 10. Merge two sorted arrays (if one has enough empty spaces at end to hold the other) by filling buffered array back to front with merged elements starting at m + n + 1, where m and n are the number of elements in first and second array. (see EPI 13.2 183, CTCI 396)
 
+---
 ## Bubble Sort
 
 Bubble sort works by stepping through n-1 elements of an array and for each step, comparing the element at i with element at i+1, and swapping if nec. In this way, the largest element of each pass bubbles to the end of array (for increasing order).
@@ -37,6 +43,7 @@ for (let i = 0; i < arr.length; i++) {
 
 Bubble sort has quadradic O(n<sup>2</sup>) runtime, but is an in-place sorting algorithm, so constant O(1) auxilary space.
 
+---
 ## Selection Sort
 
 The selection sort algorithm sorts an array A, by stepping through n - 1 elements of the n-element array, and for each element A[i], finds the minimum element to the right, i.e. in the n - i unsortted elements, and swaps it with A[i].
@@ -68,6 +75,7 @@ After removing non-dominant terms in sum, we have:
 So, selection sort has a quadradic upper bound on runtime, or:
     **O(n<sup>2</sup>)**
 
+---
 ## Insertion Sort (playing cards)
 
 Insertion sort steps through n - 1 elements of n-element array, removes each element and finds the location it belongs within the sorted list, and inserts it there. It repeats until no input elements remain. **This is typically how we sort playing cards.** Insertion sort has quadradic runtime but is more efficient in practice than most other simple quadratic algorithms such as selection sort or bubble sort. (wikipedia)
@@ -112,6 +120,7 @@ So, we have [worst cast] quadradic runtime, or:
 We store at most 1 element at time, so we have constant auxiliary space complexity:
     **O(1)**
 
+---
 ## Merge Sort
 
 Merge sort, like Quick sort, is classic example of **divide and conquer** algorithm. It divides input array in two halves, calls itself for the two halves and then merges the two sorted halves in sorted order:
@@ -151,6 +160,7 @@ reference:
 http://www.geeksforgeeks.org/merge-sort/
 http://algs4.cs.princeton.edu/22mergesort/
 
+---
 ## Quick Sort
 
 Like Merge Sort, QuickSort is a **Divide and Conquer** algorithm. It picks an element as pivot (typ last element) and partitions the given array, such that the pivot is at its correct position (in the tobe sorted array), and all smaller elements are before it, and all greater elements are after it. It then calls itself recursively on subarrays to left and right of pivot.
@@ -186,6 +196,7 @@ reference:
 http://algs4.cs.princeton.edu/23quicksort/
 http://www.geeksforgeeks.org/quick-sort/
 
+---
 ## Counting Sort (integer sorting when value range is rel. small, ie < array size)
 
 **sort ages of people over 50**
@@ -212,7 +223,9 @@ for (let hashId = 0; hashId < ageCounts.length; hashId++) {
 }
 ```
 
-**sort people by age**
+**sort (ie group) people by age**
+
+using array repr. of map
 
 ```js
 /*
@@ -249,7 +262,7 @@ let results = hashTable
   .flatMap(pid => people[pid])
 ```
 
-using object
+using object repr. of map
 
 NOTE:
 * have to use Map to traverse in order!!!
@@ -278,6 +291,7 @@ let results = hashMap.values().flatMap(pid => people[pid])
 
 ```
 
+---
 ## Sort small range of numbers (eg Sort Colors, aka Dutch Flag)
 
 Note, this can be solved in single pass by partitioning with multiple pointers (see dutch flag problem)
@@ -312,10 +326,12 @@ var sortColors = function(nums) {
 ```
 (from https://leetcode.com/problems/sort-colors)
 
+---
 ## Bucket Sort (part of radix sort)
 
 Bucket sort is a distribution sort. Bucket sort can be seen as a generalization of counting sort; in fact, if each bucket has size 1 then bucket sort degenerates to counting sort. Bucket sort with two buckets is effectively a version of quicksort where the pivot value is always selected to be the middle value of the value range.
 
+---
 ## create immutable sort and put on Array.prototype
 
 ```js
@@ -329,6 +345,7 @@ let objs = [{a:1, b:2}]
 objs.sort((a,b) => a[a] - b[a])
 ```
 
+---
 ## Sort one array by another array
 
 ```js
@@ -343,12 +360,102 @@ arrToSort
 **notes:**
 * related: [car fleet](javascript/searching_and_sorting/car_fleet.js)
 
+---
 ## Group people by age (counting sort)
 
+---
 ## Topological Sort
 
 is this same as build order?
 
 see [Graphs](.\markdown\trees_and_graphs\graphs.md)
 
+---
 ## Sort the points of a rectangle
+
+tbd...
+
+---
+## Sort element pairs by computed values, eg. assign bikes (campus bikes)
+
+```js
+function assignBikes(workers, bikes) {
+
+  ...
+
+  // 1. find all worker-bike pairs, ie. assignment candidates
+  let candidates = []
+  for (let wi = 0; wi < workers.length; wi++) {
+    for (let bi = 0; bi < bikes.length; bi++) {
+      candidates.push({
+        dist: getDist(workers[wi], bikes[bi]),
+        wid: wi,
+        bid: bi
+      })
+    }
+  }
+
+  // 2. native sort by dist, then by workerId, then by bikeId
+  candidates.sort((a,b) => {...})
+
+  // 3. take shortest without reusing workers or bikes
+  let assignedWorkers = new Set();
+  let assignedBikes = new Set();
+  let assignments = Array(workers.length).fill(-1);
+  for (let {wid, bid} of candidates) {
+    if (!assignedWorkers.has(wid) && !assignedBikes.has(bid)) {
+      assignments[wid] = bid;
+      assignedWorkers.add(wid);
+      assignedBikes.add(bid);
+    }
+  }
+
+  return assignments;
+}
+```
+see [full implementation](./javascript/searching_and_sorting/campus_bikes.js)
+
+using bucket sort and reusing inputs inplace of assignment sets.
+
+```js
+function assignBikes(workers, bikes) {
+  const getDist = ([x1, y1], [x2, y2]) => Math.abs(x1 - x2) + Math.abs(y1 - y2);
+
+  const distanceBuckets = []; // distance -> array of worker-bike assignment candidates (bucket)
+  for (let wi = 0; wi < workers.length; wi++) {
+    for (let bi = 0; bi < bikes.length; bi++) {
+      let d = getDist(workers[wi], bikes[bi]);
+      if (distanceBuckets[d] == null) distanceBuckets[d] = [];
+      distanceBuckets[d].push([wi, bi]); // add assignment candidate to bucket
+    }
+  }
+
+  const assignments = [];
+  for (let bucket of distanceBuckets) {
+    if (bucket != null) { // nec?
+      for (let [wi, bi] of bucket) {
+        if (workers[wi] != null && bikes[bi] != null) { // ids can be zero
+          workers[wi] = null;
+          bikes[bi] = null;
+          assignments[wi] = bi;
+        }
+      }
+    }
+  }
+  return assignments;
+}
+```
+
+**notes:**
+* this works b/c js arrays behave like sorted hash maps that do not require pre-allocation, so we don't need to know what the index values are going to be ahead of time, e.g. `let arr = []; arr[50] = 5;`
+
+---
+## More problems
+
+1. Sort an almost sorted (ie k-sortted) array. - use a [Heap](./markdown/heaps/heaps.md)
+
+# Grouping & Partitioning
+
+## Group words by first letter (eg. count subsequences)
+## Group objects by property
+## Group anagrams

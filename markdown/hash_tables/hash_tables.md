@@ -66,7 +66,7 @@ function Counter() {
 let counter = new Counter();
 ```
 
-## 2/3 sum problem
+## Find element pair/triplet that sums to target (2/3 sum problem)
 
 find first/all pairs in array that sum to target.
 
@@ -107,6 +107,10 @@ find first/all triplets in array that sum to target
 }
 ```
 (see [full implementation]())
+
+## Find subset that sums to target
+
+see [Dynamic](./markdown/recursion_and_dynamic/dynamic_programming.md)
 
 ## min-covering subarray
 

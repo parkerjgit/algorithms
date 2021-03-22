@@ -19,6 +19,7 @@
 14. DFS and BFS both compute in linear time **O(m + n)** for m edges and n vertices (or nodes)
 15. Consider union-find as alternative to DFS in undirected graphs, eg. for cycle detection in **undirected graph**
 16. Use DFT with backtracking for cycle detection in **directed graph** (Use recursion when backtracking for now. seems more intuitive.)
+17. Use backtracking, as alternative to passing new value down recursion stack, to save space.
 
 **Javascript**
 
@@ -38,7 +39,7 @@
 let node = {adj: [node2, node3, ...]}               // recursive node repr. (of spanning tree)
 let node = {adj: [2,3]}
 
-let nodeMap = {1: node1, 2: node2, ...}             // map node id to node. Req. for adjacency list/map/matrix 
+let nodeMap = {1: node1, 2: node2, ...}             // map node id to node. Req. for adjacency list/map/matrix
 let nodeMapEntries = [{id: 1, node: node1}, ...]    // don't think would ever see this
 
 let edges = [(1, 2), (1, 3), (2, 4), ...]           // tuple repr. edge in graph. tuple should be integer tuples repr id pairs.
@@ -48,8 +49,8 @@ let adjMap = {1: [2,3], 2: [4], ...}                // key/value pair maps node 
 let dataMap = {1: 100, 2: 120, ...}
 let adjMap = {1: {data: 100, adj: [2,3]}}           // dodn't like this
 
-let adjMapEntries = [[1, [2, 3]], ...]              // need to build map before, 
-let adjMapObjects = [{id: 1, adj: [2, 3]}, ...]              // need to build map before, 
+let adjMapEntries = [[1, [2, 3]], ...]              // need to build map before,
+let adjMapObjects = [{id: 1, adj: [2, 3]}, ...]              // need to build map before,
 
 let adjMatrix = [[0,0,1,...], ...]                  // "1" repr. edge between nodes mapped to row & col
 let data = [100, 120, ...]
@@ -64,28 +65,28 @@ let dataLookup = (nodeId) => data(hashFn(nodeId));
 
 ```js
 function GetImportance(employees, id) {
-	
+
 	let adjMap = new Map(),
       impMap = new Map();
-    
+
   employees.forEach(({id, importance, subordinates}) => {
       adjMap.set(id, subordinates)
       impMap.set(id, importance)
   })
 
   function _getImportanceDft(id) {
-      
+
       let importance = impMap.get(id),
           subordinates = adjMap.get(id);
-      
+
       if (!subordinates)
           return 0;
-      
+
       return subordinates
           .map(id => _getImportanceDft(id))
           .reduce((a, b) => a + b, importance)
   }
-  
+
   return _getImportanceDft(id)
 }
 ```
@@ -100,25 +101,25 @@ search every spanning tree by recursively searching from every node:
 
 ```js
 var detectCycleInDAG = function(adjMap) {
-    
+
   let visited = new Set(); // visited in graph globally
-  
+
   for (let prereq of Object.keys(adjMap)){
       if (detectCycleInPath(prereq, adjMap, visited, new Set())) {
           return true;
       }
   }
-  
+
   return false;
 };
 
 function detectCycleInPath(node, adjMap, visited = new Set(), path = new Set()) {
-  
+
   if (path.has(node)) return true;      // found cycle
   if (visited.has(node)) return false;  // ignore visted nodes
-  
+
   visited.add(node);                    // mark visited
-  
+
   for (let adj of adjMap[node]) {
       path.add(parseInt(node));
       if (detectCycleInPath(adj, adjMap, visited, path)) {
@@ -126,7 +127,7 @@ function detectCycleInPath(node, adjMap, visited = new Set(), path = new Set()) 
       }
       path.delete(node);                // backtrack!
   }
-  
+
   return false;                         // no cycles!
 }
 ```
@@ -142,34 +143,34 @@ function detectCycleInPath(node, adjMap, visited = new Set(), path = new Set()) 
 ```js
 var findRedundantConnection = function(edges) {
     let parents = Array(edges.length + 1).fill(-1);
-    
+
     const find = (x) => {
         if (parents[x] < 0) {
             return x;
         }
         return find(parents[x])
     }
-    
+
     const union = (a, b) => {
         let rootA = find(a);
         let rootB = find(b);
-        
+
         // cycle check has to go here btween lookup and union!!!
         if (rootA == rootB) {
             return false;
         }
-        
+
         parents[rootB] = rootA;
         return true;
     }
-    
+
     // build graph
     for (let [u, v] of edges) {
         if (!union(u, v)) {
             return [u,v];
         }
     }
-    
+
     return -1;
 };
 ```
@@ -184,16 +185,16 @@ see [full implementation](.\javascript\trees_and_graphs\redundant_connections.js
 ---
 ## Searching: Does path exist between two nodes?
 
-intuition: dft 
+intuition: dft
 
 ---
 ## Searching: Find Shortest Path (or path with minimum distance/cost/effort/etc between two nodes) in Directed Graph.
 
 intuition: bft
 
-**Dijkstra's Algorithm** for Single-Source 
+**Dijkstra's Algorithm** for Single-Source
 
-DIJKSTRA’S algorithm, is a *GREEDY* algorithm finds the shortest path from a node to all other nodes in a directed graph, although the search may be halted once shortest path to a target node is known. 
+DIJKSTRA’S algorithm, is a *GREEDY* algorithm finds the shortest path from a node to all other nodes in a directed graph, although the search may be halted once shortest path to a target node is known.
 
 ---
 ## Searching: Find minimum cost to connect all/muliple nodes (minimum spanning tree) in undirected graph?
@@ -212,7 +213,7 @@ see https://leetcode.com/problems/min-cost-to-connect-all-points/
 https://www.interviewcake.com/concept/java/topological-sort
 
 course schedule - https://leetcode.com/problems/course-schedule-ii/solution/
-build order - 
+build order -
 
 see https://leetcode.com/problems/course-schedule-ii/discuss/680933/topologically-sort-the-directed-graph
 

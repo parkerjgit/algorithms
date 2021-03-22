@@ -9,23 +9,23 @@ source: Count square submatrices (leetcode 1277) - https://leetcode.com/problems
  * @param {number[][]} matrix
  * @return {number}
  */
-var countSquares = function(matrix) {
-  let [m, n] = [matrix.length, matrix[0].length];
+var countSquares = function(mat) {
+  let [m, n] = [mat.length, mat[0].length];
 
-  // overwrite matrix
-  let table = matrix;
-  
+  // overwrite mat
+  let tab = mat;
+
   // first row/col are done, so start on (1,1)
-  for (let row = 1; row < m; row++) {
-      for (let col = 1; col < n; col++) {
-          if (matrix[row][col] === 1) {       
-              table[row][col] = 1 + Math.min(table[row][col-1], table[row-1][col], table[row-1][col-1]);     
-          } 
+  for (let r = 1; r < m; r++) {
+      for (let c = 1; c < n; c++) {
+          if (mat[r][c] === 1) {
+              tab[r][c] = 1 + Math.min(tab[r][c-1], tab[r-1][c], tab[r-1][c-1]);
+          }
       }
   }
-  
+
   // return sum of all cells
-  return table.reduce((sum, row) => {
+  return tab.reduce((sum, row) => {
       return sum + row.reduce((a, b)=> a + b, 0)
   }, 0);
 };

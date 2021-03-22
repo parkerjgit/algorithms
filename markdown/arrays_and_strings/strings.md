@@ -2,9 +2,10 @@
 
 ## Notes
 
-1. Convert int (base 10) to string by iteratively extracting right-most digit with `x % 10` and `x // 10` (see epi 6.1)
-1. Convert a string to int (base 10) by iteratively adding `10^i x next_digit` right-to-left. (see epi 6.1)
+1. Convert int (base 10) to string, e.g. 340 -> '340' (implement toString), by iteratively extracting right-most digit with `x % 10` and `x // 10` (see epi 6.1)
+1. Convert a string to int (base 10), e.g., '340' -> 340 (implement parseInt), by iteratively adding `10^i x next_digit` right-to-left. (see epi 6.1)
 1. Convert a string to int (base 10) bit faster by reducing string left-to-right with `10*sum + next_digit`. (see epi 6.1)
+1. When testing string transforms, look for invariants and consider testing seperately, eg. LR Transform
 
 **Python**
 
@@ -36,24 +37,46 @@ See [js-primatives](./javascript/js-primatives.md)
 4. Partition string by a separator - use array
 5. Get the shortest string of a list of strings - `strings.slice(1).reduce((shortest, next) => (next.length < shortest.length) ? next : shortest, strings[0])`
 6. Remove white space from ends of a string - `string.trimRight()`
-7. Check if string is numeric /using regex - `!isNaN(str)`
-8. Check if string is alphabetic /using regex  - `str.every(char => alphabet.includes(char))` or `!/[^a-z]/i.test(str);`
+7. Check if string is numeric with/without regex - `!isNaN(str)` or `^[0-9]+$`
+8. Check if string is alphabetic with/without regex  - `str.split('').every(char => char.charCodeAt(0) >= 97 && char.charCodeAt(0) <= 122)` or `!/[^a-z]/i.test(str);`
 8. Replace characters in first string with corresponding characters in second
 9. Generate a random character - `String.fromCharCode(Math.random() * 25 + 97)`
-10. Build a random string - `[...Array(n)].map( _ => getRandomChar()).join('')`
+10. Build a random n-length string - `[...Array(n)].map( _ => getRandomChar()).join('')`
 1. [Reverse a string](https://medium.freecodecamp.org/how-to-reverse-a-string-in-javascript-in-3-different-ways-75e4763c68cb) using iteration/recursion/built-in.
 2. [Repeat a string](https://medium.freecodecamp.org/three-ways-to-repeat-a-string-in-javascript-2a9053b93a2d) using iteration/recursion/built-in.
 >3. [Find a substring(indexOf)](https://medium.freecodecamp.org/two-ways-to-confirm-the-ending-of-a-string-in-javascript-62b4677034ac) at begining/end/anywhere in string.
 4. Merge(interleave) two strings.
 5. Merge(interleave) n strings (fullstack checkpoint-foundations)
 6. Wrap(rotate) a string by n places.
+1. Compute Run-length encoding of a string, eg. `'aabbbcccc' -> 'a2b3c4'`
+1. strip puctuation from string -
+1. sort words in sentence - `str.split(' ').toLowerCase().stripPunctuation().sort().join(' ')`
+1. sort chars in a string - `str.toLowerCase().split('').sort().join('')`
+1. check that subsequence exists in a string
 
+---
+## Is x a subsequence of y
+
+```js
+var isSubsequence = function(subseq, str) {
+    let i = 0;
+    for (let ch of str) {
+        if (ch == subseq[i]) {
+            if (i == subseq.length - 1) {
+                return true;
+            }
+            i++;
+        }
+    }
+    return false;
+};
+```
 ---
 ## Validate Palindrome
 
 1. get exclusive middle index
 2. iterate 0 to exclusive middle, for each step:
-3. _if el at i not equal to its complement (at len - 1 - i), not a palindrome 
+3. _if el at i not equal to its complement (at len - 1 - i), not a palindrome
 
 ---
 ## Validate anagrams
@@ -62,6 +85,26 @@ See [js-primatives](./javascript/js-primatives.md)
 sortStr = (str) => str.split('').sort().join('');
 isAnagram = (a,b) => sortStr(a) === sortStr(b);
 ```
+
+---
+## Validate LR Transform
+
+```js
+function canTransform(start, end) {
+
+  // L's and R's must be in same relative position.
+  const invariant1 = (start, end) => {...}
+
+  // each "L" can only have moved left
+  const invariant2 = (start, end) => {...}
+
+  // each "R" can only have moved right
+  const invariant3 = (start, end) => {...}
+
+  return [invariant1, invariant2, invariant3].every(f=>f(start, end))
+}
+```
+see [full implementation](.\..\javascript\arrays_and_strings\validate_lr_strings.js)
 
 ---
 ## Find substring (indexOf) - 5 min
@@ -81,7 +124,7 @@ function indexOf(str, substr) {
 
       if (j === substr.length - 1) { // found it!
         return i;
-      } 
+      }
     }
   }
    return -1;
@@ -95,7 +138,7 @@ Note:
 ## Find longest substring with unique characters - 5 min
 
 1. Track *left* and *exclusive right* ends of slinky
-2. While room to expand right:  
+2. While room to expand right:
 3. _if unique, expand slinky by advancing right
 3. _if duplicate, shrink slinky by advancing left
 
@@ -111,7 +154,7 @@ function longestSubstring(str) {
   // const isRepeating = (left, right) => str.slice(left, right).includes(str[right]);
   const isRepeating = (right) => included.has(str[right])
 
-  while (right < str.length) { 
+  while (right < str.length) {
 
     if (isRepeating(right)) {
       longest = Math.max(right - left, longest[1] - longest[0])
@@ -155,13 +198,13 @@ parseInt('z', 36) // 35
 ```js
 let alphabet = 'abcdefghijklmnopqrstuvwxyz';                // 'abc...z'
 
-let alphabet = 
+let alphabet =
   [...Array(36).keys()]                                     // [0, 1, ...35]
     .splice(10)                                             // [10, 11, ...35]
     .map(i=>i.toString(36))                                 // ['a','b', ...'z']
     .join('');                                              // 'abc...z'
 
-let alphabet = 
+let alphabet =
   [...Array(123).keys()]                                    // [0,1, ...122]
     .slice(97)                                              // [97,98, ...122]
     .map(i=>String.fromCharCode(i))                         // ['a','b', ...'z']

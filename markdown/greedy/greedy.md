@@ -154,7 +154,7 @@ function longestSubstring(str) {
   // const isRepeating = (left, right) => str.slice(left, right).includes(str[right]);
   const isRepeating = (right) => included.has(str[right])
 
-  while (right < str.length) { 
+  while (right < str.length) {
 
     if (isRepeating(right)) {
       longest = Math.max(right - left, longest[1] - longest[0])
@@ -204,6 +204,7 @@ function minCoveringSubarr(arr, set) {
 }
 ```
 
+---
 ## Add Interval
 
 Note: there is a faster solution using bin search to find left and right endpoints. see javascript\searching_and_sorting\add_interval.js
@@ -227,4 +228,10 @@ const addInterval = (intervals, toAdd) => {
     return result;
 }
 ```
+
+---
+## More problems
+
+1. Bike assignment (campus bikes)
+    1. Find distance between all candidate pairs, sort by distance between them, then greedily take pairs from left-to-right (see [full implementation](javascript/searching_and_sorting/campus_bikes.js))
 
