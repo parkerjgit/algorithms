@@ -13,7 +13,7 @@ A list of question sets grouped by problem type. Each set is preceeded by concis
 1. **Complexity:** Cost of bin search, merge sort, looking at each item once, looking at all pairs/triplets/subsets/purmutations.
 1. **[Strings](./markdown/arrays_and_strings/strings.md):** Palindrome checker, find a substring, find the longest substring with unique characters.
 1. **[Arrays](./markdown/arrays_and_strings/arrays.md):** flatten an array, partion an array (Dutch flag problem), apply/restore a permutation of an array.
-1. **Matrix:** prefill matrix, convert betwee 2d/1d array representations, traverse/transpose matrix, maze solver, paint bucket, etc. count sqr submatrices, maximal sqr, surrounded regions
+1. **[Matrix](./markdown/matrices/matrices.md):** prefill matrix, convert betwee 2d/1d array representations, traverse/transpose matrix, maze solver, paint bucket, etc. count sqr submatrices, maximal sqr, surrounded regions
 1. **[Linked-List](./markdown/linked_lists/linked_lists.md):** implement with class/prototype/object/function and traverse iteratively/recursively
 >1. **[Trees](markdown/trees_and_graphs/trees.md):** implement BT/BST and traverse DFT/BFT iterative/recursively in pre/in/post order, is BST valid
 1. **[Stack](./markdown/stacks_and_queues/stacks.md):** normalize pathnames, rpn, test for well-formed expression, implement min/max API -
@@ -29,13 +29,13 @@ A list of question sets grouped by problem type. Each set is preceeded by concis
 1. **[Searching](./markdown/searching_and_sorting/searching.md):** find kth largest, implement native find using binSearch iter/recursively to accept comparitor and target value -
 1. **[Sorting](markdown/searching_and_sorting/sorting.md)**: implement insertion sort, merge sort, and quick sort. sort an array of objects by prop, one array by another array, sort numbers/words (hint: trie)
 1. **Math:** GCF, LCM, factorize, enum primes, factorial, fibonacci, compute subsets (powerset), combinations, permutations
-1. **Divide and Concuer:** implement merge sort (bin search and quick sort can also be considered divide and conceur), tower of hanoi
+1. **Divide and Conquer:** implement merge sort (bin search and quick sort can also be considered divide and conceur), tower of hanoi
 1. **[Greedy](./markdown/greedy/greedy.md):** coin change, task assignment, scheduling, interval covering, ... -
 1. **Objects:** demonstrate class-based/prototypal/functional inheritance, and object delegation
 1. **Front-end:** component that makes api call, and performs pagination, sort, and filter on front-end/back-end.
 1. **Functional:** implement debounce, throttle, pipe, compose, memoization for single/multi params., map, filter, reduce
 1. **Bit-Wise:** insert m into n, filter a collection with bitmask, ...
-1. **[Backtracking]()** -
+1. **[Backtracking]()** - for space efficiency
 1. **[OOP]()** - design phone directory, design an exam room seating
 
 testing for each
@@ -77,69 +77,15 @@ testing for each
 
 #### String manipulation
 
-**Notes**
-
 see notes on [strings](notes/strings.md)
-
-**Daily**
-
-
-
-**Warm-up**
-
-
-
-**Medium**
-
-7. get all palindromes
-8. Convert int (base 10) to string
-9. Convert a string (e.g., '340') to an int
-9. [Convert english representation of a number (e.g., 'three hundred forty') to int](.\javascript\arrays_and_strings\convert_string_to_int.js)
 
 #### Arrays
 
-**Notes**
-
 see notes on [Arrays](notes/arrays.md)
-
-**Warm-up**
-
-
-
-**Problems**
-
-
 
 #### linked-list -
 
-<details><summary>Review Linked Lists (5 mins)</summary><br>
-
-1. Use for **fast update** (insertion and deletion) when you can afford the overhead (~40 bytes/node vs ~4 for an array cell)
-2. Use for more **run-time flexibility**, when not simply growing array from one end.
-3. Use Linked list for **simplicity and stability** of moving pointers over content.
-2. Careful!: Linear random access time means updates will degrade to linear time also unless we know the location of node! (e.g. queue)
-3. *Use* for fast **queue implementation**
-4. A **Singly Linked List** is recursively defined as a ref to the first, or "head" node, where each node contains data and a ref to the "next" node.
-5. A **Doubly Linked List** *also* contains a ref to the last, or "tail" node, and each node also contains ref to the "previous" node.
-6. Traverse/Search a linked list iteratively or recursively.
-7. When implementing **insert** [after], be careful to set the "next" reference of the new node first.
-8. When implementing **delete** [after], just set next to the next next node.
-9. Linked lists are not a standard type in python, but **collections.deque** does provide a double-ended queue (deque)
-10. Consider using a "dummy head", i.e. sentinal node, to avoid having to check for empty list. (EPI 7.1)
-11. Consider using two iterators, one ahead of other, or one quicker than other. (EPI 7.3)
-12. Merge sorted linked lists by traversing both and appending smaller at each step until one is empty, then append rest of the other by pointing tail at `L1 or L2`
-13. Reverse a sublist in single pass by keeping index of head/first node, h/f of sublist, and stepping through each node pair i/j in sublist: pointing first f at j.next, pointing j node at previous node i, and pointing head h, at j. (e.g., EPI 7.2)
-
----
-
-</details>
-
-1. implemnt linked list
->2. traverse iteratively/recursively
-3. find nth to last
-4. delete node in middle, given only node (not given head)
-4. find cycles
-4. reverse list in single pass
+see [Linked-List](./markdown/linked_lists/linked_lists.md)
 
 #### trees
 

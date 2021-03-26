@@ -1,12 +1,20 @@
 /*
+Given an m x n matrix board containing 'X' and 'O', capture all regions surrounded by 'X'. A region is captured by flipping all 'O's into 'X's in that surrounded region.
+
+Constraints:
+
+m == board.length
+n == board[i].length
+1 <= m, n <= 200
+board[i][j] is 'X' or 'O'
 
 source: https://leetcode.com/problems/surrounded-regions
 */
 
-var solve = function(board) {
-    
-  if(board.length < 3) return board 
-  
+var captureClosedRegions = function(board) {
+
+  if(board.length < 3) return board
+
   for(var r=0;r<board.length;r++){
       for(var c=0;c<board[0].length;c++){
           if(board[r][c] == 'O' && isBorderCell(board, [r,c])){
@@ -14,13 +22,13 @@ var solve = function(board) {
           }
       }
   }
-  
+
   for(var r=0;r<board.length;r++){
       for(var c=0;c<board[0].length;c++){
           board[r][c] = ({ 'T': 'O', 'X': 'X', 'O': 'X' })[board[r][c]]
       }
   }
-  
+
   return board
 };
 
