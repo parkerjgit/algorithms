@@ -172,6 +172,46 @@ function longestSubstring(str) {
 (see [full implementation](javascript\arrays_and_strings\longest_substring.js))
 
 ---
+## Find two minimum length non-overlapping subarrays with target sum
+
+```js
+var minSumOfLengths = function(arr, target) {
+    const memo = []; // i -> len of shortest single subarray upto index i
+    let left = 0, right = 0, sum = 0;
+    let best = Infinity; // total length of two shortest subarrays
+
+    while(right < arr.length) {
+        sum += arr[right];
+
+        while(sum > target) {
+          sum -= arr[left];
+          left++
+        }
+
+        //              l   r
+        // ---- **** -- ***** --
+        let currentWindow = right - left + 1;
+        let bestNonOverlapping = memo[left-1] || Infinity; // len of best subarray so far not overlapping with (ie left of) current window.
+        let bestPrevious = memo[right-1] || Infinity // len of best subarray so far possibly overlapping with current window.
+
+        if(sum === target) {
+          best = Math.min(best, bestNonOverlapping + currentWindow);
+          memo[right] = Math.min(bestPrevious, currentWindow);
+        } else {
+          memo[right] = bestPrevious;
+        }
+
+        right++
+    }
+    return best === Infinity ? -1 : best;
+};
+```
+(see [full implementation](./../../javascript/greedy/min_sum_of_lengths.js))
+
+**notes:**
+  * This is probably not strictly speaking a greed solution b/c we are maintaining a lookup.
+
+---
 ## min-covering subarray
 
 Find the smallest subarray that covers the target set

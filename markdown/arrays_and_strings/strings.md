@@ -31,28 +31,77 @@ See [js-primatives](./javascript/js-primatives.md)
 ---
 ## Warm-up
 
-1. Convert word into a list of chars
-2. Convert sentence into list of words
-3. Convert text file into list of list of lines
-4. Partition string by a separator - use array
-5. Get the shortest string of a list of strings - `strings.slice(1).reduce((shortest, next) => (next.length < shortest.length) ? next : shortest, strings[0])`
-6. Remove white space from ends of a string - `string.trimRight()`
-7. Check if string is numeric with/without regex - `!isNaN(str)` or `^[0-9]+$`
-8. Check if string is alphabetic with/without regex  - `str.split('').every(char => char.charCodeAt(0) >= 97 && char.charCodeAt(0) <= 122)` or `!/[^a-z]/i.test(str);`
-8. Replace characters in first string with corresponding characters in second
-9. Generate a random character - `String.fromCharCode(Math.random() * 25 + 97)`
-10. Build a random n-length string - `[...Array(n)].map( _ => getRandomChar()).join('')`
+1. Convert word/sentence/file into a list of chars/words/lines
+    ```js
+    word.split('');
+    sentence.split(' ');
+    file.split('\n');
+    ```
+1. Get the shortest string of a list of strings
+    ```js
+    strings.slice(1).reduce((shortest, next) => (next.length < shortest.length) ? next : shortest, strings[0])
+    ```
+1. Normalize a string for comparison
+    ```js
+    str
+      .replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g, '') // strip punctuation
+      .replace(/\s{2,}/g," ") // remove double spaces
+      .trim() // Remove white space from ends
+    ```
+1. Check if string is numeric with/without regex
+    ```js
+    !isNaN(str)
+    /^[0-9]+$/.test(str)
+    ```
+1. Check if string is alphabetic with/without regex
+    ```js
+    str.split('').every(char => char.charCodeAt(0) >= 97 && char.charCodeAt(0) <= 122)
+    !/[^a-z]/i.test(str)
+    ```
+1. Generate a random character
+    ```js
+    String.fromCharCode(Math.random() * 25 + 97)
+    ```
+1. Build a random n-length string
+    ```js
+    [...Array(n)].map( _ => getRandomChar()).join('')
+    ```
 1. [Reverse a string](https://medium.freecodecamp.org/how-to-reverse-a-string-in-javascript-in-3-different-ways-75e4763c68cb) using iteration/recursion/built-in.
-2. [Repeat a string](https://medium.freecodecamp.org/three-ways-to-repeat-a-string-in-javascript-2a9053b93a2d) using iteration/recursion/built-in.
->3. [Find a substring(indexOf)](https://medium.freecodecamp.org/two-ways-to-confirm-the-ending-of-a-string-in-javascript-62b4677034ac) at begining/end/anywhere in string.
-4. Merge(interleave) two strings.
-5. Merge(interleave) n strings (fullstack checkpoint-foundations)
-6. Wrap(rotate) a string by n places.
+    ```js
+    xxx
+    ```
+1. [Repeat a string](https://medium.freecodecamp.org/three-ways-to-repeat-a-string-in-javascript-2a9053b93a2d) using iteration/recursion/built-in.
+    ```js
+    xxx
+    ```
+1. [Find a substring(indexOf)](https://medium.freecodecamp.org/two-ways-to-confirm-the-ending-of-a-string-in-javascript-62b4677034ac) at begining/end/anywhere in string.
+    ```js
+    xxx
+    ```
+1. Merge(interleave) two strings, n strings (fullstack checkpoint-foundations)
+    ```js
+    xxx
+    ```
+1. Wrap(rotate) a string by n places.
+    ```js
+    xxx
+    ```
 1. Compute Run-length encoding of a string, eg. `'aabbbcccc' -> 'a2b3c4'`
-1. strip puctuation from string -
-1. sort words in sentence - `str.split(' ').toLowerCase().stripPunctuation().sort().join(' ')`
-1. sort chars in a string - `str.toLowerCase().split('').sort().join('')`
+    ```js
+    xxx
+    ```
+1. sort words in sentence -
+    ```js
+    str.split(' ').toLowerCase().stripPunctuation().sort().join(' ')
+    ```
+1. sort chars in a string
+    ```js
+    str.toLowerCase().split('').sort().join('')
+    ```
 1. check that subsequence exists in a string
+    ```js
+    xxx
+    ```
 
 ---
 ## Is x a subsequence of y
@@ -70,6 +119,19 @@ var isSubsequence = function(subseq, str) {
     }
     return false;
 };
+
+var isSubsequence = function(subseq, str) {
+  let [i,j] = [0,0];
+  while (i < str.length) {
+    if (str[i] = subseq[j]) {
+      if (j == subseq.length - 1) return true;
+      i++; j++;
+    } else {
+      i++;
+    }
+  }
+  return false;
+}
 ```
 ---
 ## Validate Palindrome
@@ -104,7 +166,7 @@ function canTransform(start, end) {
   return [invariant1, invariant2, invariant3].every(f=>f(start, end))
 }
 ```
-see [full implementation](.\..\javascript\arrays_and_strings\validate_lr_strings.js)
+see [full implementation](./../../javascript/arrays_and_strings/validate_lr_strings.js)
 
 ---
 ## Find substring (indexOf) - 5 min
@@ -211,7 +273,7 @@ let alphabet =
     .join('');                                              // 'abc...z'
 
 let randomLetter = alphabet[Math.floor(Math.random() * 26)];  // random lowercase
-let randomLetter = String.fromCharCode(Math.random() * 25 + 'a'.charCodeAt(0));  // better
+let randomLetter = String.fromCharCode(Math.random() * 26 + 'a'.charCodeAt(0));  // better
 
 let randomAlphaNumeric = Math.random().toString(36)[2];     // random alpha-numeric
 ```

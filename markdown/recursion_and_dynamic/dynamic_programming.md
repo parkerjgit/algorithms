@@ -157,6 +157,30 @@ const _maxVal = (candidates, capacity, i) => { // here m/n repr. 0's/1's *capaci
 ## Find subset that sums to target, ie combination of exaustible items that sum to target:
 
 ```js
+function subsetSum(arr, i, target) {
 
+    if (target == 0)
+        return [true, []];
+    if (target < 0)
+        return [false, null];
+    if (i > arr.length - 1)
+        return [false, null];
+    if (memo[i][target] != undefined)
+        return memo[i][target];
+
+    // try including/excluding ith element
+    let include = subsetSum(arr, i+1, target - arr[i]);
+    let exclude = subsetSum(arr, i+1, target);
+
+    if (include[0]) {
+        memo[i][target] = [true, [...include[1], arr[i]]];
+    } else if (exclude[0]) {
+        memo[i][target] = [true, exclude[1]];
+    } else {
+        memo[i][target] = [false, null];
+    }
+
+    return memo[i][target];
+}
 ```
 
