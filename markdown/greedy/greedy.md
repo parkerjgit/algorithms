@@ -176,9 +176,9 @@ function longestSubstring(str) {
 
 ```js
 var minSumOfLengths = function(arr, target) {
-    const memo = []; // i -> len of shortest single subarray upto index i
     let left = 0, right = 0, sum = 0;
     let best = Infinity; // total length of two shortest subarrays
+    let bestSingle = []; // i -> len of shortest single subarray upto index i
 
     while(right < arr.length) {
         sum += arr[right];
@@ -191,14 +191,14 @@ var minSumOfLengths = function(arr, target) {
         //              l   r
         // ---- **** -- ***** --
         let currentWindow = right - left + 1;
-        let bestNonOverlapping = memo[left-1] || Infinity; // len of best subarray so far not overlapping with (ie left of) current window.
-        let bestPrevious = memo[right-1] || Infinity // len of best subarray so far possibly overlapping with current window.
+        let bestNonOverlapping = bestSingle[left-1] || Infinity; // len of best subarray so far not overlapping with (ie left of) current window.
+        let bestPrevious = bestSingle[right-1] || Infinity // len of best subarray so far possibly overlapping with current window.
 
         if(sum === target) {
           best = Math.min(best, bestNonOverlapping + currentWindow);
-          memo[right] = Math.min(bestPrevious, currentWindow);
+          bestSingle[right] = Math.min(bestPrevious, currentWindow);
         } else {
-          memo[right] = bestPrevious;
+          bestSingle[right] = bestPrevious;
         }
 
         right++
@@ -206,7 +206,7 @@ var minSumOfLengths = function(arr, target) {
     return best === Infinity ? -1 : best;
 };
 ```
-(see [full implementation](./../../javascript/greedy/min_sum_of_lengths.js))
+(see [full implementation](./../../javascript/greedy/subarray_sum.js))
 
 **notes:**
   * This is probably not strictly speaking a greed solution b/c we are maintaining a lookup.

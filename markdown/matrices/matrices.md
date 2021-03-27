@@ -5,6 +5,18 @@
 * asdf
 
 ---
+## Warm-up
+
+1. pre-fill matrix with 0's/null
+2. process all cells in matrix
+3. process all valid neighbors of a cell
+4. process all boundary cells
+5. sum values of all cells
+6. copy matrix
+7. convert between 1d and 2d representations
+8. transpose a matrix
+
+---
 ## Count square matrices
 
 ```js
@@ -78,7 +90,117 @@ var countRectangles = function (matrix) {
   ...
 };
 ```
-see [full implementation](./javascript/matrices/count_rectangular_submatrices.js)
+see [full implementation](./../../javascript/matrices/count_rectangular_submatrices.js)
 
 ---
-## asdf
+## Paint bucket
+
+```js
+
+```
+
+---
+## Count closed regions
+
+```js
+var countClosedRegions = function(grid) {
+
+  let count = 0;
+
+  // find open islands. fill them
+  for (let r = 0; r < grid.length; r++) {
+      for (let c = 0; c < grid[0].length; c++) {
+          if (isBorder(grid, r, c)) {
+              fill(grid, r ,c);
+          }
+      }
+  }
+
+  // find closed islands. count them and fill them
+  for (let r = 1; r < grid.length - 1; r++) {
+      for (let c = 1; c < grid[0].length - 1; c++) {
+          if (grid[r][c] == 0) {
+              count++;
+              fill(grid, r, c);
+          }
+      }
+  }
+
+  return count;
+};
+```
+
+---
+## Capture closed regions
+
+```js
+var captureClosedRegions = function(board) {
+
+  if(board.length < 3) return board
+
+  // temp mark open regions
+  for(var r=0;r<board.length;r++){
+      for(var c=0;c<board[0].length;c++){
+          if(board[r][c] == 'O' && isBorderCell(board, [r,c])){
+            dfs(board, [r,c])
+          }
+      }
+  }
+
+  // capture closed, and reset marked cells
+  for(var r=0;r<board.length;r++){
+      for(var c=0;c<board[0].length;c++){
+          board[r][c] = ({ 'T': 'O', 'X': 'X', 'O': 'X' })[board[r][c]]
+      }
+  }
+
+  return board
+};
+```
+
+---
+## Collect Max Gold
+
+```js
+var getMaximumGold = function(grid) {
+  let maxSoFar = 0;
+
+  for (let r = 0; r < grid.length; r++) {
+      for (let c = 0; c < grid[0].length; c++) {
+          if (grid[r][c] > 0) {
+              maxSoFar = Math.max(maxSoFar, dft(grid, r, c));
+          }
+      }
+  }
+  return maxSoFar;
+};
+
+var dft = function(grid, row, col) {
+
+  if (grid[row][col] == 0) {
+      return 0;
+  }
+
+  // get gold in this cell
+  let temp = grid[row][col];
+  grid[row][col] = 0;
+
+  // get gold in neighbor cells and take best
+  let best = temp;
+  for (let [r,c] of getNeighbors(grid, row, col)) {
+      best = Math.max(best, temp + dft(grid, r, c));
+  }
+
+  // backtrack!
+  grid[row][col] = temp
+
+  return best;
+}
+```
+(see [full implementation](./../../javascript/trees_and_graphs/max_gold.js))
+
+---
+## More problems
+
+1. alphabet board path - see [full implementation](javascript/trees_and_graphs/alphabet_board_path.js)
+If computing leaf-to-root representation, then add new_digit*base^depth to number (at each step), e.g., to add bit in MSB position of binary number `x = x + newbit*(2**d)`, where d is 2's position of MSB (i.e., the current depth)

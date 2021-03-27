@@ -79,21 +79,36 @@ A **subsequence** of an array is an ordered subset of the array's elements havin
 1. pre-fill/generate an array with letters of alphabet
     1. `[...Array(36).keys()].slice(10).map(x => x.toString(36))`
     2. `[...Array(26).keys()].map(x => String.fromCharCode('a'.charCodeAt(0) + x))`
-2. implement zip/unzip function for two or more arrays.
-3. implement union/intersection/difference for two or more arrays.
+1. implement zip/unzip function for two or more arrays.
+1. implement union/intersection/difference for two or more arrays.
 1. transform every element of an array
-4. transform every third element of an array of size n
-4. process a sliding window of elements in an array
-4. process mirror elements in an array
-3. process corresponding elements from two or more arrays
-2. reduce elements of an array to single value: sum, factorial
-5. flatten a matrix or jagged 2d array.
-6. flatten a deeply nested jagged array.
-7. get keys of sparse array.
+1. transform every third element of an array of size n
+1. process a sliding window of elements in an array
+1. process mirror elements in an array
+1. process corresponding elements from two or more arrays
+1. reduce elements of an array to single value: sum, factorial
+1. flatten a matrix or jagged 2d array.
+1. flatten a deeply nested jagged array.
+1. get keys of sparse array.
     1. `Object.keys(sparse)`
-
 1. convert number into an array of digits
+    ```js
+    let res = [];
+    while(num > 0) {
+      res.unshift(num%10);
+      num = Math.floor(num/10);
+    }
+    ```
 1. group words by first letter
+    ```js
+    let groups = [...Array(26).keys()]
+      .map(x=>String.fromCharCode(x + 97))
+      .reduce((obj,key)=>{
+        obj[key] = [];
+        return obj;
+      },{});
+    for (word of words) groups[word[0]].push(word);
+    ```
 
 ---
 ## Flatten an array
@@ -263,10 +278,10 @@ function applyPermutation (arr, perm) {
 ## Is x a subsequence of y
 
 ```js
-var isSubsequence = function(subseq, str) {
+var isSubsequence = function(subseq, arr) {
     let i = 0;
-    for (let ch of str) {
-        if (ch == subseq[i]) {
+    for (let el of arr) {
+        if (el == subseq[i]) {
             if (i == subseq.length - 1) {
                 return true;
             }
@@ -334,7 +349,7 @@ var nextPermutation = function(nums) {
     }
     let left = i;
 
-    // 2. -> find last right > left
+    // 2. -> find next biggest, ie last right > left
     if (i >= 0) {
         let j = i;
         while(j < nums.length && nums[j+1] > nums[i]) {
@@ -355,6 +370,23 @@ see https://leetcode.com/submissions/detail/465467973/
 
 ---
 ## increment number encoded as an array of digits
+
+**immutable**
+
+```js
+// overwrite copy
+// eg. arr = [9,9,9]
+let res = arr.reverse(), carry = 1, i = 0;
+while(carry > 0) {
+  let dig = (i < arr.length) ? arr[i] + carry : carry;
+  res[i] = (dig%10);
+  carry = Math.floor(dig/10);
+  i++;
+}
+res.reverse();
+```
+
+---
 ## multiply two numbers encoded as an array of digits
 ## Delete dups from sorted/unsortted array.
 ## Find max spread (EPI 5.6 Buy and Sell Stock once)

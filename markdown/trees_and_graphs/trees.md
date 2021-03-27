@@ -1,23 +1,5 @@
 # Trees: Binary Trees and BSTs
 
-**Binary trees** are “linked list” with two (or three) pointers per node: a left and right pointer, and an (optional) parent pointer. Binary Tree elements are called "nodes" and typically hold a single value (two in the case of interval), but unlike BSTs are not sortted.
-
-```py
-class Node:
-    def __init__(self, value, left = None, right = None):
-        self.left = left
-        self.right = right
-        self.value = value
-
-```
-
-A **Binary Search Tree (BST)** is a sortted binary tree such that: for any node with key x, all nodes in the left subtree have key values < x while all nodes in the right subtree have key values > x. In this way BSTs are always **sorted** and have **no duplicates**. BSTs support the following operations:
-
-* searching
-* traversal
-* insertion
-* deletion
-
 ## Notes
 
 1. Binary trees are linked lists with left and right pointers (plus optional parent pointer). They typically hold a single value (two in the case of interval), and unlike BSTs are not sortted.
@@ -29,11 +11,13 @@ A **Binary Search Tree (BST)** is a sortted binary tree such that: for any node 
 6. Insert into BST in O(logn) by recursing left or right until the empty spot is found.
 7. Unlike Hash table, its easy to find Min/Max of BST (the leftmost/rightmost element). Of course hash table wins with O(1) lookup (vs. O(logn))
 8. Both BSTs and hash tables use O(n) space (BSTs use little more in practice)
+8. Visiting all the nodes in a rooted binary tree is an important component of many algorithms. It is a special case of traversing all the nodes and edges in a graph. One application of tree traversal is listing the nodes of a tree in order. There are four ways to move through a tree, which produces four distinct node orderings that fall under categories of *breadth-first* and *depth-first*:
 8. There are two ways to traverse a BST: breadth-first traversal (BFT) or depth-first traversal (DFT)
 9. Implement a BST with a Queue: enqueue root, then while queue is not empty dequeue a node and enqueue its children.
 10. Implement a DFT iteratively with a Stack: push root to stack, then while stack is not empty pop a node and push its children.
 11. Implement a DFT by recursing left AND right until no more nodes.
 12. Implement In-, Pre- and Post- order DFTs by changing the order in which you visit node and recurse on children.
+13. Ok to store complex values in BST provided they are distinct and sortable, eg. can store intervals in a binary tree (see book a time in calendar problem)
 14. **Avoid putting mutable values in BST** or be sure to remove mutable object before updating it and adding it back. (otherwise it will be in wrong spot and lookup will likely fail!)
 13. Compute all paths of Binary Tree with a pre-order DFT, handing approp. parent data (partial sum, path concat, etc.) off to children recursively as you go down tree. (if computing number represented by root-to-leaf paths shift number over by multiplying by base then adding next digit. If computing leaf-to-root representation, then  add next digit times base^depth to number) (EPI 9.5)
 
@@ -45,8 +29,20 @@ A **Binary Search Tree (BST)** is a sortted binary tree such that: for any node 
 http://www.grantjenks.com/docs/sortedcontainers/
 https://www.youtube.com/watch?v=7z2Ki44Vs4E
 
+---
+## Implement a BST
 
-## Implement BST with add, search, and min/max
+```py
+class Node:
+    def __init__(self, value, left = None, right = None):
+        self.left = left
+        self.right = right
+        self.value = value
+
+```
+
+---
+## Search a BST
 
 Search a BST by recursing left or right until node is null or item is found. Since empty nodes are null pointers, we reduce two base cases into one.
 
@@ -65,6 +61,9 @@ def search(node, value):
 ```
 
 *Note*, searching is generally done in pre-order, b/c we want to check if we found the node before bothering to search children.
+
+---
+## Insert a new node into a BST
 
 Insert into BST by recursing left or right until the empty spot is found. The trick to insertion is making sure you test children for empty slots rather than recursing on child before testing for existance as you do with search. This is a slightly atypical recursive pattern b/c no base case before recursion condition. This is because we *know* we are going to find a spot for new node and bst ensures we will follow minimum path straight to empty slot.
 
@@ -106,6 +105,9 @@ def insert(node, new_value):
                 node.left = Node(new_value)
 ```
 
+---
+## Find min/max value in BST
+
 Unlike a Hash table, its easy to find Min/Max of BST (the leftmost/rightmost element).
 
 The smallest element must be the leftmost subtree, and the maximum element must be the rightmost subtree of the root:
@@ -130,32 +132,22 @@ def findMax(node):
     return max
 ```
 
-## Implement delete
+---
+## Delete a node from a BST
 
 https://leetcode.com/problems/delete-node-in-a-bst/discuss/556767/Python3-simple-solution
 
+---
 ## Traverse BST in level-order (BFT)
-
-Visiting all the nodes in a rooted binary tree is an important component of many algorithms. It is a special case of traversing all the nodes and edges in a graph. One application of tree traversal is listing the nodes of a tree in order. There are four ways to move through a tree, which produces four distinct node orderings that fall under categories of *breadth-first* and *depth-first*:
-
-* Breadth first Traversal
-    - Level Order
-
-* Depth first Traversal
-    - Pre-order
-    - In-order
-    - Post-order
 
 Best way to implement level-order traversal of a tree is with a queue. The algorithm looks like this:
 
-```
 1. create empty queue (frontier)
 2. enqueue start/root node
 3. while queue (not empty):
     a. dequeue node
     b. visit node
     c. enqueue node's children
-```
 
 Here is simple bfs implementation for arbitrary graph:
 
@@ -172,7 +164,8 @@ def printLevelOrder(root):
 
 Time complexity is linear O(n) for tree (and for arbitrary graph *if* we mark nodes visited to prevent visiting same node twice) because we are visiting each node once and performing constant time enqueue/dequeue functions for on each node. The alternative is a brute-force traversal of tree for each level, which has a worst-case quadradic O(n<sup>2</sup>) runtime for highly skewed tree where number of levels is equal to number of nodes.
 
-## impl in pre-order, in-order, post-order using recursion (DFT)
+---
+## Traverse BST in pre-order, in-order, post-order using recursion (DFT)
 
 Depth-first traversal is much simpler. It results from visiting the nodes recursively. Pre- and Post-Order results from printing node before or after you recurse its left and right children:
 
@@ -200,29 +193,86 @@ def printPreorder(root):
 Each item is processed once during the course of traversal, which runs in O(n)
 time, where n denotes the number of nodes in the tree.
 
-## Implement a DFT iteratively in (pre-order, in-order, post-order)
+---
+## Traverse BST in pre-order, in-order, post-order iteratively
 
-Can turn a BFT into an iterative implementation of pre-order Depth-first Traversal (DFT) by just swapping out queue for a stack!
+1. Pre-order is easy - Can turn a BFT into an iterative implementation of pre-order Depth-first Traversal (DFT) by just swapping out queue for a stack!
+2. In-order
+3. Post-order
+
+**Pre-order**
 
 ```py
-def printLevelOrder(node):
+def printPreOrder(node):
     s = Stack()
     s.push(node)
     while not s.is_empty():
-        node = s.pop            # 1. pop
+        node = s.pop()          # 1. pop
         print(node.value)       # 2. visit
-        s.push(node.left)       # 3. push children
-        s.push(node.right)
+        s.push(node.right)      # 3. push children
+        s.push(node.left)
 ```
 
 TBD: should only push non-null children onto stack
 
-todo: in-order, and post-order
+**In-order**
 
-## Get all root-to-leaf paths by building each path: (1) on way down, and (2) on way up
+tbd...
 
+**Post-order**
+
+tbd...
+
+---
+## Get all root-to-leaf paths (eg. path sum) by building each path: (1) on way down, and (2) on way up
+
+Compute all paths of Binary Tree with a pre-order DFT, handing approp. parent data (partial sum, path concat, etc.) off to children recursively as you go down tree. (if computing number represented by root-to-leaf paths shift number over by multiplying by base then adding next digit. If computing leaf-to-root representation, then  add next digit times base^depth to number) (EPI 9.5)
+
+```js
+function binaryTreePaths(root) {
+    if (!root) return [];
+
+    return dfs(root);
+}
+
+// dfs without backtracking
+function dfs(root, paths = [], curPath = []) {
+
+    if (!root.left && !root.right) {
+        paths.push([...curPath, root.val].join('->'));
+	}
+
+    if (root.left) dfs(root.left, paths, [...curPath, root.val]);
+    if (root.right) dfs(root.right, paths, [...curPath, root.val]);
+
+    return paths;
+}
+
+// dfs with backtracking
+function dfs(root, paths = [], curPath = []) {
+    curPath.push(root.val);
+
+    if (!root.left && !root.right) {
+        paths.push([...curPath]);
+	}
+
+    if (root.left) dfs(root.left, paths, curPath);
+    if (root.right) dfs(root.right, paths, curPath);
+
+    curPath.pop(); // backtrack!
+
+    return paths; // pass path back up
+}
+```
+
+This can be bit faster by not passing results back up tree.
+
+---
 ## Get all levels
 
+tbd...
+
+---
 ## Serialize/Deserialize a tree using DFS and BFS
 
 * Serialization of trees:
@@ -269,6 +319,7 @@ function deserialize(id) {
 }
 ```
 
+---
 ## Find duplicate subtrees in binary tree
 
 ```js
@@ -306,10 +357,7 @@ var findDuplicateSubtrees = function(root) {
 };
 ```
 
-## Get all paths
-
-Compute all paths of Binary Tree with a pre-order DFT, handing approp. parent data (partial sum, path concat, etc.) off to children recursively as you go down tree. (if computing number represented by root-to-leaf paths shift number over by multiplying by base then adding next digit. If computing leaf-to-root representation, then  add next digit times base^depth to number) (EPI 9.5)
-
+---
 ## Validate BST
 
 1. Visit BST nodes in-order (i.e. sorted order).
@@ -342,6 +390,7 @@ var isValidBST = function(root) {
 ```
 
 
+---
 ## Build BST from sorted array
 
 ```js
@@ -378,7 +427,8 @@ function balanceBST(node) {
 ---
 ## Lookup range
 
-## Book a time in calendar
+---
+## Interval BST (eg. Book a time in calendar)
 
 ```js
 function Interval(start=null, end=null){
@@ -423,8 +473,7 @@ MyCalendar.prototype.book = function(start, end) {
 ```
 (see [full implementation](javascript\trees_and_graphs\book_time.js))
 
-## Applications of BST
-
+---
 ## More BST Problems
 
 1. Fix a BST with 2 swapped nodes. (lc 99) - perform in-order traversal, find and mark nodes in violation of bst, then fix.
