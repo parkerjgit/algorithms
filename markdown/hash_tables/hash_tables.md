@@ -228,4 +228,4 @@ function validateRepeatingPattern(words, codes) {
 
 ## More Problems
 
-1. Key Cards - see [solution](.\..\..\javascript\hash_tables\key_cards.js)
+1. Key Cards (ordered map) - see [solution](.\..\..\javascript\hash_tables\key_cards.js)
