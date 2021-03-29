@@ -105,3 +105,48 @@ BST.prototype.dft = function() {
   //...
 
 }
+
+// untested
+BST.prototype.remove = function(value) {
+  return this.removeNode(value, this)
+}
+
+BST.prototype.removeNode = function(value, node) {
+  if (value < node.value && node.left) {
+    node.left = node.left.remove(value);
+  } else if (value > node.value && node.right) {
+    node.right = node.right.remove(value);
+  } else if (value == node.value) {
+    if (node.left && node.right) {
+      // two children
+      node.value = node.right.min();
+      node.right = node.right.remove(node.value);
+    } else {
+      // none or one child
+      node = node.left || node.right;
+    }
+  }
+  return node;
+}
+
+BST.prototype.predecessor = function() {
+  var cur = this;
+  if (cur && cur.left) {
+    cur = cur.left;
+    while(cur.right) {
+      cur = cur.right;
+    }
+  }
+  return cur;
+}
+
+BST.prototype.successor = function() {
+  var cur = this;
+  if (cur && cur.right) {
+    cur = cur.right;
+    while(cur.left) {
+      cur = cur.left
+    }
+  }
+  return cur;
+}

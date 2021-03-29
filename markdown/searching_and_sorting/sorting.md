@@ -459,3 +459,6 @@ function assignBikes(workers, bikes) {
 ## Group words by first letter (eg. count subsequences)
 ## Group objects by property
 ## Group anagrams
+## More Problems:
+
+1. Group array elements into consecutive sequences - see [solution](./../../javascript/searching_and_sorting/group_into_consec_numbers.js)

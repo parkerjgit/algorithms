@@ -9,6 +9,7 @@
 5. A **directed acyclic graph (DAG)** is a directed graph with no cycles.
 6. DAG vertices with no incoming or outgoing edges are called **sources** and **sinks** respectively.
 7. A **topological ordering** of vertices in a DAG is such that each edge is from a vertex earlier in the ordering to a vertex later in the ordering.
+8. consider topological sort for build order, subsequences, schedules, etc.
 8. cont. on EPI pg 276 with basic concepts...
 9. A graph can be implemented using an **adjacency list** or an **adjacency matrix**.
 10. If each vertice has at most one edge, implement the *adjacency list* with a dictionary where key/value pairs correspond to u,v edge pairs (or better yet, use an array if vertices map to array indices) (see EPI 277.)
@@ -176,8 +177,53 @@ https://www.interviewcake.com/concept/java/topological-sort
 
 course schedule - https://leetcode.com/problems/course-schedule-ii/solution/
 build order -
+sequence reconstruction
 
 see https://leetcode.com/problems/course-schedule-ii/discuss/680933/topologically-sort-the-directed-graph
+
+---
+## Sorting: Topological order from edges (ie prerequisites, dependancies, etc.)
+
+---
+## Sorting: Topological order from subsequences (eg. Sequence Reconstruction Problem)
+
+```js
+const sequenceReconstruction = function(superseq, seqs) {
+
+  ...
+
+  // build graph
+  for (let seq of seqs) {
+    for (let i = 1; i < seq.length; i++) {
+      let [from, to] = [ seq[i - 1], seq[i] ]
+      adjList[from].push(to);
+      indegrees[to] += 1;
+    }
+  }
+
+  let i = 0; // index of superseq
+  let q = nodes.filter(n => indegrees[n] === 0);
+  while (q.length) {
+
+    let cur = parseInt(q.shift());
+
+    if (q.length > 0) return false; // can only have 1 node at time with zero indegree
+    if (cur !== superseq[i]) return false; // that node must be match ith node in superseq
+
+    // decrement indegrees for adjacencies and push any that now have zero indegrees to queue
+    for (let node of adjList[cur]) {
+      indegrees[node]--;
+      if (indegrees[node] === 0) {
+        q.push(node)
+      }
+    }
+    i++;
+  }
+
+  return i === superseq.length
+}
+```
+(see [full implementation](./../../javascript/trees_and_graphs/sequence_reconstruction.js))
 
 ---
 ## Group nodes by disjointed roots in undirected graphs (eg. Merge Accounts)
