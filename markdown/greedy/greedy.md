@@ -275,3 +275,5 @@ const addInterval = (intervals, toAdd) => {
 1. Bike assignment (campus bikes)
     1. Find distance between all candidate pairs, sort by distance between them, then greedily take pairs from left-to-right (see [full implementation](javascript/searching_and_sorting/campus_bikes.js))
 
+1. split array into consec subsequences - see [solution](./../../javascript/searching_and_sorting/consec_subsequences.js)
+

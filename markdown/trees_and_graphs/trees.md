@@ -496,3 +496,5 @@ If computing leaf-to-root representation, then add new_digit*base^depth to numbe
 
 1. delete nodes - see [full implementation](javascript\trees_and_graphs\delete_nodes.js)
 
+1. Contains nearby almost duplicate - https://leetcode.com/problems/contains-duplicate-iii/submissions/ (leetcode solution incomplete)
+
