@@ -1,4 +1,6 @@
-# Heap
+# Heap / Priority Queue
+
+## Notes
 
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Max-Heap-new.svg/220px-Max-Heap-new.svg.png)
 
@@ -21,6 +23,7 @@
 
 https://en.wikipedia.org/wiki/Heap_(data_structure)
 
+---
 ## Implement a Min Heap.
 
 ```js
@@ -33,6 +36,7 @@ MinHeap.prototype = {...}
 
 see [full implementation](.\min_heap.md)
 
+---
 ## Implement a generic Priority Queue.
 
 ```js
@@ -43,15 +47,54 @@ function PriorityQueue(maxQueueSize = MAX_ARRAY_SIZE, compareFn = (a,b) => a > b
 }
 PriorityQueue.prototype = {...}
 ```
-
+---
 ## Find the k/kth largest (or most recent, most frequently occuring, closest, ugliest, anything-est, etc...) elements (leetcode 215, 264, 313, 347, 355, 692, epi 10.4)
-
+---
 ## Sort a k-sortted array (epi 10.3)
-
+---
 ## Merge many sorted arrays (k-way merge (epi 10.1)
-
+---
 ## Implement Heap Sort
+---
+## Find shortest path (or min distance/cost/time/etc.) from source to target (or all) nodes in weighted DAG (network delay problem)
 
+bft with priority queue (ie dykstra's)
+
+```js
+var minDistance = function(weightedEdges, n, src, targ) {
+  let adjMap = [...Array(n)].map(n=>[]);
+  let minDist = [...Array(n)].map(n=>Infinity);
+     
+  // build adj map
+  for (let [u,v,w] of weightedEdges) {
+      adjMap[u].push([v,w]);
+  }
+
+  // bft w/ priority queue
+  let pq = new PriorityQueue((a,b) => a.dist > b.dist);
+  pq.push({node: src, dist: 0});
+     
+  while (pq.size()) {
+    let {node, dist} = pq.pop();
+
+    if (minDist[node] < Infinity) continue;
+
+    minDist[node] = dist;
+
+    for (let [v, w] of adjMap[node]) {
+      pq.push({
+        node: v, 
+        dist: w + minDist[node]
+      });
+    }
+  }
+
+  return minDist[targ]; // should return as soon as find not here!
+};
+```
+see [network delay problem](.\..\..javascript\trees_and_graphs\network_delay.js)
+
+---
 ## More Problems
 
 1. Compute median from steaming data (epi 139)

@@ -1,5 +1,7 @@
 # Graphs
 
+## Notes
+
 1. A graph is a set of vertices and a set of **directed or undirected** edges (u,v).
 2. **Vertices and Edges** can be decorated with weights, lengths, etc...
 3. A **path** is a sequence of vertices, and the **path length** is the number of edges it traverses.
@@ -80,7 +82,7 @@ function GetImportance(employees, id) {
           subordinates = adjMap.get(id);
 
       if (!subordinates)
-          return 0;
+          return importance;
 
       return subordinates
           .map(id => _getImportanceDft(id))
@@ -90,7 +92,7 @@ function GetImportance(employees, id) {
   return _getImportanceDft(id)
 }
 ```
-(see [full implementation](javascript\trees_and_graphs\employee_importance.js))
+(see [full implementation](.\..\..\javascript\trees_and_graphs\employee_importance.js))
 
 ---
 ## Validation: Does DAG have cycles (or redundant connections)?
@@ -138,43 +140,7 @@ function detectCycleInPath(node, adjMap, visited = new Set(), path = new Set()) 
 ---
 ## Validation: Does Undirected Graphy have cycles (or redundant edges)?
 
-**union-find w/ parents array**
-
-```js
-var findRedundantConnection = function(edges) {
-    let parents = Array(edges.length + 1).fill(-1);
-
-    const find = (x) => {
-        if (parents[x] < 0) {
-            return x;
-        }
-        return find(parents[x])
-    }
-
-    const union = (a, b) => {
-        let rootA = find(a);
-        let rootB = find(b);
-
-        // cycle check has to go here btween lookup and union!!!
-        if (rootA == rootB) {
-            return false;
-        }
-
-        parents[rootB] = rootA;
-        return true;
-    }
-
-    // build graph
-    for (let [u, v] of edges) {
-        if (!union(u, v)) {
-            return [u,v];
-        }
-    }
-
-    return -1;
-};
-```
-see [full implementation](.\javascript\trees_and_graphs\redundant_connections.js)
+see [Union-Find](./markdown/union_find/union_find.md)
 
 ---
 ## Validation: Is graph bipartite
@@ -188,13 +154,9 @@ see [full implementation](.\javascript\trees_and_graphs\redundant_connections.js
 intuition: dft
 
 ---
-## Searching: Find Shortest Path (or path with minimum distance/cost/effort/etc between two nodes) in Directed Graph.
+## Searching: Find Shortest Path (or path with minimum distance/cost/effort/etc) between two nodes in Weighted DAG
 
-intuition: bft
-
-**Dijkstra's Algorithm** for Single-Source
-
-DIJKSTRA’S algorithm, is a *GREEDY* algorithm finds the shortest path from a node to all other nodes in a directed graph, although the search may be halted once shortest path to a target node is known.
+see [network delay problem](.\..\..javascript\trees_and_graphs\network_delay.js) in [heaps.md](.\..\markdown\heaps\heaps.md)
 
 ---
 ## Searching: Find minimum cost to connect all/muliple nodes (minimum spanning tree) in undirected graph?
@@ -218,55 +180,9 @@ build order -
 see https://leetcode.com/problems/course-schedule-ii/discuss/680933/topologically-sort-the-directed-graph
 
 ---
-## Disjointed Undirected Graphs: Merge Accounts
+## Group nodes by disjointed roots in undirected graphs (eg. Merge Accounts)
 
-**Union-Find via hash table**
-
-```js
-var accountsMerge = function (accounts) {
-  const parents = {};       // email -> parent (root b/c collapsed)
-  const names = {};         // email -> name
-  const allEmails = {};     // root -> all emails (including root)
-
-  // implement union/find...
-
-  // 1. initialize disjoint nodes
-  for (let [name, ...emails] of accounts) {
-      for (let email of emails) {
-          parents[email] = email; // no-op if email already initialized
-          names[email] = name;
-      }
-  }
-
-  // 2. build graph, ie perform unions
-  for (let [_, firstEmail, ...restOfEmails] of accounts) {
-    for (let email of restOfEmails) {
-        union(firstEmail, email);
-    }
-  }
-
-  // 3. group emails by root
-  for (let email of Object.keys(parents)) {
-      let root = find(email);
-      if (root in allEmails) {
-          allEmails[root].push(email);
-      } else {
-          allEmails[root] = [email];
-      }
-  }
-
-  let result = [];
-  for (let [root, emails] of Object.entries(allEmails)) {
-    result.push([names[root], ...emails.sort()])
-  }
-  return result;
-};
-```
-see [full implementation](.\javascript\trees_and_graphs\merge_account.js)
-
-**dft**
-
-tbd...
+see [Union-Find](./markdown/union_find/union_find.md)
 
 ---
 ## adf

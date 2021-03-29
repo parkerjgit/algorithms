@@ -1,5 +1,7 @@
 # Stacks
 
+## Notes
+
 * Stacks and Queues and great when its ok to black box the data (i.e., no search or arbitrary access). Stacks are best when order really doesn't matter.
 * Use *Push* and *Pop* to insert/remove items from a stack, *Peek* to get top without removing. Theses are constant time `O(1)` operations!
 * Stacks can be implemented using either arrays or linked lists. Arrays are preferable b/c less overhead (and push/pop already avail on Array.prototype)
@@ -14,6 +16,7 @@
 
 [Stack Data Structure, GeeksforGeeks](http://cdngquiz.geeksforgeeks.org/stack-data-structure/)
 
+---
 ## Implement stack
 
 ```js
@@ -30,15 +33,13 @@ function Stack() {
 // if we don't want to store methods on each object, e.g. if we need lots of stack instances
 tbd...
 ```
-
+---
 ## Normalize pathnames
 
 1. Process parts of pathname left-to-right:
-  a. if `'..'`, **pop** stack
-  b. if `'.'`, ignore
-  c. else its a directory/file name, e.g., `'lib'`, **push** to stack
-
-**Javascript:**
+2. _if `'..'`, **pop** stack
+3. _if `'.'`, ignore
+4. _else its a directory/file name, e.g., `'lib'`, **push** to stack
 
 ```js
 function normalizePathname(pathname) {
@@ -57,7 +58,7 @@ function normalizePathname(pathname) {
   return '/' + stack.join('/');
 }
 ```
-
+---
 ## Evaluate RPN expression
 
 RPN expression `2,3,+,4,-,10,*` recursively defined as `(((2,3,+),4,-),10,*)`.
@@ -87,12 +88,13 @@ def eval_rpn_tokens(tokens):
 
 see [full implementation](.\eval_rpn.py)
 
+---
 ## Validate a bracketed expression for well-formedness
 
 1. Process chars left to right:
-    a. if opener, ie., `"["`, `"("`, or `"{"`, **push** to stack
-    b. if closer, ie., `"]"`, `")"`, or `"}"`, **pop** stack. If stack empty or popped not a match, expression is *invalid*
-2. If any open brackets left in stack, expression is *invalid*
+2. _if opener, ie., `"["`, `"("`, or `"{"`, **push** to stack
+3. _if closer, ie., `"]"`, `")"`, or `"}"`, **pop** stack. If stack empty or popped not a match, expression is *invalid*
+4. If any open brackets left in stack, expression is *invalid*
 
 **Python:**
 
@@ -119,7 +121,7 @@ def validate_wellformedness(str):
 
   return not stack
 ```
-
+---
 ## Decode String Problem -  https://leetcode.com/problems/decode-string
 
 wip js solution:
@@ -191,11 +193,16 @@ def decodeString(self, s: str) -> str:
 
   return decodedStr
 ```
+
 (solution from https://leetcode.com/problems/decode-string/discuss/714732/Python-solution-using-stacks.-O(n))
 
+---
 ## Implement min/max stack API
 
-## backspace string compare:
+tbd
+
+---
+## Validate that two keystroke sequences produce same output (ie. Backspace string compare)
 
 my solution: use input string as stack.
 
@@ -222,4 +229,5 @@ def backspaceCompare(self, S, T):
 ```
 (copied from https://leetcode.com/problems/backspace-string-compare/solution/)
 
+---
 ## other problems:

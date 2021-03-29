@@ -135,6 +135,32 @@ def findMax(node):
 ---
 ## Delete a node from a BST
 
+```js
+BSTNode.prototype.remove = function(value) {
+  return this.removeNode(value, this)
+}
+
+BSTNode.prototype.removeNode = function(value, node) {
+    if (node) {
+        if (value < node.value && node.left) {
+            node.left = this.removeNode(value, node.left);
+        } else if (value > node.value && node.right) {
+            node.right = this.removeNode(value, node.right);
+        } else if (value == node.value) {
+            if (node.left && node.right) {
+            // two children
+            node.value = node.right.min();
+            node.right = this.removeNode(node.value, node.right);
+            } else {
+            // none or one child
+            node = node.left || node.right;
+            }
+        }
+    }
+    return node;
+}
+```
+
 https://leetcode.com/problems/delete-node-in-a-bst/discuss/556767/Python3-simple-solution
 
 ---
@@ -495,4 +521,6 @@ If computing leaf-to-root representation, then add new_digit*base^depth to numbe
 If computing leaf-to-root representation, then add new_digit*base^depth to number (at each step), e.g., to add bit in MSB position of binary number `x = x + newbit*(2**d)`, where d is 2's position of MSB (i.e., the current depth)
 
 1. delete nodes - see [full implementation](javascript\trees_and_graphs\delete_nodes.js)
+
+http://cslibrary.stanford.edu/110/BinaryTrees.html
 
