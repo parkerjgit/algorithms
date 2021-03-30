@@ -1,6 +1,6 @@
 // min heap class
 function MyMinHeap(
-    compareFuction = (a, b) => a > b, 
+    compareFuction = (a, b) => a > b,
     maxHeap = Number.MAX_SAFE_INTEGER
 ) {
     this.content = [];
@@ -93,7 +93,7 @@ function topThreeWords(text) {
                 .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")
             })
         .forEach(w => {
-            if (!wordsInHeap.has(w)) { 
+            if (!wordsInHeap.has(w)) {
                 updateWordCounts(w);
                 // peek first
                 if (topWords.size() < NUM_TOP || wordCounts.get(w) > wordCounts.get(topWords.peek())) {
@@ -102,7 +102,7 @@ function topThreeWords(text) {
                 }
             } else {
                 updateWordCounts(w);
-                topWords.reheapify();
+                topWords.reheapify(); // if you count first, then iterate throiugh keys, you don't have to heapify! also no need for wordsInHeap set!
             }
         })
 
