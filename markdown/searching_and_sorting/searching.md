@@ -8,11 +8,13 @@
 * Ask if there are many searches to perform, if so, consider preprocessing.
 * If search uses sort, and sort takes the most time, reconsider sorting, ie if sort is the bottleneck, remove it!
 * Must define comparison, if searching user-defined type. (EPI 144)
-* When implementing bin search recursively, use two base cases: (1) target not found when l > r, and (2) target is found when a[m] == t, then recurse on (l, m-1) or (m+1, r). When implementing iteratively, search while l<=r, and test for found condition inside loop.
-* When implementing bin search, midpt = L + (R - L) // 2 to prevent overflow.
-* Find first occurance of k in sorted array using binary search, except when value is found, don't stop searching, eliminate values to right and keep going. - EPI 11.1 145
+* When implementing bin search recursively, use two base cases: (1) target not found when l > r, and (2) target is found when a[m] == t, then recurse on (l, m-1) or (m+1, r).
+* When implementing bin search iteratively, search while l<=r, and test for found condition inside loop.
+* When implementing bin search, define midpt as L + (R - L) // 2 to prevent overflow.
+* Find first occurance of k in sorted array using binary search, but when value is found, don't stop searching, eliminate values to right and keep going. - EPI 11.1 145
 * Find "magic index" (ie., element == index) using binary search with target value replaced by index m at each step, ie., go left when a[m] > m, and go right when a[m] < m. - EPI 11.2 146
-* Search a cylindrical array for smallest value (ie., the seam) using divide and conquer, discarding the half with no seam (first < last) until l == r (== smallest). - EPI 11.3 147
+* Search a cylindrical array for smallest value (ie., the seam) using bin search, discarding the half with no seam (first < last) until l == r (== smallest). - EPI 11.3 147
+* Find closet value bigger/smaller than target using bin search the same way as if you were searching for first occurance, except if not found you still return left (floor) or left + 1 (ceiling).
 * Pattern: Binary Search used in many ways by modifying the conditions for which you go left or right, and modifying whether you return closestest item to left/right if not found, and whether you are returning index or value.
 
 **Javascript**

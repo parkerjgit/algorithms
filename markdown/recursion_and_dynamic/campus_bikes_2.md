@@ -24,8 +24,8 @@ source: Campus Bikes II (lc 1066) - https://leetcode.com/problems/campus-bikes-i
 
 ### Analysis
 
-Time: O(x)
-Space: O(x)
+Time: O(n*2^m) - time to build dp table
+Space: O(n*2^m) - size of dp table
 
 ### Implementation
 

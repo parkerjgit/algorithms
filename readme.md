@@ -237,49 +237,6 @@ yyy
 6. minimum covering subarray - [Solution](https://github.com/parkerjgit/algorithms/tree/master/markdown/hash_tables/min_covering_subarray.md)
 7. implement a hash table with an array - [](http://www.mattzeunert.com/2017/02/01/implementing-a-hash-table-in-javascript.html)
 
-#### recursion
-
-<details><summary>Review</summary><br>
-
-yyy
-
----
-
-</details>
-
-1. top down / bottom up
-1. fibonici
-1. 3 step
-2. coin change
-3. flatten nested arrays (implement Array.prototype.flat())
-4. traverse jagged tree
-7. Implement JSON.stringify (supports complex nested objects/arrays)
-
-#### dynamic programming
-
-<details><summary>Review Notes</summary><br>
-
-* Consider DP when you need to make a series of decisions. Instead of making a logical decision, make all decisions and take the best result, e.g. finding levenstein distance (EPI 16.2 241)
-* Logic most useful in **pruning the decision space**, particularily for recursive solutions, e.g., number of ways through a graph (EPI 16.3 244, Project Euler 15)
-* Consider DP for counting/combinatorial problems, e.g. count number of ways through a graph (EPI 16.3 244, Project Euler 15), number of ways to run up stairs, i.e., triple step (CTCI 342)
-* DP conceptually recursive but often more efficient to pre-build up whole cache bottom-up iteratively before making lookup, e.g., number of ways through a graph (EPI 16.3 244, Project Euler 15)
-* Iterative solution typically more efficient, but not when recursive solution finds solution early or does a better job of pruning subproblems.
-* Recursive approach typically caches with hash table or BST, iterative solutions usually use one- or multi-dimensional arrays for exhaustive caching.
-* Memoization and tabulation may be further optimized by recycling cache as you go, i.e., after you know there will be no more lookups, e.g. fibanacci (EPI 336). When tabulating data, always consider how much history you need to calculate each data point (often you only need previous data point, so recycle! )
-* Be sure there are only a polynomial number of different subproblems that you are caching, e.g., if there are only two integer arguments that range
-between 1 and n, then there can be at most n^2 different recursive calls!
-* Memoizing multiple args in python, use tuple. javascript, use nested array if args are positive integers, or use stringfied array as key. May be tempting to use Maps with arrays as keys but using mutable objects as keys will lookup the reference not the value, which will not work. Need to create hash from the value and easiest way to do that is stringify it.
-
----
-
-</details>
-
-0. nth number in fibonacci sequence using top down/bottom-up. Optimize space.
-1. calculate the number of ways through a Matrix, up a flight of stairs, etc.
-2. knapsack problem.
-3. levenstein distance.
-
-#### greedy algorithms
 
 #### divide and conquer
 
