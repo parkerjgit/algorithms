@@ -2,7 +2,7 @@
 
 * asdf
 
-## Implement union-find with non-collapsing find
+## Implement union-find w/ an array
 
 ```js
 const parents = [];
@@ -27,18 +27,18 @@ const union = (a, b) => {
 ```
 
 ---
-## Implement union-find with collapsing find
+## Implement union-find with path compression
 
 ```js
 const parents = {};
 const find = (x) => {
 
-    // collapse
+    // compress
     if (parents[x] !== x) { // if node values are complex or don't easily map to indices.
         parents[x] = find(parents[x]);
     }
 
-    // collapsed, so returning root
+    // compressed, so parent is now root.
     return parents[x];
 };
 

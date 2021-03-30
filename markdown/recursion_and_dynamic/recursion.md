@@ -1,20 +1,23 @@
 # Recursion
 
+## Notes
+
 * good choice for 
   * traversing irregular structures, jagged arrays/graphs
   * divide and conquer, e.g. merge sort
   * enumeration, e.g. generate powerset
   * binary searches, e.g. find an index such that A[i] = i (ie., the magic index)
-* consider if find yourself writing nested iteration loops, eg??
+* consider if find yourself writing nested iteration loops, eg. ?
 * immutable/recursive solution often more simple/intuitive, while iterative/in-place solution is more performant.
 * consider the following optimizations:
   * replacing base case with while loop
   * replacing call stack with an actual stack
-  * performing alot of slicing -> pass indices down and switch to in-place solution
+  * performing alot of slicing -> pass indices down and backtrack
   * discover random overlapping subproblems, or recursion is strictly top-down -> memoization
   * building solution up from bottom -> dynamic programming / tabulation
   * want to optimize execution time at the cost of additional preprocessing time -> dynamic programming / tabulation
 
+---
 ## Flatten a jagged array
 
 ```js
@@ -27,10 +30,11 @@ const flatten = (arr) => {
 }
 ```
 
+---
 ## Traverse and arbitrary tree/graph
 
 ```js
-// tree
+// pre-order traversal of tree
 const dft = (node) => {
   if (node) {
     process(node);
@@ -50,7 +54,7 @@ const dft = (node) => {
   }
 }
 
-// graph nodes
+// pre-order traversal of graph
 const dft = (node) => {
   if (node) {
     process(node);
@@ -71,7 +75,7 @@ const dft = (node) => {
   }
 }
 
-// graph - adjacency map
+// pre-order traversal of graph using adjacency map
 const dft = (adjMap, nid) => {
   // do smth w/ data[nid]
   for (let adj of adjMap[nid]) {
@@ -110,6 +114,7 @@ const def = (matrix, row, col) => {
 
 
 
+---
 ## Implement merge sort
 
 1. divide into equal halves
@@ -143,6 +148,10 @@ _sort(arr, 0, arr.length - 1);
 }
 ```
 
+**Notes:**
+* *actual* sorting happens in merge step. sort step just recursively divides in half until there is just one element in each half. merge sorts those two elements.
+
+---
 ## Find the magic value
 
 1. For a sorted distinct-valued array, the following conditions must be met for magic index to exist:
@@ -171,15 +180,16 @@ function _find(arr, lo, hi) {
   // recurse left or right if not mid
   if (arr[mid] === mid) {
     return mid
-  } else if (arr[mid] > mid) {
-    return _find(arr, lo, mid-1)
-  } else {
-    return _find(arr, mid+1, hi)
+  } else if (arr[mid] > mid) {    
+    return _find(arr, lo, mid-1)  // go left
+  } else {                        
+    return _find(arr, mid+1, hi)  // go right
   }
 
 }
 ```
 
+---
 ## Generate the powerset
 
 1. powerset of a set of elements is recursively defined as the **union of two sets:**
@@ -201,4 +211,21 @@ const powerset = ([first, ...rest]) => {
 }
 ```
 
+```js
+function powerset(arr, i) {
+  if (i === arr.length) {
+    return [[]];
+  }
+
+  let res = powerset(arr, i+1);       // exclude
+  let len = res.length;               // <-- very important line to lock down len and prevent infinite loop
+  for (let j = 0; j<len; j++) {
+    res.push(res[j].concat(arr[i]));  // include
+  }
+
+  return res;
+}
+```
+
+---
 ## demonstrate bottom-up and top-down recursion
