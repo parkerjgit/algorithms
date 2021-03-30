@@ -14,16 +14,17 @@
 * If you need to look up closest key, you will be tempted to search keys using bin search for logn lookup, but you will have a problem if keys are not in sorted order. In this case consider using an array implementation of hash if key range is small. Consider a balanced tree (or just maintain a sorted link list) if not! e.g. https://leetcode.com/problems/my-calendar-i
 * If you need to repeatedly find the minimum key with non-zero value, consider maintaining a sorted list of keys and index the minimum.
 
-## Javascript Objects, Maps, and Sets
+**Javascript Objects, Maps, and Sets**
 
-## Python Dictionaries and Sets
+**Python Dictionaries and Sets**
 
 * The **Python dictionary implementation**, is a dynamically resized hash table with the following properties: it starts out with 8 entries (PyDict_MINSIZE); if 50,000 or fewer entries, it quadruples in size when it grows; if more than 50,000 entries, it doubles in size when it grows; key hashes are cached in the dictionary, so they are not recomputed when the dictionary is resized.
 
 https://stackoverflow.com/a/4279606/1525466
 
-## C#
+**C#**
 
+---
 ## Create factory takes an array of items and makes a function that returns count by item
 
 create a function that takes an array of items and returns a hash of item counts
@@ -54,9 +55,22 @@ const charCounter = (chars, lowerCase = true) => {
   // return function that takes a char and returns count
   return (c) => arr[charToIdx(c)];
 }
+
+// integer counter that supports hash function to map item values to array indices
+function intCounter(items, hashfn=(x)=>x) {
+    let arr = [];
+    for (let x of items) {
+        if (!arr[hashf(x)]) {
+            arr[hashf(x)] = 0;
+        }
+        arr[hashf(x)]++;
+    }
+    return (item) => arr[hashf(item)];
+}
 ```
 
-## create a countructor that constructs an object that support increment and retrieval by id
+---
+## create a contructor that constructs a Counter object that support increment and retrieval by id
 
 ```js
 function Counter() {
@@ -73,6 +87,7 @@ function Counter() {
 let counter = new Counter();
 ```
 
+---
 ## Find element pair/triplet that sums to target (2/3 sum problem)
 
 find first/all pairs in array that sum to target.
@@ -82,9 +97,10 @@ find first/all pairs in array that sum to target.
   let res = [],
       history = new Map(); // element -> idx
 
-  arr.forEach((el, idx) => { // should use for loop so easier to break out if looking only first pair!
+  arr.forEach((el, idx) => { // should use .some() or for loop so easier to break out if looking only first pair!
     let complement = target - el;
     if(history.has(complement)) {
+      // return [history.get(complement), idx] if only need first pair
       res.push([history.get(complement), idx])
     }
     history.set(el, idx);
@@ -115,15 +131,13 @@ find first/all triplets in array that sum to target
 ```
 (see [full implementation]())
 
+---
 ## Find subset that sums to target
 
-see [Dynamic](./markdown/recursion_and_dynamic/dynamic_programming.md)
+see [Dynamic](.\..\recursion_and_dynamic\dynamic_programming.md)
 
-## min-covering subarray
-
-Find the smallest subarray that covers the target set
-
-Note, below implementation does not use hash table. see min_covering_subarray.js!
+---
+## Find the smallest subarray that covers the target set (min-covering subarray)
 
 ```js
 function minCoveringSubarr3(arr, targetSet) {
@@ -181,10 +195,15 @@ function minCoveringSubarr3(arr, targetSet) {
 ```
 (see [full implementation](./min_covering_subarray.md))
 
+Note, implementation does not use hash table. see min_covering_subarray.js!
+
+---
 ## longest distinct subarray
 
+---
 ## closest repeated element in array
 
+---
 ## validate repeating pattern
 
 validate an array of words against a string pattern, eg.
@@ -226,6 +245,10 @@ function validateRepeatingPattern(words, codes) {
 
 ```
 
+---
 ## More Problems
 
 1. Key Cards (ordered map) - see [solution](.\..\..\javascript\hash_tables\key_cards.js)
+
+---
+## asdf

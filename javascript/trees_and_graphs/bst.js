@@ -65,6 +65,25 @@ BST.prototype.insert = function(value) {
   }
 }
 
+// requires root is a node
+function insert(root, value) {
+  if (!root.value) { // null tree
+    root.value = value;
+  } else if (value < root.value) {
+    if (root.left) {
+      insert(root.left, value);
+    } else {
+      root.left = new BST(value);
+    }
+  } else {
+    if (root.right) {
+      insert(root.right, value);
+    } else {
+      root.right = new BST(value);
+    }
+  }
+}
+
 
 BST.prototype.contains = function(targetVal) {
 
