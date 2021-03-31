@@ -11,7 +11,7 @@
 2. process all cells in matrix
 3. process all valid neighbors of a cell
 4. process all boundary cells
-5. sum values of all cells
+5. sum values in submatrix
 6. copy matrix
 7. convert between 1d and 2d representations
 8. transpose a matrix
@@ -204,3 +204,4 @@ var dft = function(grid, row, col) {
 
 1. alphabet board path - see [full implementation](javascript/trees_and_graphs/alphabet_board_path.js)
 If computing leaf-to-root representation, then add new_digit*base^depth to number (at each step), e.g., to add bit in MSB position of binary number `x = x + newbit*(2**d)`, where d is 2's position of MSB (i.e., the current depth)
+2. submatrix sums - see [solution](./../../javascript/matrices/submatrix_sum.js)
