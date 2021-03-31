@@ -70,6 +70,46 @@ def _min_covering_set_size(intervals):
 ```
 
 ---
+## Find max interval collisions (meeting rooms)
+
+```js
+var minMeetingRooms = function(intervals) {
+  let minRooms = 0; // min rooms required, equal to max number of simultaneous collisions
+
+  let starts = [];
+  let ends = [];
+  for (let [start,end] of intervals) {
+    starts.push(start);
+    ends.push(end);
+  }
+
+  // sort both asc.
+  starts.sort((a,b)=>a-b);
+  ends.sort((a,b)=>a-b);
+
+  let [i,j] = [0,0];
+  let rooms = 0; // rooms currently occupied
+  while (i < starts.length) {
+    if (starts[i] == ends[j]) { // one meeting starts and another one ends. its a wash
+      i++;
+      j++;
+
+    } else if (starts[i] < ends[j]) { // start a meeting
+      rooms++;
+      minRooms = Math.max(rooms, minRooms);
+      i++;
+
+    } else { // end a meeting
+      rooms--;
+      j++;
+    }
+  }
+
+  return minRooms;
+}
+```
+
+---
 ## Find the minimum time to complete a set of tasks (task scheduling)
 
 1. count tasks by type
