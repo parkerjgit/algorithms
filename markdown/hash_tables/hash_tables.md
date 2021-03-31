@@ -132,7 +132,7 @@ find first/all triplets in array that sum to target
 (see [full implementation]())
 
 ---
-## Find subset that sums to target
+## Find subset that sums to target (ie coin change problem)
 
 see [Dynamic](.\..\recursion_and_dynamic\dynamic_programming.md)
 

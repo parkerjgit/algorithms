@@ -145,3 +145,41 @@ var accountsMerge = function (accounts) {
 };
 ```
 see [full implementation](.\..\..\javascript\trees_and_graphs\merge_account.js)
+
+---
+## Searching: Count number of connected components.
+
+```js
+function countConnectedComponents(n, connections) {  // n nodes
+  let parents = [...Array(n).keys()];       // [0, 1, 2, ...]
+  let count = n;                            // initially all nodes and unconnected
+
+  function find(id) {
+    if(parents[id] !== id) 
+      parents[id] = find(parents[id]); // compress
+    
+    return parents[id];
+  }
+  
+  function union(x, y) {
+    const rootX = find(x);
+    const rootY = find(y);
+
+    if(rootX !== rootY) {
+        parents[rootY] = rootX;
+        count--;
+    } else {
+      // already connected. ie. this connection is redundant
+    }
+  }
+
+  for(let [u, v] of connections) {
+      union(u, v);
+  }
+
+  // num connected = count;
+  // num unconnected = count - 1;
+  return count;
+}
+```
+(based on [make connected solution](.\..\..\javascript\union_find\connected_components.js)])

@@ -61,3 +61,42 @@ function detectCycle(node, adjMap, visited, path = new Set()) {
   
   return false;
 }
+
+// topo sort
+
+var canFinish = function(numCourses, prerequisites) {
+    let adjMap = [...Array(numCourses)].map(x=>[]),
+        indegree = Array(numCourses).fill(0);
+        
+    // build graph
+    for(const [to, from] of prerequisites){
+        adjMap[from].push(to);
+        indegree[to]++;
+    }
+
+    // implement Kahn's Algorithm
+    let removed = []; // topo sorted nodes
+    let q =[];
+
+    // 1. add zero indegree nodes to q
+    for (let i = 0; i < indegree.length; i++) {
+        if (indegree[i] == 0) q.push(i)
+    }
+
+    // 2. while zero-indegree nodes left to process:
+    //    remove node, update indegrees and add new zero indegree nodes to q
+    while(q.length){
+        let cur = q.shift();
+        
+        for(let adj of adjMap[cur]){
+            indegree[adj]--;
+            if(!indegree[adj]){
+                q.push(adj);
+            }
+        }
+        removed.push(cur);
+    }
+    
+    // 3. if processed all nodes, there are no cycles
+    return removed.length === numCourses;
+};

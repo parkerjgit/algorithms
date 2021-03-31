@@ -84,7 +84,7 @@ var minDistance = function(weightedEdges, n, src, targ) {
     for (let [v, w] of adjMap[node]) {
       pq.push({
         node: v, 
-        dist: w + minDist[node]
+        dist: w + minDist[node] // dist here is the min dist via node, but not nec. the min dist!
       });
     }
   }
@@ -92,7 +92,7 @@ var minDistance = function(weightedEdges, n, src, targ) {
   return minDist[targ]; // should return as soon as find not here!
 };
 ```
-see [network delay problem](.\..\..javascript\trees_and_graphs\network_delay.js)
+see [network delay problem](.\..\..\javascript\trees_and_graphs\network_delay.js)
 
 ---
 ## More Problems

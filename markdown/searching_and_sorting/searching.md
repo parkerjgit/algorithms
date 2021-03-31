@@ -13,8 +13,10 @@
 * When implementing bin search, define midpt as L + (R - L) // 2 to prevent overflow.
 * Find first occurance of k in sorted array using binary search, but when value is found, don't stop searching, eliminate values to right and keep going. - EPI 11.1 145
 * Find "magic index" (ie., element == index) using binary search with target value replaced by index m at each step, ie., go left when a[m] > m, and go right when a[m] < m. - EPI 11.2 146
+* Search a 2d-sorted matrix by alternating bin search on current col and row
 * Search a cylindrical array for smallest value (ie., the seam) using bin search, discarding the half with no seam (first < last) until l == r (== smallest). - EPI 11.3 147
-* Find closet value bigger/smaller than target using bin search the same way as if you were searching for first occurance, except if not found you still return left (floor) or left + 1 (ceiling).
+* Search intervals...
+* Find closet value bigger/smaller than target using bin search the same way as if you were searching for first occurance, except if not found you still return left - 1 (floor) or left (ceiling) (eg. Pick index probabalistically based on weights)
 * Pattern: Binary Search used in many ways by modifying the conditions for which you go left or right, and modifying whether you return closestest item to left/right if not found, and whether you are returning index or value.
 
 **Javascript**
@@ -37,9 +39,9 @@ function binSearch(arr, left, right, target) {
   let mid = left + Math.floor((right - left)/2);
 
   if (left > right) 
-    return -1;
+    return -1; // if searching for closest to, return left (floor) or left + 1 (ceiling)
   if (arr[mid] === target)
-    return mid;
+    return mid; // if searching for first occ, return binSearch(left,mid) || mid
 
   if (arr[mid] < target) {                          // l----m--t--r -> go right
     return binSearch(arr, mid+1, right, target);
@@ -60,7 +62,7 @@ function binSearch(arr, left, right, target) {
     let mid = left + Math.floor((right - left)/2);
 
     if (arr[mid] === target) {
-      return mid;
+      return mid; // if searching for first occ, set first = mid, and right = mid.
     } else if (arr[mid] < target) {   // l----m--t--r -> go right
       left = mid + 1;
     } else {                          // l-t--m-----r -> go left 
@@ -68,7 +70,9 @@ function binSearch(arr, left, right, target) {
     }
   }
 
-  return -1;
+  return -1; 
+  return left - 1 (floor) or left (ceiling); // if searching for closest to
+  return first; // if searching for first occur
 }
 ```
 ---
@@ -76,7 +80,7 @@ function binSearch(arr, left, right, target) {
 
 Can't do better than O(n) time complexity, BUT:
 * if going to perform search many times, sort first for O(logn) look-up after initial search
-* can optimize for very small n by hashing values for constant time look-up at the cost of O(n) memory. If values map to array indices can hash with array.
+* can optimize for small n by hashing values for constant time look-up at the cost of O(n) memory. If values map to array indices can hash with array.
 * can optimizing for very large n, by placing a sentinal at end to obviate need for n loop termination condition checks
 
 ```js
@@ -109,7 +113,7 @@ let hashSearch = hashSearchFactory(arr);
 let indexOfTarget = hashSearch(target)
 ```
 ---
-## Seach 1d-sorted matrix (ie if flattened, the result would be a sorted array, eg. `[[1,2,3],[4,5,6],[7,8,9]]`)
+## Search a 1d-sorted matrix (ie if flattened, the result would be a sorted array, eg. `[[1,2,3],[4,5,6],[7,8,9]]`)
 
 ```js
 function matrixSearch(matrix, left, right, target) {
@@ -186,7 +190,7 @@ function findMinMax(arr, left, right) {
 asd
 
 ---
-## Pick probabalistically based on weights - https://leetcode.com/problems/random-pick-with-weight
+## Pick index probabalistically based on weights
 
 ```js
 /**
@@ -227,25 +231,27 @@ WeightedIndices.prototype.pickIndex = function() {
 let weightedIndices = new WeightedIndices([1,3,5,10])
 let idx = weightedIndices.pickIndex()
 ```
+(see https://leetcode.com/problems/random-pick-with-weight)
 
 ---
 ## Find Min/Max
 
-asd
+if static, sort and return first/last
+if dynamic prefer [Heap]() or [BST]()
 
 ---
-## Find the kth largest 
+## Find the k/kth largest 
 
-asdf
+use [minHeap]() of size k
 
 ---
 ## Find Shortest Path in Directed Graph 
 
-see [Graphs](.\markdown\trees_and_graphs\graphs.md)
+Use BFT w/ a priority queue (ie Dykstra's). See [Graphs](.\markdown\trees_and_graphs\graphs.md)
 
 ---
 ## More problems
 
-1. snapshot subarray - see [full implementation](javascript\searching_and_sorting\snapshot_array.js)
-2. add interval = see [full imlpementation](javascript\searching_and_sorting\add_interval.js)
+1. snapshot subarray - see [full implementation](.\..\..\javascript\searching_and_sorting\snapshot_array.js)
+2. add interval = see [full imlpementation](.\..\..\javascript\searching_and_sorting\add_interval.js)
 

@@ -98,6 +98,8 @@ function GetImportance(employees, id) {
 ---
 ## Validation: Does DAG have cycles (or redundant connections)?
 
+**Approach 1: DFT**
+
 search every spanning tree by recursively searching from every node:
     * mark nodes visited in spanning tree - if visit a node twice in spanning tree (ie subtree), it has cycle
     * mark nodes visited by function - skip nodes that have already been visited
@@ -128,36 +130,124 @@ function detectCycleInPath(node, adjMap, visited = new Set(), path = new Set()) 
       if (detectCycleInPath(adj, adjMap, visited, path)) {
           return true;
       }
-      path.delete(node);                // backtrack!
+      path.delete(node);                // backtrack! (why is this nec??!!)
   }
 
   return false;                         // no cycles!
 }
 ```
+(based on [course schedule solution](javascript\trees_and_graphs\course_schedule.js))
 
-**Notes:**
-* related problems: Course Schedule
+
+**Approach 2: Using in-degree (ie. Kahn's Algorithm)**
+
+```js
+var detectCycleInDAG = function(adjList) {
+    let indegree = Array(adjList.length).fill(0);
+        
+    // build graph
+    for(let [node, adjacencies] of adjList){
+      for (let adj of adjacencies) {
+        indegree[adj]++;
+      }
+    }
+
+    // implement Kahn's Algorithm
+    let removed = []; // topo sorted nodes
+    let q =[];
+
+    // 1. add zero indegree nodes to q
+    for (let i = 0; i < indegree.length; i++) {
+        if (indegree[i] == 0) q.push(i)
+    }
+
+    // 2. while zero-indegree nodes left to process:
+    //    remove node, update indegrees and add new zero indegree nodes to q
+    while(q.length){
+        let cur = q.shift();
+        
+        for(let adj of adjList[cur]){
+            indegree[adj]--;
+            if(!indegree[adj]){
+                q.push(adj);
+            }
+        }
+        removed.push(cur);
+    }
+    
+    // 3. if processed all nodes, there are no cycles
+    return removed.length === adjList.length;
+};
+```
+(based on [course schedule solution](javascript\trees_and_graphs\course_schedule.js))
 
 ---
 ## Validation: Does Undirected Graphy have cycles (or redundant edges)?
 
-see [Union-Find](./markdown/union_find/union_find.md)
+see [Union-Find](./../union_find/union_find.md)
 
 ---
 ## Validation: Is graph bipartite
 
 ---
-## Searching: Find all Paths in Directed Graph.
+## Searching: Find all Paths between two nodes in a DAG.
+
+**pass paths down graph**
+
+```js
+function dft(src, targ, adjList, path=[], result) {
+  if (src == targ) 
+    result.push([...path, src]);
+  if (adjList[src] === 0) 
+    return;
+
+  path.push(src);
+  for (adj of adjList[src]) {
+    dft(adj, targ, adjList, path, result);)
+  }
+  path.pop(); // backtrack!
+}
+```
+(untested)
+
+**return paths up graph**
+
+```js
+function dft(src, targ, adjList) {
+  if (src === targ) 
+    return [[src]];
+  if (adjList[src] === 0)
+    return -1;
+
+  return adjList[src]
+    .map(adj => dft(adj, targ, adjList))
+    .filter(p => p)
+    .map(p => [...p, src])
+}
+```
+(untested)
 
 ---
 ## Searching: Does path exist between two nodes?
 
-intuition: dft
+```js
+function dft(src, targ, adjList) {
+  if (src === targ) 
+    return true;
+  if (adjList[src] === 0)
+    return false;
+
+  return adjList[src]
+    .map(adj => dft(adj, targ, adjList))
+    .some(p => p)
+}
+```
+(untested)
 
 ---
 ## Searching: Find Shortest Path (or path with minimum distance/cost/effort/etc) between two nodes in Weighted DAG
 
-see [network delay problem](.\..\..javascript\trees_and_graphs\network_delay.js) in [heaps.md](.\..\markdown\heaps\heaps.md)
+see [network delay problem](.\..\..javascript\trees_and_graphs\network_delay.js) in [heaps.md](.\..\heaps\heaps.md)
 
 ---
 ## Searching: Find minimum cost to connect all/muliple nodes (minimum spanning tree) in undirected graph?
@@ -166,6 +256,8 @@ see https://leetcode.com/problems/min-cost-to-connect-all-points/
 
 ---
 ## Searching: Count number of connected components.
+
+see [Union-Find](./../union_find/union_find.md)
 
 ---
 ## Searching: Find least/most connected node (e.g. city with smalles number of neighbors)

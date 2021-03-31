@@ -6,9 +6,12 @@ A list of question sets grouped by problem type. Each set is preceeded by concis
 
 **first:**
 
-1. hash
+1. count sort, bucket sort, group people by age
 2. bin search
-3.
+3. dft, bft
+4. min covering subarray
+
+**rest:**
 
 1. **Complexity:** Cost of bin search, merge sort, looking at each item once, looking at all pairs/triplets/subsets/purmutations.
 1. **[Strings](./markdown/arrays_and_strings/strings.md):** Palindrome checker, find a substring, find the longest substring with unique characters.

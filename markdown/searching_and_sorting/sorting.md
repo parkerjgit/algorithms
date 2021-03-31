@@ -7,11 +7,14 @@
 3. Naive Sorting algorithms *generally* run in O(n<sup>2</sup>), e.g., bubble sort, selection sort, insertion sort.
 4. Fast Sorting algorithms run in O(nlogn), e.g., heapsort, merge-sort, and quicksort (quicksort is usually the best choice even though it degrades to exponential in worst case!)
 3. For some inputs, its possible to beat O(nlogn) with custom sorting routine, e.g., using min-heap to sort items known to be at most k places from final location in O(nlogk).
-4. For some inputs, its possibe to sort in O(n), e.g., for a small number of values or small range of values, e.g., sort people by age using counting sort.
+4. For some inputs, its possibe to sort in O(n) using non-comparison sorting, e.g., for a small number of values or small range of values, e.g., sort people by age using counting sort.
 4. Count sorting in javascript doesn't require a hashfn b/c arrays do not have to be preallocated and indices do not have to be sequential or start at 0!
 4. For very small number of values (< 10), insertion sort is easier to code and faster than asymptocally superior algorithms!
 4. For very small range of values, also consider insertion sort with multiple pointers, e.g. dutch flag problem.
+4. If numbers are uniformly distributed, and can be easily mapped to buckets, consider bucket sort
 4. For sorting values with elaborate tie-breaking logic, consider decorating an object or array, e.g. [valueToSortBy, sortByIfTie, sortByIfStillTie], before sorting, e.g. bike assignment problem
+9. Find intersection of two sorted arrays by indexing start of both arrays and testing indexed elements for equality. If equal, append to result and advance both, otherwise advance smaller. Do until one or both arrays are exhausted. (see EPI 13.1 182)
+10. Merge two sorted arrays (if one has enough empty spaces at end to hold the other) by filling buffered array back to front with merged elements starting at m + n - 1?, where m and n are the number of elements in first and second array. (see EPI 13.2 183, CTCI 396)
 
 **Javascript**
 
@@ -23,8 +26,7 @@
 8. [python] Sort class objects implicitly by implementing a compare dunder method `__lt__`
 
 
-9. Find intersection of two sorted arrays by indexing start of both arrays and testing indexed elements for equality. If equal, append to result and advance both, otherwise advance smaller. Do until one or both arrays are exhausted. (see EPI 13.1 182)
-10. Merge two sorted arrays (if one has enough empty spaces at end to hold the other) by filling buffered array back to front with merged elements starting at m + n + 1, where m and n are the number of elements in first and second array. (see EPI 13.2 183, CTCI 396)
+
 
 ---
 ## Bubble Sort
@@ -294,8 +296,6 @@ let results = hashMap.values().flatMap(pid => people[pid])
 ---
 ## Sort small range of numbers (eg Sort Colors, aka Dutch Flag)
 
-Note, this can be solved in single pass by partitioning with multiple pointers (see dutch flag problem)
-
 ```js
 var sortColors = function(nums) {
 
@@ -325,6 +325,8 @@ var sortColors = function(nums) {
 };
 ```
 (from https://leetcode.com/problems/sort-colors)
+
+**Note:** this is a fast linear time two-pass solution, but can be solved in single pass by partitioning with multiple pointers (see dutch flag problem)
 
 ---
 ## Bucket Sort (part of radix sort)
