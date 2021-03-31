@@ -58,6 +58,8 @@ function knapsack2(items, capacity) {
     return _maxVal(capacity, 0);
 }
 
+
+
 // exponential bitwise solution with constant O(1) space complexity for < 32 items
 function knapsack3(items, capacity) {
 

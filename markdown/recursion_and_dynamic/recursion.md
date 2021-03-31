@@ -152,6 +152,11 @@ _sort(arr, 0, arr.length - 1);
 * *actual* sorting happens in merge step. sort step just recursively divides in half until there is just one element in each half. merge sorts those two elements.
 
 ---
+## Implement binary search
+
+see [Searching](./markdown/searching_and_sorting/searching.md)
+
+---
 ## Find the magic value
 
 1. For a sorted distinct-valued array, the following conditions must be met for magic index to exist:

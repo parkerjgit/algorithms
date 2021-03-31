@@ -1,37 +1,30 @@
 # Dynamic Programming
 
-## Counting Submatrices
+## Notes
 
-**bottom-up**
-
-```js
-var countSquares = function(matrix) {
-  let [m, n] = [matrix.length, matrix[0].length];
-
-  // overwrite matrix
-  let table = matrix;
-
-  // first row/col are done, so start on (1,1)
-  for (let row = 1; row < m; row++) {
-      for (let col = 1; col < n; col++) {
-          if (matrix[row][col] === 1) {
-              table[row][col] = 1 + Math.min(table[row][col-1], table[row-1][col], table[row-1][col-1]);
-          }
-      }
-  }
-
-  // return sum of all cells
-  return table.reduce((sum, row) => {
-      return sum + row.reduce((a, b)=> a + b, 0)
-  }, 0);
-};
-```
-
-https://leetcode.com/problems/count-square-submatrices-with-all-ones/discuss/518072/Python-O(-m*n-)-sol-by-DP-93%2B-w-Demo
-https://leetcode.com/problems/maximal-square/solution/
+* Consider DP when you need to make a series of decisions. Instead of making a logical decision, make all decisions and take the best result, e.g. finding levenstein distance (EPI 16.2 241)
+* Logic most useful in **pruning the decision space**, particularily for recursive solutions, e.g., number of ways through a graph (EPI 16.3 244, Project Euler 15)
+* Consider DP for counting/combinatorial problems, e.g. count number of ways through a graph (EPI 16.3 244, Project Euler 15), number of ways to run up stairs, i.e., triple step (CTCI 342)
+* DP conceptually recursive but often more efficient to pre-build up whole cache bottom-up iteratively before making lookup, e.g., number of ways through a graph (EPI 16.3 244, Project Euler 15)
+* Iterative solution typically more efficient, but not when recursive solution finds solution early or does a better job of pruning subproblems.
+* Recursive approach typically caches with hash table or BST, iterative solutions usually use one- or multi-dimensional arrays for exhaustive caching.
+* Memoization and tabulation may be further optimized by recycling cache as you go, i.e., after you know there will be no more lookups, e.g. fibanacci (EPI 336). When tabulating data, always consider how much history you need to calculate each data point (often you only need previous data point, so recycle! )
+* Be sure there are only a polynomial number of different subproblems that you are caching, e.g., if there are only two integer arguments that range
+between 1 and n, then there can be at most n^2 different recursive calls!
+* Memoizing multiple args in python, use tuple. javascript, use nested array if args are positive integers, or use stringfied array as key. May be tempting to use Maps with arrays as keys but using mutable objects as keys will lookup the reference not the value, which will not work. Need to create hash from the value and easiest way to do that is stringify it.
 
 ---
-## Minimum sum of weights (campus bikes II)
+## Warm-up
+
+
+
+---
+## Count Square/Rectangular Submatrices with all ones
+
+see [Matrices](./markdown/matrices/matrices.md)
+
+---
+## Pair up items from two groups such that cost (ie sum of weights) is minimum (campus bikes II)
 
 **top-down (memoization)**
 
@@ -60,8 +53,9 @@ var assignBikes = function(workers, bikes) {
   return minSum(0, 0);
 };
 ```
-(see [full write-up](./markdown/recursion_and_dynamic/campus_bikes_2.md))
+(see [full write-up](./../recursion_and_dynamic/campus_bikes_2.md))
 
+---
 ## Count number of ways (or min cost of, etc.) getting to some final state using some finite number moves, ie. ordered knapsack problem?, eg. stair climbing)
 
 **double step stair climbing (ie fibonacci sequence)**
@@ -116,9 +110,51 @@ var minCostClimbingStairs = function(cost) {
 ```
 (see https://leetcode.com/problems/min-cost-climbing-stairs/submissions/)
 
-## Min cost (or max value, etc.) of combining exaustible items (0/1 knapsack problem):
+---
+## Min cost (or max value, etc.) of combining exaustible items with variable cost & value (0/1 knapsack problem):
 
-## Max value of combinining exaustible items with variable cost & constant value (ones and zeros problem):
+```js
+var Knapsack = function(items, capacity) {
+
+  // dp [cap][i] -> max value for cap remaining, from i (including or excluding ith item)
+  let memo = [...Array(capacity + 1)].map(_ => [...Array(items.length)])
+
+  const getCost = (item) => {...}
+  const getValue = (item) => {...}
+
+  const _maxVal = (candidates, capacity, i) => { // here m/n repr. 0's/1's *capacityRemaining*!!
+
+      if (i > candidates.length - 1)
+          return 0;
+      if (capacity <= 0)
+          return 0;
+      if (dp[capacity] && typeof dp[capacity][i] !== 'undefined')
+          return dp[capacity][i];
+
+      // 1. get the value & cost of inclusion
+      let cost = getCost(candidates[i]);
+      let value = getValue(candidates[i]);
+
+      // 2. get max value for include/exclude case
+      let include = value + _maxVal(capacity - cost, i+1), 
+          exclude = _maxVal(capacity, i+1);
+
+      // 3. try including it and excluding it if can afford it, else exclude it.
+      if (cost > capacity) {
+          dp[capacity][i] = exclude;
+      } else {
+          dp[capacity][i] = Math.max(include, exclude); // take max value
+      }
+
+      return dp[capacity][i];
+  };
+
+  return _maxVal(items, capacity, 0);
+};
+```
+
+---
+## Min cost (or max value, etc.) of combining exaustible items with variable cost & constant value (ones and zeros problem):
 
 ```js
 const _maxVal = (candidates, capacity, i) => { // here m/n repr. 0's/1's *capacityRemaining*!!
@@ -150,11 +186,38 @@ const _maxVal = (candidates, capacity, i) => { // here m/n repr. 0's/1's *capaci
     return dp[zeros][ones][i];
 };
 ```
-(see [full implementation](javascript/recursion_and_dynamic/ones_and_zeros.js))
+(see [full implementation](./../../javascript/recursion_and_dynamic/ones_and_zeros.js))
 
-## Min cost of combining inexaustible items, ie. unbounded knapsack problem, eg. coin change problem:
+---
+## Min cost (or max value, etc.) of combining inexaustible items (ie. magic knapsack problem, eg. coin change problem w/ inexaustible denominations):
 
-## Find subset that sums to target, ie combination of exaustible items that sum to target:
+```js
+const dp = [...Array(remaining)].map(r=>Array(denominations.length));
+function minChange(remaining, denominations, i) {
+
+    if (remaining < 0)
+        return Infinity;
+    if (remaining % denominations[i] == 0)
+        return remaining / denominations[i];
+    if (dp[remaining] && typeof dp[remaining][i] !== 'undefined')
+        return dp[remaining][i];
+
+    let include = 1 + minChange(remaining - denominations[i], denominations, i),
+        exclude = minChange(remaining, denominations, i+1);
+
+    if (include < Infinity && exclude < Infinity) {
+        dp[remaining][i] = Math.min(include, exclude);
+    } else {
+        dp[remaining][i] = include || exclude || Infinity;
+    }
+
+    return dp[remaining][i];
+}
+```
+(untested)
+
+---
+## Find subset that sums to target, ie combination of exaustible items that sum to target (eg. coin change problem w/ exaustible coins)
 
 ```js
 function subsetSum(arr, i, target) { // from i
@@ -213,4 +276,14 @@ function subsetSum(arr, i, target) { // from i
     return memo[i][target];
 }
 ```
+
+---
+## Levenstein Distance
+
+tbd...
+
+---
+## More Problems
+
+1. asdf
 
