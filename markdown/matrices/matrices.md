@@ -11,7 +11,7 @@
 2. process all cells in matrix
 3. process all valid neighbors of a cell
 4. process all boundary cells
-5. sum values in submatrix
+5. sum values in matrix/submatrix
 6. copy matrix
 7. convert between 1d and 2d representations
 8. transpose a matrix
@@ -96,7 +96,20 @@ see [full implementation](./../../javascript/matrices/count_rectangular_submatri
 ## Paint bucket
 
 ```js
-
+var fill = function(grid, row, col) {
+  
+  if (grid[row][col] == 1) {
+      return;
+  }
+  
+  // flip this cell
+  grid[row][col] = 1;
+  
+  // flip each neighbor
+  for (let [r,c] of getNeighbors(grid, row, col)) {
+      fill(grid, r, c);
+  }
+}
 ```
 
 ---

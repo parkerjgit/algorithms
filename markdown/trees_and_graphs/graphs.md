@@ -262,6 +262,8 @@ see [Union-Find](./../union_find/union_find.md)
 ---
 ## Searching: Find least/most connected node (e.g. city with smalles number of neighbors)
 
+intuition: given edges build undirected adjacency list, but just keep count instead of adjacencies, and keep track of maxSoFar.
+
 ---
 ## Sorting: Topological Sorting
 
@@ -297,7 +299,7 @@ const sequenceReconstruction = function(superseq, seqs) {
   let q = nodes.filter(n => indegrees[n] === 0);
   while (q.length) {
 
-    let cur = parseInt(q.shift());
+    let cur = q.shift();
 
     if (q.length > 0) return false; // can only have 1 node at time with zero indegree
     if (cur !== superseq[i]) return false; // that node must be match ith node in superseq

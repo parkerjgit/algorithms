@@ -5,7 +5,7 @@
 1. Binary trees are linked lists with left and right pointers (plus optional parent pointer). They typically hold a single value (two in the case of interval), and unlike BSTs are not sortted.
 2. Binary Search Tree (BST) is a sorted binary tree with **no duplicates**, such that: for any node with key x, all nodes in the left subtree have key values < x while all nodes in the right subtree have key values > x.
 3. BSTs are fast to search AND update - Sorted arrays allow for fast search, and [double] linked lists support flexible update, but neither support *both* fast search and flexible update. **BSTs address this need**. Lookup, insert and delete all take time proportional to height or logn for balanced trees.
-3. **Think of BSTs as an alternative to hash tables!**
+3. **Think of BSTs as an alternative to hash tables or one way to implement them!**
 4. BSTs are fundamentally recursive - An important observation of BSTs is that the top-most node is the root, and all other nodes are the root of a subtree that is also a binary search tree. This of course describes a recursive structure. Furthermore, since a node defines a tree, functions that operate on trees often take the root as the argument rather than the tree, so take note of which is being passed.
 5. Search a BST in O(logn) by recursing left *or* right until item is found or node is null.
 6. Insert into BST in O(logn) by recursing left or right until the empty spot is found.
@@ -40,6 +40,7 @@ class Node:
         self.value = value
 
 ```
+(see [full implementation](.\..\..\javascript\trees_and_graphs\bst.js))
 
 ---
 ## Search a BST
@@ -261,7 +262,7 @@ function binaryTreePaths(root) {
     return dfs(root);
 }
 
-// dfs without backtracking
+// post-order dfs without backtracking
 function dfs(root, paths = [], curPath = []) {
 
     if (!root.left && !root.right) {
@@ -271,12 +272,12 @@ function dfs(root, paths = [], curPath = []) {
     if (root.left) dfs(root.left, paths, [...curPath, root.val]);
     if (root.right) dfs(root.right, paths, [...curPath, root.val]);
 
-    return paths;
+    return paths; // post-order!
 }
 
-// dfs with backtracking
+// pre-order dfs with backtracking
 function dfs(root, paths = [], curPath = []) {
-    curPath.push(root.val);
+    curPath.push(root.val); // pre-order!
 
     if (!root.left && !root.right) {
         paths.push([...curPath]);
@@ -296,7 +297,25 @@ This can be bit faster by not passing results back up tree.
 ---
 ## Get all levels
 
-tbd...
+```js
+function getLevels(root) {
+    let levels = []; // [0: [root], 1: [...], ...]
+
+    const dft(root, levels, l) {
+        if (!root)
+            return
+
+        levels[l].push(root.value);
+
+        dft(root.left, l+1);
+        def(root.right, l+1);
+    }
+
+    dft(root, 0);
+    return levels;
+}
+```
+(untested)
 
 ---
 ## Serialize/Deserialize a tree using DFS and BFS
@@ -497,7 +516,7 @@ MyCalendar.prototype.book = function(start, end) {
   return this.bookings.insert(start,end);
 }
 ```
-(see [full implementation](javascript\trees_and_graphs\book_time.js))
+(see [full implementation](.\..\..\javascript\trees_and_graphs\book_time.js))
 
 ---
 ## More BST Problems
@@ -517,7 +536,7 @@ If computing number represented by root-to-leaf paths shift number over (at each
 
 If computing leaf-to-root representation, then add new_digit*base^depth to number (at each step), e.g., to add bit in MSB position of binary number `x = x + newbit*(2**d)`, where d is 2's position of MSB (i.e., the current depth)
 
-1. alphabet board path - see [full implementation](javascript/trees_and_graphs/alphabet_board_path.js)
+1. alphabet board path - see [full implementation](./../../javascript/trees_and_graphs/alphabet_board_path.js)
 If computing leaf-to-root representation, then add new_digit*base^depth to number (at each step), e.g., to add bit in MSB position of binary number `x = x + newbit*(2**d)`, where d is 2's position of MSB (i.e., the current depth)
 
 1. delete nodes - see [full implementation](javascript\trees_and_graphs\delete_nodes.js)

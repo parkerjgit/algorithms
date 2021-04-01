@@ -85,10 +85,24 @@ function Counter() {
     }
 }
 let counter = new Counter();
+
+// hide map
+function Counter2() {
+    const _map = {};
+    return {
+        //map: {},
+        current(id) {
+            return _map[id] || 0;
+        },
+        incr(id) {
+            _map[id] = (_map[id]) ? ++_map[id] : 1;
+        }
+    }
+}
 ```
 
 ---
-## Find element pair/triplet that sums to target (2/3 sum problem)
+## Find element pair/triplet/quadruplet that sums to target (2/3/4 sum problem)
 
 find first/all pairs in array that sum to target.
 

@@ -232,6 +232,8 @@ see https://leetcode.com/problems/next-permutation/submissions/
 ---
 ## Apply/restore permutation of an array in-place in constant space
 
+Can think of permutation as a hash function that generates the keys, the permuted array as the hash table, and the original array as the values you want to hash.
+
 **immutable**
 
 ```js
