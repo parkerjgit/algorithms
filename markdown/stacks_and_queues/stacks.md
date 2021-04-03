@@ -26,8 +26,10 @@ let myStack = [];
 // if we want to expose an api and decouple implementation
 function Stack() {
   _data: [],
-  push(val) { return this._data.push(val) },
-  pop() { return this._data.pop() }
+  return {
+    push(val) { return this._data.push(val) },
+    pop() { return this._data.pop() }
+  }
 }
 
 // if we don't want to store methods on each object, e.g. if we need lots of stack instances

@@ -25,6 +25,8 @@ dom manip
 10. cors
 
 events
+1. handle click events for list of items
+2. 
 
 network requests
 

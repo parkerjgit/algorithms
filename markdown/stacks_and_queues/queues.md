@@ -8,12 +8,14 @@
 * If implementing with array, use the end of array for the operation you want to optimize for!
 * a deque is a double-ended queue (or stack i guess), implemented as doubly linked-list or as a dynamic array. javascript/python arrays implement deques b/c you can push/pop both sides.
 * enqueue/dequeue operations on front of deque are often called push/pop and enqueue/dequeue on back go by many names like inject/eject, etc.
-* Use queue for buffering messages/moves/etc., processing data stream, 
+* Use queue for buffering messages/moves/etc., processing data stream, eg. stream avg problem
 
+---
 ## Warm-up
 
 1. implement a quick and dirty queue. enqueue/dequeue some items.
 
+---
 ## Python Implementing queue with Array
 
 Implemenation of a queue using an array in python is trivial b/c array has builtin enQueue(insert)/deQueue(pop) functions:
@@ -42,6 +44,7 @@ queue.dequeue()
 
 *Note*, possible to implement queue with array so that either end is the head. So, instead of using `insert(0)` to enqueue start and `pop()` to dequeue last element, could use `append()` to enqueue end and `pop(0)` to dequeue first element. `append()` and `pop()` are faster so if want fast dequeue pop off the end of the array. Of course, if order doesn't matter, we should be using a stack, so we can `pop()` AND `append()` off the end of the array in constant time. 
 
+---
 ## Javascript: Implementing queue with Array (using closure, object delegation, protypes, and classes)
 
 ```js
@@ -92,18 +95,21 @@ q.init();
 
 We can acheive constant-time enqueue/dequeue using a linked list, but that comes with some added overhead.
 
+---
 ## Implement queue with stacks 
 
 1. maintain two stacks: enq and deq
 2. enqueue: push onto enq stack.
 3. dequeue: pop off of deq stack. If empty, then pour (ie. push/pop) contents of enq into deq, then pop deq
 
+---
 ## implement constant-time max API
 
 1. in addition to the queue, maintain a max "deck" (ie. double-ended queue)
 2. on equeue: eject items from back of deck that are less than new item. Then enqueue max.
 3. on dequeue: also dequeue max iff the item at front of max (next in line) is equal to dequeued item.
 
+---
 ## implement an in-place queue with pointers, ie. a circular queue
 
 ```
@@ -123,6 +129,29 @@ We can acheive constant-time enqueue/dequeue using a linked list, but that comes
 * rather than maintaining head and tail pointers b/c easy to calc tail as (head + count) % array size
 * often we implement queue with array back-to-front, such that end of array is front of queue, but front-to-front is more intuitive for circular queue, so that as you enqueue items you are filling the array front to back.
 
+```js
+function CQ(size) {
+  let data = [];
+  let head = 0; // exclusive (derived tail is inclusive)
+  let count = 0; 
+
+  return {
+    enq(val) {
+      count++;
+      let tail = (head + count) % size;
+      data[tail] = val;
+      
+    },
+    deq() {
+      head = (head + 1) % size; // increment first b/c head is exclusive
+      return head;
+    }
+  }
+}
+```
+(untested)
+
+---
 ## traverse binary tree in level-order (BFT)
 
 1. initialize a queue with root item
@@ -151,6 +180,7 @@ function BFT(root) {
 
 * related: right-side view of binary tree - https://leetcode.com/problems/binary-tree-right-side-view/
 
+---
 ## implement a deque, ie. double-ended queue, ie "deck"
 
 **front-to-front**
@@ -167,14 +197,49 @@ function deque() {
 }
 ```
 
-## process a data stream, ie compute running computation, eg. running average
+---
+## process a stream: compute running average
 
+**queue**
+
+```js
+var MovingAverage = function(size) {
+    this.size = size;
+    this.queue = [];
+    this.sum = 0;
+};
+MovingAverage.prototype.next = function(val) {
+    this.queue.push(val);
+    if(this.queue.length > this.size) {
+        this.sum -= this.queue.shift();
+    }
+    this.sum += val;
+    return this.sum / this.queue.length;
+};
+```
+(untested)
+
+**circular queue**
+
+tbd...
+
+see Moving Average from Data Stream - https://leetcode.com/problems/moving-average-from-data-stream/
+
+---
+## process stream: compute running median
+
+same above, but use two [heaps]() instead! minHeap and maxHeap.
+
+---
 ## implement a buffer for messaging/moves/etc.
 
+---
 ## More Problems
 
 1. Animal Shelter - see [full implementation](python\stacks_and_queues\animal_shelter.py)
-2. Moving Average from Data Stream - https://leetcode.com/problems/moving-average-from-data-stream/
 3. Design Snake Game - https://leetcode.com/problems/design-snake-game/
 4. Queue Reconstruction by Height - https://leetcode.com/problems/queue-reconstruction-by-height/
 5. Sliding Window Maximum - https://leetcode.com/problems/sliding-window-maximum/
+
+---
+## asd

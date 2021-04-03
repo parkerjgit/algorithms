@@ -26,7 +26,7 @@ A list of question sets grouped by problem type. Each set is preceeded by concis
 1. **[Graphs](./markdown/trees_and_graphs/graphs.md):** represent graph as adjacency list, adjacency map, and adjecency matrix. traverse with DFT/BFT, determine if path/cycle exists.
 1. **[Union-Find](./markdown/union_find/union_find.md):** detecting cycles in non-directed graph, 
 1. **[Hash Tables](./markdown/hash_tables/hash_tables.md):** word/char counter, 2/3 sum problem, longest distinct and min-covering subarray, validate pattern -
-1. **[Sets]():** review [set notation](https://www.mathsisfun.com/sets/symbols.html),
+1. **[Sets and subsets]():** review [set notation](https://www.mathsisfun.com/sets/symbols.html),
 1. **[Recursion](./markdown/recursion_and_dynamic/recursion.md):** flatten jagged array, dft of tree/graph, merge sort, binary search, powerset, bottom-up vs top-down recursion -
 1. **[Dynamic Programming](./markdown/recursion_and_dynamic/dynamic_programming.md):** fibonacci, combination sum (find/count combinations), three-step, knapsack, count sqr submatrices, maximal sqr, longest string chain
 1. **[Searching](./markdown/searching_and_sorting/searching.md):** find kth largest, implement native find using binSearch iter/recursively to accept comparitor and target value -
@@ -40,6 +40,7 @@ A list of question sets grouped by problem type. Each set is preceeded by concis
 1. **Bit-Wise:** insert m into n, filter a collection with bitmask, ...
 1. **[Backtracking]()** - for space efficiency
 1. **[OOP]()** - design phone directory, design an exam room seating
+1. **[Sequences and Subsequences]()** - try representing as linked list or intervals, try counting values or tails, consider invariants, ...
 
 testing for each
 

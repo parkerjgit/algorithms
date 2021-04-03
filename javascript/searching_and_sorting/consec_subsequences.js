@@ -104,3 +104,10 @@ var isPossible = function(nums) {
 
   return true;
 };
+
+
+// heap solution: 
+// Keeping a tails dict, which, for every key, contains a heap of lengths of sequences ending with key.
+// For every num, if there is a sequence ending with num -1, add num to the shortest sequence ending with num -1. Else, create a new sequence.
+// Instead of keeping the actual sequences, we are keeping lengths and ending points. Heap helps us adding num to the smallest sequence at every step.
+// from https://leetcode.com/problems/split-array-into-consecutive-subsequences/discuss/589680/Python-heap

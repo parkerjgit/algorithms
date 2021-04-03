@@ -23,6 +23,8 @@
 15. Consider union-find as alternative to DFS in undirected graphs, eg. for cycle detection in **undirected graph**
 16. Use DFT with backtracking for cycle detection in **directed graph** (Use recursion when backtracking for now. seems more intuitive.)
 17. Use backtracking, as alternative to passing new value down recursion stack, to save space.
+18. Seems backtracking is nec. only for pre-order (ie top-down) traversals
+19. Convert points in space to graph with euclidian/manhattan distance between point the weights/costs!
 
 **Javascript**
 
@@ -77,7 +79,7 @@ function GetImportance(employees, id) {
       impMap.set(id, importance)
   })
 
-  function _getImportanceDft(id) {
+  function _getImportanceDft(id) { // post-order (bottom-up)
 
       let importance = impMap.get(id),
           subordinates = adjMap.get(id);
@@ -252,7 +254,10 @@ see [network delay problem](.\..\..javascript\trees_and_graphs\network_delay.js)
 ---
 ## Searching: Find minimum cost to connect all/muliple nodes (minimum spanning tree) in undirected graph?
 
-see https://leetcode.com/problems/min-cost-to-connect-all-points/
+can be solved using either Kruskal (union-find) or Prim's algorithm (variant of Dykstra's for undirected graph). Choice might come down to whether you already have egdge or adjacency list. Also, easier to implement union-find than a priority queue.
+
+see solution using Prim's Algorithm in [Heaps](./markdown/heaps/heaps.md)
+see solution using Kruskal's Algorithm in [Union-Find](./markdown/union_find/union_find.md)
 
 ---
 ## Searching: Count number of connected components.

@@ -42,11 +42,11 @@ minHeap.prototype = {
         if (li < this.content.length && this.content[li] < this.content[i]) {
             this._swap(i, li);
             this._sink(li);
-            this._sink(i);
+            this._sink(i); // no guarantee that new i < ri
         } else if (ri < this.content.length && this.content[ri] < this.content[i]) {
             this._swap(i, ri);
             this._sink(ri);
-            this._sink(i);
+            this._sink(i); // no gaurantee that new i < li
         }
     },
     push(item) {

@@ -111,6 +111,25 @@ A **subsequence** of an array is an ordered subset of the array's elements havin
     ```
 
 ---
+## Interleave k arrays of size n
+
+```js
+function interleaveKArrays (arrays) {
+  let [k,n] = [arrays.length, arrays[0].length];
+  let res = [];
+  let i = 0;
+  while (i < n * k) {
+    res.push(arrays[i % k][Math.floor(i / k)];
+    i++;
+  }
+  return res;
+}
+```
+(untesetd)
+
+related: transpose matrix;
+
+---
 ## Flatten an array
 
 Flatten an arbitrarily nested array, e.g.,
