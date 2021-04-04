@@ -2,7 +2,7 @@
 
 ## Notes
 
-* good choice for 
+* good choice for
   * traversing irregular structures, jagged arrays/graphs
   * divide and conquer, e.g. merge sort
   * enumeration, e.g. generate powerset
@@ -16,6 +16,8 @@
   * discover random overlapping subproblems, or recursion is strictly top-down -> memoization
   * building solution up from bottom -> dynamic programming / tabulation
   * want to optimize execution time at the cost of additional preprocessing time -> dynamic programming / tabulation
+
+demonstrate bottom-up and top-down recursion
 
 ---
 ## Flatten a jagged array
@@ -118,7 +120,7 @@ const def = (matrix, row, col) => {
 ## Implement merge sort
 
 1. divide into equal halves
-2. sort each half 
+2. sort each half
 3. merge them together
 
 **Javascript (in-place)**
@@ -134,7 +136,7 @@ var mergeSort = function(arr) {
 
         // 1. divide in half
         let mid = left + Math.floor((right - left) / 2);
-        
+
         // 2. sort each half (in-place)
         _sort(arr, left, mid);
         _sort(arr, mid + 1, right);
@@ -167,7 +169,7 @@ on left or right half of array if middle value is not magic.
 
 ```js
 function _find(arr, lo, hi) {
-	
+
   // base cases
   if (arr[lo] > lo) {
     return -1;
@@ -185,9 +187,9 @@ function _find(arr, lo, hi) {
   // recurse left or right if not mid
   if (arr[mid] === mid) {
     return mid
-  } else if (arr[mid] > mid) {    
+  } else if (arr[mid] > mid) {
     return _find(arr, lo, mid-1)  // go left
-  } else {                        
+  } else {
     return _find(arr, mid+1, hi)  // go right
   }
 
@@ -233,4 +235,36 @@ function powerset(arr, i) {
 ```
 
 ---
-## demonstrate bottom-up and top-down recursion
+## Generate permutations
+
+```js
+
+```
+
+## Generate permutations of variable size (android key pad problem)
+
+```js
+var numberOfPatterns = function(m, n) {
+
+    ...
+
+    let count = 0;
+    function perms(t, used=Array(10).fill(false), prev=null) {
+
+        if (t <= n - m && t >= 0) count++;
+
+        for (let i = 1; i <= 9; i++) {
+            if (used[i]) continue;
+            let mustHaveUsed = prev && mustHave[prev][i];
+            if (mustHaveUsed && !used[mustHaveUsed]) continue;
+
+            used[i] = true;
+            perms(t-1, used, i);
+            used[i] = false; // backtrack
+        }
+    };
+
+    perms(n)
+    return count;
+}
+```

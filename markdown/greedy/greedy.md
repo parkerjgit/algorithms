@@ -1,5 +1,7 @@
 # Greedy
 
+## Notes
+
 A greedy algorithm use heuristic to make a locally optimal choice at each step with the hope of finding or approximating a globally optimal solution in a reasonable time. - [Wikipedia](https://en.wikipedia.org/wiki/Greedy_algorithm)
 
 1. Greedy Algorithms are **not necessarily optimum**, but sometimes are. (eg. Coin changing problem optimum for denominations of form [1, r, r2, r3,...])
@@ -11,6 +13,7 @@ A greedy algorithm use heuristic to make a locally optimal choice at each step w
 8. Find the "ample" city in gas-up problem by making one pass through cities, tracking gas remaining, and returning city with the min gas remaining before gassing up. (e.g. EPI 17.6)
 9. Find max water trapped by an array, representing equally spaced vertical lines, by indexing first/last elements and working inward by advancing the end with the shorter line, i.e. eliminating advancements of the taller, and keeping track of max water trapped so far. (e.g. EPI 17.7)
 10. Find longest substring with unique characters
+
 ---
 ## US Coin change
 
@@ -71,6 +74,10 @@ def _min_covering_set_size(intervals):
 
 ---
 ## Find max interval collisions (meeting rooms)
+
+1. step thru start and end events in temporal order (take min at each step)
+2. _if meeting starts, incr meeting rooms currently occupied, and update max occupied
+3. _if meeting ends, decr meeting rooms currently occupied
 
 ```js
 var minMeetingRooms = function(intervals) {
@@ -248,6 +255,8 @@ var minSumOfLengths = function(arr, target) {
 ```
 (see [full implementation](./../../javascript/greedy/subarray_sum.js))
 
+see also https://leetcode.com/problems/maximum-sum-of-two-non-overlapping-subarrays
+
 **notes:**
   * This is probably not strictly speaking a greed solution b/c we are maintaining a lookup.
 
@@ -269,7 +278,7 @@ function minCoveringSubarr(arr, set) {
 
   while (sub.right < arr.length) {
 
-    if (isSetCovered(sub.left, sub.right)) {                             // set is covered!
+    if (isSetCovered(sub.left, sub.right)) {                          // set is covered!
       minSub = (sub.right - sub.left < minSub.right - minSub.left)
           ? {...sub}
           : minSub;
