@@ -38,14 +38,14 @@ function binSearch(arr, left, right, target) {
 
   let mid = left + Math.floor((right - left)/2);
 
-  if (left > right) 
+  if (left > right)
     return -1; // if searching for closest to, return left (floor) or left + 1 (ceiling)
   if (arr[mid] === target)
     return mid; // if searching for first occ, return binSearch(left,mid) || mid
 
   if (arr[mid] < target) {                          // l----m--t--r -> go right
     return binSearch(arr, mid+1, right, target);
-  } else {                                          // l-t--m-----r -> go left 
+  } else {                                          // l-t--m-----r -> go left
     return binSearch(arr, left, mid, target);
   }
 }
@@ -56,8 +56,8 @@ Iterative Passing Indices
 ```js
 function binSearch(arr, left, right, target) {
 
-  let [left, right] = [0, arr.length]; 
-  
+  let [left, right] = [0, arr.length];
+
   while (left <= right) {
     let mid = left + Math.floor((right - left)/2);
 
@@ -65,12 +65,12 @@ function binSearch(arr, left, right, target) {
       return mid; // if searching for first occ, set first = mid, and right = mid.
     } else if (arr[mid] < target) {   // l----m--t--r -> go right
       left = mid + 1;
-    } else {                          // l-t--m-----r -> go left 
+    } else {                          // l-t--m-----r -> go left
       right = mid;
     }
   }
 
-  return -1; 
+  return -1;
   return left - 1 (floor) or left (ceiling); // if searching for closest to
   return first; // if searching for first occur
 }
@@ -119,7 +119,7 @@ let indexOfTarget = hashSearch(target)
 function matrixSearch(matrix, left, right, target) {
 
     let mid = getMiddleCellIdx(matrix, left, right);
-  
+
     if (isNotFound(left, right)) {                  // left > right, not found.
         return -1;
     }
@@ -129,7 +129,7 @@ function matrixSearch(matrix, left, right, target) {
 
     if (getCellValueAt(matrix, mid) < target) {     // mid < target, go right.
         return matrixSearch(matrix, getNextCellIdx(matrix, mid), right, target);
-        
+
     } else {                                        // mid > target, go left.
         return matrixSearch(matrix, left, getNextCellIdx(matrix, right), target);
     }
@@ -143,24 +143,24 @@ linear search + search space trimming - O(n+m) - this can be improved by doing b
 ```js
 var searchMatrix = function(matrix, target) {
     let [row, col] = [0, matrix[0].length];
-    
+
     while (row < matrix.length && col > -1) {
 
         if (matrix[row][col] === target) {
             return true
         } else if (matrix[row][col] < target) {
-            row++; // todo: do a bin search here in col from row++ to last row 
-        } else { 
+            row++; // todo: do a bin search here in col from row++ to last row
+        } else {
             col--; // todo: do a bin search here in row from 0 to coll--
-        }  
-    }  
+        }
+    }
     return false;
 };
 ```
 ---
 ## Search a cyclic array
 
-search a cyclically-sorted array for min/max 
+search a cyclically-sorted array for min/max
 
 ```js
 function findMinMax(arr, left, right) {
@@ -168,12 +168,12 @@ function findMinMax(arr, left, right) {
   let mid = left + Math.floor((right - left)/2);
 
   // mid is max: - - - mid/max | min - - -
-  if (mid < arr.length -1 && arr[mid] > arr[mid + 1]) { 
+  if (mid < arr.length -1 && arr[mid] > arr[mid + 1]) {
     return {min: mid + 1, max: mid}
   }
 
   // mid is min: - - - max | mid/min - - -
-  if (mid > 0 && arr[mid] < arr[mid - 1]) { 
+  if (mid > 0 && arr[mid] < arr[mid - 1]) {
     return {min: mid, max: mid - 1}
   }
 
@@ -198,33 +198,33 @@ asd
  */
 function WeightedIndices(w) {
     this.sums = [];
-    
+
     let runningSum = 0;
     for (weight of w) {
         runningSum += weight;
         this.sums.push(runningSum);
     }
-    
+
     this.totalSum = runningSum;
 };
 
 WeightedIndices.prototype.pickIndex = function() {
-    
+
   const _closetUpperBound = (arr, left, right, target) => {
 
     let mid = left + Math.floor((right - left)/2);
-    
+
     if (left === right) {
       return right;
     }
-    
+
     if (arr[mid] < target) {
       return _closetUpperBound(arr, mid + 1, right, target);
     } else {
       return _closetUpperBound(arr, left, mid, target);
     }
   }
-  
+
   return _closetUpperBound(this.sums, 0, this.sums.length, Math.random() * this.totalSum);
 };
 
@@ -240,12 +240,12 @@ if static, sort and return first/last
 if dynamic prefer [Heap]() or [BST]()
 
 ---
-## Find the k/kth largest 
+## Find the k/kth largest
 
 use [minHeap]() of size k
 
 ---
-## Find Shortest Path in Directed Graph 
+## Find Shortest Path in Directed Graph
 
 Use BFT w/ a priority queue (ie Dykstra's). See [Graphs](.\markdown\trees_and_graphs\graphs.md)
 

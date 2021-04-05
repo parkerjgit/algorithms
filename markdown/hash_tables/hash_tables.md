@@ -146,6 +146,29 @@ find first/all triplets in array that sum to target
 (see [full implementation]())
 
 ---
+## Find *subarray* that sums to target
+
+after you turn array into cummulative sum array, it becomes 2sum problem!
+
+```js
+var subarraySum = function(arr, target) {
+    let history = new Map();
+    let sum = 0;
+    let count = 0;
+    history.set(0,1);
+    for (let i=0; i<arr.length; i++) {
+        sum += arr[i];
+        let complement = sum - target; // should prob name this left instead
+        if (history.has(complement)) {
+          count += history.get(complement);
+        }
+        history.set(sum, (history.get(sum) || 0) + 1);
+    }
+    return count;
+}
+```
+
+---
 ## Find subset that sums to target (ie coin change problem)
 
 see [Dynamic](.\..\recursion_and_dynamic\dynamic_programming.md)
