@@ -48,3 +48,5 @@ var numberOfPatterns = function(m, n) {
   return count;
   // return res;
 };
+
+// see optimization - https://leetcode.com/problems/android-unlock-patterns/discuss/82463/Java-DFS-solution-with-clear-explanations-and-optimization-beats-97.61-(12ms)

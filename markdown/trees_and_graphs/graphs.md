@@ -146,7 +146,7 @@ function detectCycleInPath(node, adjMap, visited = new Set(), path = new Set()) 
 ```js
 var detectCycleInDAG = function(adjList) {
     let indegree = Array(adjList.length).fill(0);
-        
+
     // build graph
     for(let [node, adjacencies] of adjList){
       for (let adj of adjacencies) {
@@ -167,7 +167,7 @@ var detectCycleInDAG = function(adjList) {
     //    remove node, update indegrees and add new zero indegree nodes to q
     while(q.length){
         let cur = q.shift();
-        
+
         for(let adj of adjList[cur]){
             indegree[adj]--;
             if(!indegree[adj]){
@@ -176,7 +176,7 @@ var detectCycleInDAG = function(adjList) {
         }
         removed.push(cur);
     }
-    
+
     // 3. if processed all nodes, there are no cycles
     return removed.length === adjList.length;
 };
@@ -198,9 +198,9 @@ see [Union-Find](./../union_find/union_find.md)
 
 ```js
 function dft(src, targ, adjList, path=[], result) {
-  if (src == targ) 
+  if (src == targ)
     result.push([...path, src]);
-  if (adjList[src] === 0) 
+  if (adjList[src] === 0)
     return;
 
   path.push(src);
@@ -216,7 +216,7 @@ function dft(src, targ, adjList, path=[], result) {
 
 ```js
 function dft(src, targ, adjList) {
-  if (src === targ) 
+  if (src === targ)
     return [[src]];
   if (adjList[src] === 0)
     return -1;
@@ -234,7 +234,7 @@ function dft(src, targ, adjList) {
 
 ```js
 function dft(src, targ, adjList) {
-  if (src === targ) 
+  if (src === targ)
     return true;
   if (adjList[src] === 0)
     return false;
@@ -331,3 +331,73 @@ see [Union-Find](./markdown/union_find/union_find.md)
 
 ---
 ## adf
+
+# Tries
+
+There are two main types of trie interview questions:
+
+Standard Trie. Design a structure to dynamically add and search strings, for example
+
+Add and Search Word.
+
+Word Search II.
+
+Design Search Autocomplete System.
+
+Bitwise Trie. Design a structure to dynamically add binary strings and compute maximum/minimum XOR/AND/etc, for example
+
+Maximum XOR of Two Number in an Array.
+
+https://leetcode.com/problems/design-add-and-search-words-data-structure/solution/
+
+## add and search word dictionary
+
+```js
+class Node {
+    constructor() {
+        this.children = new Map();
+        this.end = false;
+    }
+}
+
+class WordDictionary {
+    constructor() {
+        this.root = new Node();
+    }
+
+    addWord(word) {
+        function add(node, i) {
+            if(i === word.length)
+              return node.end = true;
+
+            if(!node.children.has(word[i]))
+              node.children.set(word[i], new Node());
+
+            add(node.children.get(word[i]), i+1);
+        }
+        add(this.root, 0);
+    }
+
+    search(word) {
+        function find(node, i) {
+            if(i === word.length && node.end) return true;
+            if(i === word.length) return false;
+
+            // '.'
+            if(word[i] === '.') {
+                for(let [key, next] of node.children) {
+                    if(find(next, i+1)) return true;
+                }
+                return false;
+            }
+
+            // not '.'
+            if(!node.children.has(word[i])) return false;
+            return find(node.children.get(word[i]), i+1);
+        }
+        return find(this.root, 0);
+    }
+}
+```
+from:
+https://leetcode.com/problems/design-add-and-search-words-data-structure/discuss/774544/JavaScript-Clean-Trie-Solution

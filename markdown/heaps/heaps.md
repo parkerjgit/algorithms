@@ -4,17 +4,17 @@
 
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Max-Heap-new.svg/220px-Max-Heap-new.svg.png)
 
-* Is a binary tree (typically) that implements a Priority Queue, and is itself, typically implemented as an array. 
+* Is a binary tree (typically) that implements a Priority Queue, and is itself, typically implemented as an array.
 * Heap-implimented priority queues are often used in Graph Algorithms like Dijkstra’s Shortest Path and Prim’s Minimum Spanning Tree.)
 * Is a *[complete binary tree](http://web.cecs.pdx.edu/~sheard/course/Cs163/Doc/FullvsComplete.html)* (all the levels except the last/lowest are full, and in the last/lowest level all the items are on the left) This property allows it to be simply represented with an array.
 * The array representation can be achieved by traversing the binary tree in level order, and the mapping from node to parent, left and right nodes are given by `(i-1)//2`, `2i+1` and `2i+2` respectively. (see [Array Representation of Binary Heap](http://www.cse.hut.fi/en/research/SVG/TRAKLA2/tutorials/heap_tutorial/taulukkona.html))
 * A Binary Heap is either Min Heap or Max Heap, sometimes counter-intuitive which should be used because the lowest priority is at the top of heap for easy removal.
-* The heap *order property* is satisfied for min heap when all parents have priorities less than that of their children. From this we know the smallest priority is at the root, and greatest is at *some* leaf node. 
+* The heap *order property* is satisfied for min heap when all parents have priorities less than that of their children. From this we know the smallest priority is at the root, and greatest is at *some* leaf node.
 * Find max element in array-implemented min heap by iterating through leaf nodes, ie nodes n/2 to n-1. Still linear time, but not sure if we can do better.
 * Heaps support O(1) lookup (vs extraction) of min/max at root, and O(logn) insertions, as well as O(logn) extraction of min/max at root (extract min/max is important operation which deletes and returns root node).
 * In order to overcome the Worst-Case Complexity of Quick Sort algorithm from O(n^2) to O( nlog(n) ) in Heap Sort.
 * Use heap when *all* you care about is min **OR** max element (not both), ie. **when you don't care about fast lookup/deletion of arbitrary elements**.
-* Use a heap to find/compute the **kth or k largest/smallest elements**. Use min-heap for former and max-heap for latter!!!. 
+* Use a heap to find/compute the **kth or k largest/smallest elements**. Use min-heap for former and max-heap for latter!!!.
 * Use a heap to sort and almost sorted, ie k-sorted array in O(n)
 * Use a heap to merge k sorted arrays.
 * Python supports min-heap thru `heapq` module (max-heap acheived by negating values).
@@ -50,6 +50,26 @@ PriorityQueue.prototype = {...}
 ```
 ---
 ## Find the k/kth largest (or most recent, most frequently occuring, closest, ugliest, anything-est, etc...) elements (leetcode 215, 264, 313, 347, 355, 692, epi 10.4)
+
+```js
+var topKFrequent = function(words, k) {
+    let counts = {};
+    let minHeap = new MinHeap((a,b)=>counts[a] > counts[b],k);
+
+    for (let word of words) {
+
+        // update counts
+        counts[word] = (counts[word]) ? count[word] + 1 : 1;
+
+        // add to heap. if max size exceeded item will auto pop
+        if (!minHeap.contains(word) && counts[word] > counts[minHeap.peek()]) {
+            minHeap.pop();
+            minHeap.push(word);
+        }
+    }
+```
+(untested)
+
 ---
 ## Sort a k-sortted array (epi 10.3)
 ---
@@ -60,6 +80,10 @@ PriorityQueue.prototype = {...}
 3. while heap:
 3. _pop min from heap and add to result.
 4. _push next element ***from the array last popped min was from if any left!!!*** onto the heap.
+
+## Kth smallest element in a 2d-sorted matrix
+
+same as k-way merge, but keep track of element pushed onto heap. see https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/solution/
 
 ---
 ## Implement Heap Sort
@@ -72,7 +96,7 @@ bft with priority queue (ie dykstra's)
 var minDistance = function(weightedEdges, n, src, targ) {
   let adjMap = [...Array(n)].map(n=>[]);
   let minDist = [...Array(n)].map(n=>Infinity);
-     
+
   // build adj map
   for (let [u,v,w] of weightedEdges) {
       adjMap[u].push([v,w]);
@@ -81,7 +105,7 @@ var minDistance = function(weightedEdges, n, src, targ) {
   // bft w/ priority queue
   let pq = new PriorityQueue((a,b) => a.dist > b.dist);
   pq.push({node: src, dist: 0});
-     
+
   while (pq.size()) {
     let {node, dist} = pq.pop();
 
@@ -91,7 +115,7 @@ var minDistance = function(weightedEdges, n, src, targ) {
 
     for (let [v, w] of adjMap[node]) {
       pq.push({
-        node: v, 
+        node: v,
         dist: w + minDist[node] // dist here is the min dist via node, but not nec. the min dist!
       });
     }
@@ -112,7 +136,7 @@ function minSpanning(adjMap, n) {
   //let visited = Array(n).fill(false);
   let cost = Array(n).fill(Infinity); // min cost to get to node from src (in this case arbitrarily picked src)
 
-  let weight = (a,b) => ... 
+  let weight = (a,b) => ...
 
   let pq = new PriorityQueue((a,b) => cost[a]-cost[b])
   pq.push(0); // 1. can pick any node, so take first

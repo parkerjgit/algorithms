@@ -136,7 +136,7 @@ var Knapsack = function(items, capacity) {
       let value = getValue(candidates[i]);
 
       // 2. get max value for include/exclude case
-      let include = value + _maxVal(capacity - cost, i+1), 
+      let include = value + _maxVal(capacity - cost, i+1),
           exclude = _maxVal(capacity, i+1);
 
       // 3. try including it and excluding it if can afford it, else exclude it.
@@ -283,7 +283,39 @@ function subsetSum(arr, i, target) { // from i
 tbd...
 
 ---
-## More Problems
+## Minimax
 
-1. asdf
+1. eg. Geuss number higher or lower II - https://leetcode.com/problems/guess-number-higher-or-lower-ii
+
+minimaxm with top-down memo
+
+```js
+var getMoneyAmount = function (n) {
+
+  const dp = Array(n + 1).fill(null).map(() => Array(n + 1).fill(Infinity))
+
+  const minimax = (l, r) => {
+    if (l >= r) return 0
+    if (dp[l][r] !== Infinity) return dp[l][r]
+
+    let min = Infinity;
+    for (let cur = l; cur <= r; i++) {
+      min = Math.min(
+          min,
+          cur + Math.max(minimax(cur + 1, r), minimax(l, cur - 1))
+      )
+    }
+    dp[l][r] = min;
+    return dp[l][r]
+  }
+
+  return minimax(1, n)
+};
+```
+
+bottom-up dp
+
+see https://leetcode.com/problems/guess-number-higher-or-lower-ii/discuss/84769/Two-Python-solutions
+
+see how this problem relates to zero/ones problem!!!
 

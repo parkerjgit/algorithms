@@ -65,6 +65,7 @@ Disadvantages:
 19. Use `min([a,b],key=len)` to get shortest of two (or more) arrays.
 20. Use `[int(c) for c in str(n)]` or `map(int,str(n))` to convert number into an array of digits.
 21. Use `Object.keys(arr)` to get indices of sparse array (`arr.keys()` does not respect sparse array.) This is very useful when using array repr of hash table so you can bin search sorted keys. (eg. Exam Room Problem)
+22. If you get stuck, try making a cummulative sum array, or count the
 
 A **subsequence** of an array is an ordered subset of the array's elements having the same sequential ordering as the original array
 
