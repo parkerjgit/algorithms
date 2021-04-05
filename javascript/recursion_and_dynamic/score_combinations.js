@@ -105,6 +105,7 @@
     
     function combinationSum(target, idx, cur) {
 
+      // bounding function
       if (target < 0) {
         return;
       }

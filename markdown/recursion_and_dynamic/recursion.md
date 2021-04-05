@@ -101,13 +101,30 @@ const dft = (matrix, row, col) => {
   }
 }
 
-const def = (matrix, row, col) => {
+const dft = (matrix, row, col) => {
   let stack = [hash(row,col)];
   while (stack.length) {
     let cur = revHash(stack.pop());
     for (let nei of unvisitedNeighbors(...cur)) {
       stack.push(hash(...nei));
     }
+  }
+}
+
+// process elements in an array
+const dft = (arr, i) => {
+  if (i < arr.length) {
+    // process arr[i]
+    dft(arr, i + 1)  // process next
+  }
+}
+
+const dft = (arr, i) => {
+  let stack = [i];
+  while (stack.length) {
+    let cur = stack.pop();
+    // process arr[cur]
+    stack.push(cur + 1)
   }
 }
 ```
@@ -230,6 +247,67 @@ function powerset(arr, i) {
 
   return res;
 }
+```
+
+```js
+function powerset(arr, i, path=[], res=[]) {
+
+  if (i > arr.length - 1) {
+    res.push([...path]);
+    return res;
+  }
+
+  powerset(arr, i+1, path, res);
+  path.push(arr[i]);
+  powerset(arr, i+1, path, res);
+  path.pop(); // backtrack!
+
+  return res; // ref
+}
+```
+
+---
+## Generate permutations
+
+pass state(path) down
+
+```js
+function permutations(arr, path=[], used=[], res=[]) {
+  if (path.length == arr.length) {
+    res.push([...path])
+    return;
+  }
+
+  for (let i = 0; i < arr.length; i++) {
+    if (used[i]) continue; // bound
+
+    path.push(arr[i]);
+    used[i] = true;
+
+    permutations(arr, i+1, path, used, res);
+
+    path.pop(); // backtrack
+    used[i] = false;
+  }
+
+  return res; // nec only if you don't pass in res ref
+}
+```
+
+in-place via swapping
+
+```js
+function permutations(arr, first, res=[]){
+  if(first == arr.length)
+    res.push([...arr]);
+  
+  for(let i = first; i < arr.length; i++){
+    swap(arr,first,i);
+    permutations(arr, first + 1, res);
+    swap(arr,first,i); // backtrack
+  }      
+}
+const swap = (arr,a,b) => {[arr[a],arr[b]] = [arr[b],arr[a]]}
 ```
 
 ---
