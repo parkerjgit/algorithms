@@ -326,3 +326,4 @@ const addInterval = (intervals, toAdd) => {
 
 1. split array into consec subsequences - see [solution](./../../javascript/searching_and_sorting/consec_subsequences.js)
 
+

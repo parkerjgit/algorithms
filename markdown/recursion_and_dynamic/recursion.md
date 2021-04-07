@@ -20,6 +20,22 @@
 demonstrate bottom-up and top-down recursion
 
 ---
+## Warm-up
+
+1. Fibonacci Sequence
+2. Recursive Operations
+    ```js
+    function f(n) { 
+      if (n % 2 = 0) {
+        return 1 + f(n/2);
+      } else {
+        return 1 + Math.min(f(n-1), f(n+1))
+      }
+    }
+    ```
+
+
+---
 ## Flatten a jagged array
 
 ```js
