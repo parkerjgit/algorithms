@@ -13,7 +13,7 @@ A list of question sets grouped by problem type. Each set is preceeded by concis
 
 **rest:**
 
-1. **Complexity:** Cost of bin search, merge sort, looking at each item once, looking at all pairs/triplets/subsets/purmutations.
+1. **[Complexity]():** Cost of bin search, merge sort, looking at each item once, looking at all pairs/triplets/subsets/purmutations.
 1. **[Strings](./markdown/arrays_and_strings/strings.md):** Palindrome checker, find a substring, find the longest substring with unique characters.
 1. **[Arrays](./markdown/arrays_and_strings/arrays.md):** flatten an array, partion an array (Dutch flag problem), apply/restore a permutation of an array.
 1. **[Matrices](./markdown/matrices/matrices.md):** prefill matrix, convert betwee 2d/1d array representations, traverse/transpose matrix, maze solver, paint bucket, etc. count sqr submatrices, maximal sqr, surrounded regions
@@ -33,7 +33,7 @@ A list of question sets grouped by problem type. Each set is preceeded by concis
 1. **[Sorting](markdown/searching_and_sorting/sorting.md)**: implement insertion sort, merge sort, and quick sort. sort an array of objects by prop, one array by another array, sort numbers/words (hint: trie)
 1. **Math:** GCF, LCM, factorize, enum primes, factorial, fibonacci, compute subsets (powerset), combinations, permutations
 1. **Divide and Conquer:** implement merge sort (bin search and quick sort can also be considered divide and conceur), tower of hanoi
-1. **[Greedy](./markdown/greedy/greedy.md):** coin change, task assignment, scheduling, interval covering, ... -
+1. **[Greedy](./markdown/greedy/greedy.md):** coin change, task assignment, scheduling, interval covering, ... -z
 1. **Objects:** demonstrate class-based/prototypal/functional inheritance, and object delegation
 1. **[Front-end](./markdown/front_end/front_end.md):** component that makes api call, and performs pagination, sort, and filter on front-end/back-end.
 1. **[Functional](./markdown/functional_programming/functional_programming.md):** implement debounce, throttle, pipe, compose, memoization for single/multi params., map, filter, reduce, promisify
@@ -55,29 +55,7 @@ testing for each
 1. implement pagination, sorting, and filtering on front and back-end
 2. implement debounce, throttle function
 
-#### Complexity
 
-1. cost of binary search
-2. cost of looking at each item once
-3. cost of divide and conquer algorithms
-4. cost of looking at all pairs/triples
-5. cost of looking at all subsets of n items
-6. cost of looking at all purmutations of n items
-
-<details><summary>Answers</summary><br>
-
-* Polynomial Time:
-    * Constant - c - There is no dependence on n.
-    * Logarithmic - log(n) - great! grows slow as n gets big, eg Binary search.
-    * Linear - n - Cost of stepping through an array, ie. looking at each item once or twice (or fixed number of times)
-    * Superlinear (or linearithmic) - nlog(n) - grow a little faster than linear - cost of divide and conquer algorithms, eg Mergesort and Quicksort
-    * Quadratic - n<sup>2</sup> - cost of looking at all pairs, i.e. combinations of two items, e.g. Insertion sort and Selection sort.
-    * Cubic - n<sup>3</sup> - cost of looking at all combinations of three items, eg. dynamic programming algorithms
-* Non-Polynomial time (use heuristics):
-    * Exponential - c<sup>n</sup> - very bad - cost of looking at all subsets O(2^n) of n items, e.g. building a powerset (set of all subsets of S, including the empty set and S itself)
-    * Factorial - n! - even worse - cost of looking at all purmutations of n items.
-
-</details><br>
 
 #### String manipulation
 

@@ -348,6 +348,19 @@ objs.sort((a,b) => a[a] - b[a])
 ```
 
 ---
+## Flip & Sort boxes by long dimension
+
+```js
+let boxes = [[1,1],[2,3],[5,6],[2,7],[2,8],[3,2],[3,4]];
+boxes
+  .map(([a,b]) => (a >= b) ? [a,b] : [b,a])
+  .sort((a,b) => a[0] - b[0])
+```
+
+---
+## Sort points by x and then y (eg. Sort the points of a rectangle)
+
+---
 ## Sort one array by another array
 
 ```js
@@ -371,11 +384,6 @@ arrToSort
 is this same as build order?
 
 see [Graphs](.\markdown\trees_and_graphs\graphs.md)
-
----
-## Sort the points of a rectangle
-
-tbd...
 
 ---
 ## Sort element pairs by computed values, eg. assign bikes (campus bikes)
