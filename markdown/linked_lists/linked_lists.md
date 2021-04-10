@@ -161,6 +161,100 @@ function traverse(linkedList) {
 (from [xxx](../../javascript/xxx))
 
 ---
+## Implement a doubly-linked list
+
+```js
+class Node {
+  constructor(val) {
+      this.val = val;
+      this.next = null;
+      this.prev = null;
+  }
+}
+
+class DoublyLinkedList {
+  constructor() {
+      this.head = null;
+      this.tail = null;
+      this.length = 0;
+  }
+
+  add(val) { // add to tail
+      const newNode = new Node(val);
+      if(!this.head) { // empty list
+          this.head = newNode;
+          this.tail = newNode;
+      } else {
+          this.tail.next = newNode;
+          newNode.prev = this.tail;
+          this.tail = newNode;
+      }
+      this.length++;
+      return newNode;
+  }
+
+  remove(node) {
+      if(!node.next && !node.prev) { // there is only 1 node
+          this.head === null;
+          this.tail === null;
+      } else if(!node.next) { // node to remove is tail node
+          this.tail = node.prev;
+          this.tail.next = null;
+      } else if(!node.prev) { // node to remove is head node
+          this.head = node.next;
+          this.head.prev = null;
+      } else { // node to remove is between head and tail
+          const prev = node.prev;
+          const next = node.next;
+          prev.next = next;
+          next.prev = prev;
+      }
+      this.length--;
+  }
+}
+```
+
+---
+## Implement LRU Cache
+
+```js
+class LRUCache {
+  constructor(capacity) {
+      this.DLL = new DoublyLinkedList(); // <-head(oldest)-------tail(newest)->
+      this.map = {}; // map key -> linked list node
+      this.capacity = capacity;
+  }
+
+  get(key) {
+      if(!this.map[key]) return -1;
+      const value = this.map[key].val;
+
+      // move node to tail
+      this.DLL.remove(this.map[key]);
+      this.map[key] = this.DLL.add(key, value);
+
+      return value;
+  }
+
+  put(key, value) {
+
+      // if exists, move to tail, else just add to tail
+      if(this.map[key]) this.DLL.remove(this.map[key]);
+      this.map[key] = this.DLL.add(key, value);
+
+      // if over capacity, remove from head and delete corresponding entry in dict
+      if(this.DLL.length > this.capacity) {
+          const currKey = this.DLL.head.key;
+          delete this.map[currKey];
+          this.DLL.remove(this.DLL.head);
+      }
+  }
+}
+```
+
+another good approach uses orderedDict (ie es6 map) to retrieve oldest entry. see https://leetcode.com/problems/lru-cache/solution/
+
+---
 ## More Questions
 
 1. add numbers repr. as linked list of digits

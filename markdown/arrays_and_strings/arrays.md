@@ -425,4 +425,8 @@ sample online data (design packet sniffer)
 generate a random subset (sample offline data)
 generate a random permutation
 
+# Single Pass by maintaining derived state
+
+1. min cost of deleting repeating letters in string - see [write-up](./min_cost_of_deleting_repeating.md)
+
 
