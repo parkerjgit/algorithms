@@ -24,7 +24,7 @@ A list of question sets grouped by problem type. Each set is preceeded by concis
 1. **[Heap](./markdown/heaps/heaps.md):** implement minheap, implement priority queue, find k most frequent words, sort k sortted -
 1. **Trie:** prefix search, autocomplete, sort words
 1. **[Graphs](./markdown/trees_and_graphs/graphs.md):** represent graph as adjacency list, adjacency map, and adjecency matrix. traverse with DFT/BFT, determine if path/cycle exists.
-1. **[Union-Find](./markdown/union_find/union_find.md):** detecting cycles in non-directed graph, 
+1. **[Union-Find](./markdown/union_find/union_find.md):** detecting cycles in non-directed graph,
 1. **[Hash Tables](./markdown/hash_tables/hash_tables.md):** word/char counter, 2/3 sum problem, longest distinct and min-covering subarray, validate pattern -
 1. **[Sets and subsets]():** review [set notation](https://www.mathsisfun.com/sets/symbols.html),
 1. **[Recursion](./markdown/recursion_and_dynamic/recursion.md):** flatten jagged array, dft of tree/graph, merge sort, binary search, powerset, bottom-up vs top-down recursion -
@@ -38,7 +38,7 @@ A list of question sets grouped by problem type. Each set is preceeded by concis
 1. **[Front-end](./markdown/front_end/front_end.md):** component that makes api call, and performs pagination, sort, and filter on front-end/back-end.
 1. **[Functional](./markdown/functional_programming/functional_programming.md):** implement debounce, throttle, pipe, compose, memoization for single/multi params., map, filter, reduce, promisify
 1. **Bit-Wise:** insert m into n, filter a collection with bitmask, ...
-1. **[Backtracking]()** - for space efficiency
+1. **[Backtracking](./markdown/backtracking/backtracking.md)** - for space efficiency and pruning
 1. **[OOP]()** - design phone directory, design an exam room seating
 1. **[Sequences and Subsequences]()** - try representing as linked list or intervals, try counting values or tails, consider invariants, ...
 
