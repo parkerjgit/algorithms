@@ -352,7 +352,7 @@ function deserialize(id) {
             return null;
         }
 
-        let root = new Node(rootId)
+        let root = new Node(cur)
 
         root.left = _dfs();
         root.right = _dfs();
@@ -519,7 +519,7 @@ MyCalendar.prototype.book = function(start, end) {
 (see [full implementation](.\..\..\javascript\trees_and_graphs\book_time.js))
 
 ---
-## More BST Problems
+## More Tree/BST Problems
 
 1. Fix a BST with 2 swapped nodes. (lc 99) - perform in-order traversal, find and mark nodes in violation of bst, then fix.
 1. Are 2 trees the same? (lc 100) - if roots are the same and the left and right subtrees are the same, then the trees are same.
@@ -543,4 +543,7 @@ If computing leaf-to-root representation, then add new_digit*base^depth to numbe
 
 http://cslibrary.stanford.edu/110/BinaryTrees.html
 1. Contains nearby almost duplicate - https://leetcode.com/problems/contains-duplicate-iii/submissions/ (leetcode solution incomplete)
+
+1. Count nodes greater than all ancesters - https://leetcode.com/problems/count-good-nodes-in-binary-tree/submissions/
+1. Boundary of Binary Tree - see [write-up](./../../markdown/trees_and_graphs/bt_boundary.md)
 

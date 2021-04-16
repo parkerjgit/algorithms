@@ -146,6 +146,7 @@ var accountsMerge = function (accounts) {
 ```
 see [full implementation](.\..\..\javascript\trees_and_graphs\merge_account.js)
 
+---
 ## Searching: Find minimum cost to connect all/muliple nodes (minimum spanning tree) in undirected graph?
 
 can be solved using either Kruskal (union-find) or Prim's algorithm (variant of Dykstra's for undirected graph). Choice might come down to whether you already have egdge or adjacency list. Also, easier to implement union-find than a priority queue.
@@ -170,7 +171,7 @@ function minSpanning(weightedEdges, n) { // edge: [u,v,w]
     let rootA = find(a);
     let rootB = find(b);
 
-    if (rootA = rootB) 
+    if (rootA = rootB)
       return false;
 
     parent[rootB] = rootA;
@@ -205,12 +206,12 @@ function countConnectedComponents(n, connections) {  // n nodes
   let count = n;                            // initially all nodes and unconnected
 
   function find(id) {
-    if(parents[id] !== id) 
+    if(parents[id] !== id)
       parents[id] = find(parents[id]); // compress
-    
+
     return parents[id];
   }
-  
+
   function union(x, y) {
     const rootX = find(x);
     const rootY = find(y);
