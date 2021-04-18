@@ -151,6 +151,8 @@ isAnagram = (a,b) => sortStr(a) === sortStr(b);
 ---
 ## Validate LR Transform
 
+pattern: define multiple independant invariants and check each.
+
 ```js
 function canTransform(start, end) {
 
