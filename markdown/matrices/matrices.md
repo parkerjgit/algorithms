@@ -2,7 +2,17 @@
 
 ## Notes
 
-* asdf
+**strategy**
+
+1. zoom out and explore problem conceptually first
+1. zoom in and explore a trivial example
+1. list test cases: empty matrix, 1x1, 1x3, 3x1, 3x3, 4x5 matrix
+1. anticipate approach:
+    1. counting -> think dynamic programming and look for how cell values might be calculated from previous/neighboring cell values. Think about what initial cell values should be so you can start on (1,1).
+    1. path finding -> think dft
+    1. overlapping subproblems -> consider top-down memoization
+    1. bounding function -> consider backtracking
+    1. shortest path finding -> think bft
 
 ---
 ## Warm-up
@@ -17,7 +27,37 @@
 8. transpose a matrix
 
 ---
+## Counts number of paths to target if movement is restricted to two directions with and w/out obstacles.
+
+Number of paths from a cell to a target cell is the sum of the number of paths from all cells accessible from that cell. If movement is restricted to two directions, eg right and down, this becomes a straight forward bottom-up dp problem. Initialize dp table cells to 1 (because there is one path to target from cells in the same row or column as target cell) and start filling in table values back-to-front from cell (1,1) b/c easier to traverse matrix in forward direction, ie from upper left to bottom right, and we know number of path will be the same.
+
+Time: O(nm)
+Space: O(nm) - cache can be reused for O(n) space b/c really only need previous row and previous val in current row to calculate current cell.
+
+```js
+var uniquePaths = function(m, n) {
+  let dp = [...Array(m)].map(row=>Array(n).fill(1));
+
+  for (let r = 1; r < m; r++) {
+      for (let c = 1; c < n; c++) {
+          dp[r][c] = dp[r-1][c] + dp[r][c-1];
+      }
+  }
+
+  return dp[m-1][n-1];
+};
+```
+see [full implementation](./javascript/matrices/count_paths.js)
+
+---
+## Count number of paths to target if movement is restricted to 4 directions
+
+tbd...
+
+---
 ## Count square matrices
+
+1 + min(left,diag,top)
 
 ```js
 var countSquares = function(mat) {
@@ -97,14 +137,14 @@ see [full implementation](./../../javascript/matrices/count_rectangular_submatri
 
 ```js
 var fill = function(grid, row, col) {
-  
+
   if (grid[row][col] == 1) {
       return;
   }
-  
+
   // flip this cell
   grid[row][col] = 1;
-  
+
   // flip each neighbor
   for (let [r,c] of getNeighbors(grid, row, col)) {
       fill(grid, r, c);
@@ -218,3 +258,5 @@ var dft = function(grid, row, col) {
 1. alphabet board path - see [full implementation](javascript/trees_and_graphs/alphabet_board_path.js)
 If computing leaf-to-root representation, then add new_digit*base^depth to number (at each step), e.g., to add bit in MSB position of binary number `x = x + newbit*(2**d)`, where d is 2's position of MSB (i.e., the current depth)
 2. submatrix sums - see [solution](./../../javascript/matrices/submatrix_sum.js)
+1. Is cell reachable given obstacles
+1. maze solver - see [solution](./../../javascript/trees_and_graphs/maze_solver.js)
