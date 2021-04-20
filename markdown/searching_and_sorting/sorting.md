@@ -468,7 +468,35 @@ function assignBikes(workers, bikes) {
 
 ## Group words by first letter (eg. count subsequences)
 ## Group objects by property
-## Group anagrams
+## Group anagrams:
+
+Anagrams have same sorted value and char count, so map sorted strings or stringified char count to buckets.
+
+```js
+var groupAnagrams = function(strs) {
+    let buckets = new Map();
+
+    for (let s of strs) {
+        let key = s.split('').sort().join('');
+
+        if (buckets.has(key)) {
+            buckets.get(key).push(s);
+        } else {
+            buckets.set(key, [s]);
+        }
+    }
+
+    let res = [];
+    for (let group of buckets.values()) {
+        res.push(group);
+    }
+
+    return res;
+};
+```
+see [full implementation](./../../javascript/arrays_and_strings/group_anagrams.js)
+
+---
 ## More Problems:
 
 1. Group array elements into consecutive sequences - see [solution](./../../javascript/searching_and_sorting/group_into_consec_numbers.js)
