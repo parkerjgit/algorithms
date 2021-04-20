@@ -313,5 +313,6 @@ def build_random_string2(k):
 1. Convert int (base 10) to string (e.g. 340 -> '340') (implement toString)
 2. Convert a string (e.g., '340' -> 340) to an int (implement parseInt)
 3. [Convert english representation of a number (e.g., 'three hundred forty' -> 340 ) to int](.\javascript\arrays_and_strings\convert_string_to_int.js)
+4. Group anagrams - see [solution](./../../javascript/arrays_and_strings/group_anagrams.js)
 
 tokenize string to be decoded
