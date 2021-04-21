@@ -260,3 +260,4 @@ If computing leaf-to-root representation, then add new_digit*base^depth to numbe
 2. submatrix sums - see [solution](./../../javascript/matrices/submatrix_sum.js)
 1. Is cell reachable given obstacles
 1. maze solver - see [solution](./../../javascript/trees_and_graphs/maze_solver.js)
+1. tic tac toe - see [solution](./../../javascript/matrices/tic_tac_toe.js)

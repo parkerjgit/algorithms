@@ -486,12 +486,7 @@ var groupAnagrams = function(strs) {
         }
     }
 
-    let res = [];
-    for (let group of buckets.values()) {
-        res.push(group);
-    }
-
-    return res;
+    return [...buckets.values()];
 };
 ```
 see [full implementation](./../../javascript/arrays_and_strings/group_anagrams.js)

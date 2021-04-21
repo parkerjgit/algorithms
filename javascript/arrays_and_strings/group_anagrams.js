@@ -30,12 +30,7 @@ var groupAnagrams = function(strs) {
         }
     }
 
-    let res = [];
-    for (let group of buckets.values()) {
-        res.push(group);
-    }
-
-    return res;
+    return [...buckets.values()];
 };
 
 /**
@@ -57,12 +52,7 @@ var groupAnagrams = function(strs) {
       }
   }
 
-  let res = [];
-  for (let group of buckets.values()) {
-      res.push(group);
-  }
-
-  return res;
+  return [...buckets.values()];
 };
 
 function counter(s) {
