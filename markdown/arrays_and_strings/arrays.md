@@ -424,8 +424,22 @@ res.reverse();
 
 ---
 ## multiply two numbers encoded as an array of digits
-## Delete dups from sorted/unsortted array.
+## Delete dups from sorted array.
 
+```js
+let writeIdx = 1;
+  for (let i = 1; i < n; i++) {
+      if (arr[i] !== arr[i-1]) {
+          arr[writeIdx] = arr[i]
+          writeIdx++;
+      }
+  }
+```
+
+**related:**
+* climbing leader board - see [solution](./../../markdown/searching_and_sorting/climbing_leader_board.md)
+
+---
 ## Enumerate primes upto n.
 
 ---

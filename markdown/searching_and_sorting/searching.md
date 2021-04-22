@@ -58,7 +58,7 @@ function binSearch(arr, left, right, target) {
 
   let [left, right] = [0, arr.length];
 
-  while (left <= right) {
+  while (left < right) { // pretty sure don't want left <= right. check this.
     let mid = left + Math.floor((right - left)/2);
 
     if (arr[mid] === target) {
@@ -75,6 +75,10 @@ function binSearch(arr, left, right, target) {
   return first; // if searching for first occur
 }
 ```
+
+**related:**
+* climbing leader board - see [solution](./../../markdown/searching_and_sorting/climbing_leader_board.md)
+
 ---
 ## Search unsorted array (indexOf)
 
@@ -254,4 +258,4 @@ Use BFT w/ a priority queue (ie Dykstra's). See [Graphs](.\markdown\trees_and_gr
 
 1. snapshot subarray - see [full implementation](.\..\..\javascript\searching_and_sorting\snapshot_array.js)
 2. add interval = see [full imlpementation](.\..\..\javascript\searching_and_sorting\add_interval.js)
-
+3. climbing leader board - see [solution](./../../markdown/searching_and_sorting/climbing_leader_board.md)
