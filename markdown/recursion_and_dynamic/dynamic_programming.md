@@ -110,8 +110,8 @@ var minCostClimbingStairs = function(cost) {
 ```
 (see https://leetcode.com/problems/min-cost-climbing-stairs/submissions/)
 
-related:
-1. [number of ways to decode](./../../javascript/recursion_and_dynamic/num_ways_to_decode.js)
+**related:**
+1. [number of ways to decode](./../../markdown/recursion_and_dynamic/num_ways_to_decode.js)
 
 ---
 ## Min cost (or max value, etc.) of combining exaustible items with variable cost & value (0/1 knapsack problem):
