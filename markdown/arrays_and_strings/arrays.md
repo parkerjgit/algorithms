@@ -440,9 +440,6 @@ let writeIdx = 1;
 * climbing leader board - see [solution](./../../markdown/searching_and_sorting/climbing_leader_board.md)
 
 ---
-## Enumerate primes upto n.
-
----
 ## More
 
 1. find kth smallest (in nlogk, and n time) - use a [Heap](./markdown/heaps/heaps.md)
