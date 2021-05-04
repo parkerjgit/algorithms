@@ -13,9 +13,9 @@ source: course-schedule (leetcode 207) - https://leetcode.com/problems/course-sc
  * @return {boolean}
  */
  var canFinish = function(numCourses, prerequisites) {
-    
+
   let visited = new Set(); // visited in graph globally
-  
+
   // convert to adj map
   let adjMap = Object.create(null); // prereq -> [course, course]
   for ([course, prereq] of prerequisites) {
@@ -28,29 +28,29 @@ source: course-schedule (leetcode 207) - https://leetcode.com/problems/course-sc
           adjMap[course] = [];
       }
   }
-  
+
   // dft cycle detect from every node
   for (prereq of Object.keys(adjMap)){
       if (detectCycle(prereq, adjMap, visited, new Set())) {
           return false;
       }
   }
-  
+
   return true;
 };
 
 function detectCycle(node, adjMap, visited, path = new Set()) {
-  
+
   if (path.has(node)) {
       return true; // found cycle
   }
-  
+
   if (visited.has(node)) {
       return false; // ignore visted nodes
   }
-  
+
   visited.add(node);
-  
+
   for (let adj of adjMap[node]) {
       path.add(parseInt(node));
       if (detectCycle(adj, adjMap, visited, path)) {
@@ -58,7 +58,7 @@ function detectCycle(node, adjMap, visited, path = new Set()) {
       }
       path.delete(node); // backtrack!
   }
-  
+
   return false;
 }
 
@@ -67,7 +67,7 @@ function detectCycle(node, adjMap, visited, path = new Set()) {
 var canFinish = function(numCourses, prerequisites) {
     let adjMap = [...Array(numCourses)].map(x=>[]),
         indegree = Array(numCourses).fill(0);
-        
+
     // build graph
     for(const [to, from] of prerequisites){
         adjMap[from].push(to);
@@ -87,16 +87,18 @@ var canFinish = function(numCourses, prerequisites) {
     //    remove node, update indegrees and add new zero indegree nodes to q
     while(q.length){
         let cur = q.shift();
-        
+
+        removed.push(cur);
+
         for(let adj of adjMap[cur]){
             indegree[adj]--;
             if(!indegree[adj]){
                 q.push(adj);
             }
         }
-        removed.push(cur);
     }
-    
+
     // 3. if processed all nodes, there are no cycles
     return removed.length === numCourses;
+    // return (removed.length == numCourses) ? removed : [];
 };

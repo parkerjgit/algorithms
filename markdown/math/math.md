@@ -1,6 +1,8 @@
 ## Notes
 ## multiple string representation of two integers
 
+![]()
+
 ```js
 var multiply = function(a, b) {
   if (a === '0' || b === '0') return '0';
@@ -26,7 +28,7 @@ var multiply = function(a, b) {
       : res.join('')
 };
 ```
-see [full implementation](./../../javascript/arrays_and_strings/multiply_string_representations.js)
+see [write-up](./../../markdown/math/multiply_string_representations.js)
 
 ---
 ## Enumerate primes upto n.
