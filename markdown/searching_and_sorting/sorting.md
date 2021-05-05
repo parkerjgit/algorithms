@@ -466,6 +466,54 @@ function assignBikes(workers, bikes) {
 
 # Grouping & Partitioning
 
+## Partition an array around a pivot index (and return the sortted index of pivot)
+
+```js
+function partition(arr, l, r, pivotIdx) { // inclusive right
+  // 1. move pivot to end of window
+  [arr[pivotIdx],arr[r]] = [arr[r],arr[pivotIdx]];
+
+  // 2. partition rest of window around pivot value
+  let i = l;
+  for (let j = i; j < r; j++) {
+      if (arr[j] < arr[r]) { // equal to piv should be left of piv too!
+          [arr[i],arr[j]] = [arr[j],arr[i]];
+          i++;
+      }
+  }
+
+  // 3. move pivot into sortted position
+  [arr[r],arr[i]] = [arr[i],arr[r]];
+  return i;
+}
+```
+
+## Partition at array around a pivot value (and return the sortted index of pivot)
+
+```js
+function partition(arr, l, r, pivotVal) {
+
+  let i = l;
+  for (let j = i; j < r; j++) {
+    
+    // 1. found pivot, move to end
+    if (arr[j] == pivotVal) {
+        [arr[r],arr[j]] = [arr[j],arr[r]];
+    } 
+
+    // 2. not pivot (or second occurance), partition it
+    if (arr[j] <= pivotVal) { // equal to piv should be left of piv too!
+        [arr[i],arr[j]] = [arr[j],arr[i]];
+        i++;
+    }
+  }
+
+  // 3. move pivot into sortted position
+  [arr[r],arr[i]] = [arr[i],arr[r]];
+  return i;
+};
+```
+
 ## Group words by first letter (eg. count subsequences)
 ## Group objects by property
 ## Group anagrams
