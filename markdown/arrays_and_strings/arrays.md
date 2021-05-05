@@ -72,7 +72,8 @@ A **subsequence** of an array is an ordered subset of the array's elements havin
 ---
 ## Warm-up - 5 min
 
-1. index first, exclusive middle, exclusive last elements
+1. index middle, from left and exclusive right elements
+    1. `left + Math.floor((right-left)/2)`
 1. pre-fill/generate an array with 10 undefined/0/null
     1. `[...Array(10)], Array(10).fill(0)`
 1. pre-fill/generate an array with a range of numbers (implement a range function)
@@ -110,7 +111,20 @@ A **subsequence** of an array is an ordered subset of the array's elements havin
       },{});
     for (word of words) groups[word[0]].push(word);
     ```
-
+1. cumulative sum arr
+    ```js
+    let res = [arr[0]];
+    for (let i = 1; i < arr.length; i++) {
+      res[i] = res[i-1] + arr[i];
+    }
+    ```
+1. cumulative product array
+    ```js
+    let res = [arr[0]];
+    for (let i = 1; i < arr.length; i++) {
+      res[i] = res[i-1] * arr[i];
+    }
+    ```
 ---
 ## Interleave k arrays of size n
 
@@ -410,14 +424,24 @@ res.reverse();
 
 ---
 ## multiply two numbers encoded as an array of digits
-## Delete dups from sorted/unsortted array.
-## Find max spread (EPI 5.6 Buy and Sell Stock once)
-## Enumerate primes upto n.
+## Delete dups from sorted array.
+
+```js
+let writeIdx = 1;
+  for (let i = 1; i < n; i++) {
+      if (arr[i] !== arr[i-1]) {
+          arr[writeIdx] = arr[i]
+          writeIdx++;
+      }
+  }
+```
+
+**related:**
+* climbing leader board - see [solution](./../../markdown/searching_and_sorting/climbing_leader_board.md)
 
 ---
-## More Problems
+## More
 
-1. find/count some combination of items in an array (that satisfy a condition, esp. math expression) with single pass + hash (e.g., two/three/zero sum) - Use a [Hash Tables](./markdown/hash_tables/hash_tables.md)
 1. find kth smallest (in nlogk, and n time) - use a [Heap](./markdown/heaps/heaps.md)
 1. implement stack/heap/map with an array.
 
@@ -425,8 +449,40 @@ sample online data (design packet sniffer)
 generate a random subset (sample offline data)
 generate a random permutation
 
-# Single Pass by maintaining derived state
+
+# Single pass
+
+## Notes
+
+**Strategy**
+
+1. list test cases
+1. ask questions and establish constraints.
+1. zoom out, identify key invariant
+2. zoom in, write down typical example - large and horizontally
+1. attempt first pass at algorthm if you can, otherwise proceed.
+1. list variables vertically to form table with array acting as x axis. Try to list variable in the order they are used in algorithm. Leave a little space between variables at 0th column in case initializing before 0th. Leave a little space above list to add conditional logic rows! Really nice if algorithm already done, so can mirror variable use in algorithm.
+1. init variables and underline. If starting pass at 1, then use zeroth column to initialize variables. If starting pass at 0, use -1 column to initialize.
+1. work way accross, don't carry over values that weren't updated. state at i-1 should be used to determine new state at i.
+1. refine algorithm as you go.
+1. try algorithm on another example and/or edge cases.
+1. make complexity explicit.
+1. code.
+
+## Find max spread (EPI 5.6 Buy and Sell Stock once)
+
+## Single Pass by maintaining derived state
 
 1. min cost of deleting repeating letters in string - see [write-up](./min_cost_of_deleting_repeating.md)
 
+1. product of all elements except current - see [solution](./../../javascript/arrays_and_strings/product_except_self.js)
+
+1. partition array into disjoint intervals - see [solution](javascript/arrays_and_strings/partition_into_disjoint_intervals.js)
+
+---
+## Single pass w/ hash
+
+1. find/count some combination of items in an array (that satisfy a condition, esp. math expression) with single pass + hash (e.g., two/three/zero sum) - Use a [Hash Tables](./markdown/hash_tables/hash_tables.md)
+
+---
 

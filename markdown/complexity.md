@@ -21,3 +21,8 @@
 4. cost of looking at all pairs/triples
 5. cost of looking at all subsets of n items
 6. cost of looking at all purmutations of n items
+
+## Cost of path-finding within a matrix
+
+Time: O(nm) - visiting each cell once and attempting to recurse in each of four possible directions results in ~ 4nm
+Space: O(nm) - if maintaining separate 2d array to mark visited cells. Can be reduced to constant-time space if you allowed to mutate the original array.

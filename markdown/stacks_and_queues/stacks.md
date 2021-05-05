@@ -91,6 +91,36 @@ def eval_rpn_tokens(tokens):
 see [full implementation](.\eval_rpn.py)
 
 ---
+## Evaluate mathmatical expression left to right implicit order of operation
+
+Expressions:
+`2+3-4*10` recursively defined as `(((2+3)-4)*10)`
+But not always left to right b/c order of operations:
+`6/2+1-4/2-1` recursively defined as `((((6/2)+1)-(4/2))-1)`
+
+```js
+var eval = function(str) {
+  if (!isNaN(str)) return parseInt(str);
+
+  const OPS = {
+      "+": (a,b) => a+b,
+      "-": (a,b) => a-b,
+      "*": (a,b) => a*b,
+      "/": (a,b) => Math.floor(a/b)
+  };
+
+  let tokens = tokenize(str); // by +- or */ if no +-'s
+  while (tokens.length > 1) {
+      let a = eval(tokens.pop()),
+          f = OPS[tokens.pop()],
+          b = eval(tokens.pop());
+      tokens.push(f(a,b))
+  }
+  return parseInt(tokens[0]);
+};
+```
+
+---
 ## Validate a bracketed expression for well-formedness
 
 1. Process chars left to right:

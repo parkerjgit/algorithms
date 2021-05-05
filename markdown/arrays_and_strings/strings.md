@@ -151,6 +151,8 @@ isAnagram = (a,b) => sortStr(a) === sortStr(b);
 ---
 ## Validate LR Transform
 
+pattern: define multiple independant invariants and check each.
+
 ```js
 function canTransform(start, end) {
 
@@ -306,10 +308,45 @@ def build_random_string2(k):
 ```
 
 ---
+## Compression: Run-length
+
+```js
+var runLengthCompress = function(chars) {
+  let write = 0,  // write index
+      run = 1,    // run length
+      n = chars.length;
+
+  for (let i = 0; i < n; i++) {
+
+      if (i === n - 1 || chars[i+1] !== chars[i]) { // end run
+
+          // 1. write char
+          chars[write++] = chars[i];
+
+          // 2. write count if run length > 1
+          if (run > 1) {
+              for (let digit of run.toString()) {
+                  chars[write++] = digit;
+              }
+              run = 1;
+          }
+
+      } else { // continue run
+          run++;
+      }
+  }
+
+  return write;
+};
+```
+(see [full implementation](./../../javascript/arrays_and_strings/run_length_compression.js))
+
+---
 ## More Problems
 
 1. Convert int (base 10) to string (e.g. 340 -> '340') (implement toString)
 2. Convert a string (e.g., '340' -> 340) to an int (implement parseInt)
 3. [Convert english representation of a number (e.g., 'three hundred forty' -> 340 ) to int](.\javascript\arrays_and_strings\convert_string_to_int.js)
+4. Group anagrams - see [solution](./../../javascript/arrays_and_strings/group_anagrams.js)
 
 tokenize string to be decoded

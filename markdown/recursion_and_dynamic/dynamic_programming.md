@@ -110,6 +110,9 @@ var minCostClimbingStairs = function(cost) {
 ```
 (see https://leetcode.com/problems/min-cost-climbing-stairs/submissions/)
 
+**related:**
+1. [number of ways to decode](./../../markdown/recursion_and_dynamic/num_ways_to_decode.js)
+
 ---
 ## Min cost (or max value, etc.) of combining exaustible items with variable cost & value (0/1 knapsack problem):
 
@@ -319,3 +322,53 @@ see https://leetcode.com/problems/guess-number-higher-or-lower-ii/discuss/84769/
 
 see how this problem relates to zero/ones problem!!!
 
+---
+## Validate: Is it possible to break a string into substrings that are all in a dictionary
+
+**Top-down:**
+
+```js
+var wordBreak = function(s, wordDict) {
+  const dict = new Set(wordDict)
+  const memo = new Map();
+  return canBreak(s, dict, memo);
+};
+
+function canBreak(s, dict, memo) {
+  if (dict.has(s)) return true;
+  if (memo.has(s)) return memo.get(s);
+
+  for (let i = 1; i < s.length; i++) {
+      if (dict.has(s.slice(0, i)) && canBreak(s.slice(i), dict, memo)) {
+          memo.set(s, true);
+          return true;
+      }
+  }
+  memo.set(s, false);
+  return false;
+}
+```
+**Bottom-up:**
+
+```js
+const wordBreak = (s, wordDict) => {
+  const dict = new Set(wordDict)
+  const dp = Array(s.length + 1).fill(false);
+
+  dp[0] = true;
+  for (let right = 1; right <= s.length; right++) {
+      for (let left = 0; left < right; left++) {
+          if (dp[left] && dict.has(s.slice(left, right))) {
+              dp[right] = true;
+              break;
+          }
+      }
+  }
+  return dp[s.length];
+};
+```
+
+---
+## More Problems:
+
+1. [number of ways to decode](./../../markdown/recursion_and_dynamic/num_ways_to_decode.js)

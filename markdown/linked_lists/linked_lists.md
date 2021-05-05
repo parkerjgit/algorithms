@@ -264,3 +264,4 @@ another good approach uses orderedDict (ie es6 map) to retrieve oldest entry. se
 1. delete node in middle, given only node (not given head)
 1. find cycles
 1. reverse list/sublist in single pass
+1. copy a linked list with random pointer - [solution](./../../javascript/linked_lists/copy_list_with_random_pointer.js)
