@@ -1,5 +1,0 @@
-E:\mydocs\dev\algorithms\csharp\ConsoleApp1\bin\Debug\netcoreapp2.0\RecursionAndDynamicProgramming.dll
-E:\mydocs\dev\algorithms\csharp\ConsoleApp1\obj\Debug\netcoreapp2.0\RecursionAndDynamicProgrammingTest.csprojResolveAssemblyReference.cache
-E:\mydocs\dev\algorithms\csharp\ConsoleApp1\obj\Debug\netcoreapp2.0\RecursionAndDynamicProgrammingTest.csproj.CoreCompileInputs.cache
-E:\mydocs\dev\algorithms\csharp\ConsoleApp1\obj\Debug\netcoreapp2.0\RecursionAndDynamicProgrammingTest.AssemblyInfoInputs.cache
-E:\mydocs\dev\algorithms\csharp\ConsoleApp1\obj\Debug\netcoreapp2.0\RecursionAndDynamicProgrammingTest.AssemblyInfo.cs
