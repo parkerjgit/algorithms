@@ -488,6 +488,7 @@ function partition(arr, l, r, pivotIdx) { // inclusive right
 }
 ```
 
+---
 ## Partition at array around a pivot value (and return the sortted index of pivot)
 
 ```js
@@ -514,6 +515,7 @@ function partition(arr, l, r, pivotVal) {
 };
 ```
 
+---
 ## Group words by first letter (eg. count subsequences)
 ## Group objects by property
 ## Group anagrams:
