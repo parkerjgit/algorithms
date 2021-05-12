@@ -28,6 +28,10 @@
 
 See [js-primatives](./javascript/js-primatives.md)
 
+**C#**
+
+See [notes/csharp/_notes.md](notes/csharp/_notes.md)
+
 ---
 ## Warm-up
 
