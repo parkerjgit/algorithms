@@ -37,9 +37,18 @@ See [notes/csharp/_notes.md](notes/csharp/_notes.md)
 
 1. Convert word/sentence/file into a list of chars/words/lines
     ```js
+    // javascript
     word.split('');
     sentence.split(' ');
     file.split('\n');
+    ```
+    ```csharp
+    // c#
+    asdf
+    ```
+    ```py
+    # python
+    asdf
     ```
 1. Get the shortest string of a list of strings
     ```js
