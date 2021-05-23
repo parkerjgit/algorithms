@@ -153,7 +153,7 @@ var fill = function(grid, row, col) {
 ```
 
 ---
-## Count closed regions
+## Count closed regions (ie. count islands)
 
 ```js
 var countClosedRegions = function(grid) {
