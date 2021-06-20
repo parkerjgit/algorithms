@@ -19,6 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnionFind", "UnionFind\Unio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashTablesTest", "HashTablesTest\HashTablesTest.csproj", "{76B65D75-8D08-475A-9C38-0B0583F7BCCE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Math", "Math\Math.csproj", "{5318885C-BD57-474A-95F3-0C44A98B5D9F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Matrices", "Matrices\Matrices.csproj", "{0815A2DC-652D-4E9B-AF0A-F45546EF2E66}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +61,14 @@ Global
 		{76B65D75-8D08-475A-9C38-0B0583F7BCCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76B65D75-8D08-475A-9C38-0B0583F7BCCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76B65D75-8D08-475A-9C38-0B0583F7BCCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5318885C-BD57-474A-95F3-0C44A98B5D9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5318885C-BD57-474A-95F3-0C44A98B5D9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5318885C-BD57-474A-95F3-0C44A98B5D9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5318885C-BD57-474A-95F3-0C44A98B5D9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0815A2DC-652D-4E9B-AF0A-F45546EF2E66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0815A2DC-652D-4E9B-AF0A-F45546EF2E66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0815A2DC-652D-4E9B-AF0A-F45546EF2E66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0815A2DC-652D-4E9B-AF0A-F45546EF2E66}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

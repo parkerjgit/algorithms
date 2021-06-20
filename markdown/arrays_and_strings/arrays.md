@@ -468,9 +468,9 @@ generate a random permutation
 1. try algorithm on another example and/or edge cases.
 1. make complexity explicit.
 1. code.
-
+---
 ## Find max spread (EPI 5.6 Buy and Sell Stock once)
-
+---
 ## Single Pass by maintaining derived state
 
 1. min cost of deleting repeating letters in string - see [write-up](./min_cost_of_deleting_repeating.md)
