@@ -1,4 +1,30 @@
 ## Notes
+
+**warm-up**
+
+1. [Factorialize a number](https://medium.freecodecamp.org/how-to-factorialize-a-number-in-javascript-9263c89a4b38)
+2. Find GCF
+3. Find LCM
+4. Factor a number
+4. Enumerate primes upto n
+5. Is power of
+6. Xth greatest
+6. Two/Three sum to provided value.
+5. Compute Factorial iterative/recursive
+6. Compute Fibonaci iterative/recursive
+7. generate range of numbers/characters
+1. Most Common Letter.
+2. Number of repeating letters.
+3. Compute powerset
+4. compute permutations of size n
+5. compute permutations of all subsets
+4. choose 1 combinations, eg., pairs, thriples, etc.
+
+**problems**
+
+1. convert number to roman numeral.
+2. more problems: [project euler](https://projecteuler.net/archives)
+
 ## multiple string representation of two integers
 
 ![]()

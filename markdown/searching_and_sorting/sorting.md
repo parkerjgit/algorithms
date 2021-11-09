@@ -463,6 +463,9 @@ function assignBikes(workers, bikes) {
 ## More problems
 
 1. Sort an almost sorted (ie k-sortted) array. - use a [Heap](./markdown/heaps/heaps.md)
+2. Implement a Quadradic and a Superlinear Time sort.
+3. sort a lot of integers
+4. Sort words by word length.
 
 # Grouping & Partitioning
 

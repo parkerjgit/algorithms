@@ -330,7 +330,11 @@ const sequenceReconstruction = function(superseq, seqs) {
 see [Union-Find](./markdown/union_find/union_find.md)
 
 ---
-## adf
+## More Questions
+
+1. Maze solver (EPI 18.1 Search a Maze)
+2. Implement paint bucket (EPI 18.2 - paint a boolean matrix)
+4. find the shortest path from a node to all other nodes in a directed graph.
 
 # Tries
 
