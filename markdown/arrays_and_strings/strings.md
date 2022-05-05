@@ -10,15 +10,15 @@
 **Python**
 
 1. convert string to list by simply casting to list: `list('asdf')`
-2. split space-separated substrings into list with `'asdf a s fd lkj'.split()`
-3. split lines into list with `s.split(\n)` or `s.splitlines()`
-3. split comma-seperated substrings into list with `'a,b,c,d'.split(',')`
-4. Use `s.partition(sep)` to partition s into (before, sep, after) tuple
-4. Use `min([s1,s2],key=len)` to get shortest of two (or more) strings, eg., when interleaving two strings.
-5. Use `sep.join(iter)` to concat strings in iterable with seperator.
-5. Use `s.strip()` to remove white space from ends, use `''.join(s.split())` to [remove all white space](https://stackoverflow.com/questions/8270092/remove-all-whitespace-in-a-string-in-python). `s.replace(' ','')` will also work, BUT only for spaces, NOT TABS and NEWLINES. Use slower `re.sub()` for stranger cases.
-6. `isdecimal()` `isdigit()` and `isnumeric()` are increasingly specific ways to test for integers. see [docs](https://docs.python.org/3/library/stdtypes.html#str.isdecimal) for difference.
-7. use `s.translate(str.maketrans('abc','123'))` to replace all chars in first string with corresponding chars in second.
+1. split space-separated substrings into list with `'asdf a s fd lkj'.split()`
+1. split lines into list with `s.split(\n)` or `s.splitlines()`
+1. split comma-seperated substrings into list with `'a,b,c,d'.split(',')`
+1. Use `s.partition(sep)` to partition s into (before, sep, after) tuple
+1. Use `min([s1,s2],key=len)` to get shortest of two (or more) strings, eg., when interleaving two strings.
+1. Use `sep.join(iter)` to concat strings in iterable with seperator.
+1. Use `s.strip()` to remove white space from ends, use `''.join(s.split())` to [remove all white space](https://stackoverflow.com/questions/8270092/remove-all-whitespace-in-a-string-in-python). `s.replace(' ','')` will also work, BUT only for spaces, NOT TABS and NEWLINES. Use slower `re.sub()` for stranger cases.
+1. `isdecimal()` `isdigit()` and `isnumeric()` are increasingly specific ways to test for integers. see [docs](https://docs.python.org/3/library/stdtypes.html#str.isdecimal) for difference.
+1. use `s.translate(str.maketrans('abc','123'))` to replace all chars in first string with corresponding chars in second.
 
 1. Check if set is a subset of another set with a set subtraction, eg., `len(Counter(s1) - Counter(s2)) == 0` if s1 chars are a subset of s2 chars. (see [Scramblies Kata](https://www.codewars.com/kata/55c04b4cc56a697bb0000048/solutions/python))
 1. Generate a random character with `random.choice(string.ascii_lowercase)` or `chr(random.randint(ord('a'), ord('z')))`
@@ -118,7 +118,6 @@ See [notes/csharp/_notes.md](notes/csharp/_notes.md)
 
 ---
 ## Is x a subsequence of y
-
 ```js
 var isSubsequence = function(subseq, str) {
     let i = 0;
