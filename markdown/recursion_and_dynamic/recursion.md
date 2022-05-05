@@ -34,7 +34,6 @@ demonstrate bottom-up and top-down recursion
     }
     ```
 
-
 ---
 ## Flatten a jagged array
 
@@ -335,6 +334,7 @@ const swap = (arr,a,b) => {[arr[a],arr[b]] = [arr[b],arr[a]]}
 
 ```
 
+---
 ## Generate permutations of variable size (android key pad problem)
 
 ```js

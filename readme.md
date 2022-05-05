@@ -7,7 +7,7 @@ A list of question sets grouped by problem type. Each set is preceeded by concis
 1. **[Arrays](./markdown/arrays_and_strings/arrays.md):** flatten an array, partion an array (Dutch flag problem), apply/restore a permutation of an array.
 1. **[Matrices](./markdown/matrices/matrices.md):** prefill matrix, convert betwee 2d/1d array representations, traverse/transpose matrix, maze solver, paint bucket, etc. count sqr submatrices, maximal sqr, surrounded regions
 1. **[Linked-List](./markdown/linked_lists/linked_lists.md):** implement with class/prototype/object/function and traverse iteratively/recursively
-1. **[Trees](markdown/trees_and_graphs/trees.md):** implement BT/BST and traverse DFT/BFT iterative/recursively in pre/in/post order, is BST valid
+> 1. **[Trees](markdown/trees_and_graphs/trees.md):** implement BT/BST and traverse DFT/BFT iterative/recursively in pre/in/post order, is BST valid
 1. **[Stack](./markdown/stacks_and_queues/stacks.md):** normalize pathnames, rpn, test for well-formed expression, implement min/max API -
 1. **[Queue](markdown/stacks_and_queues/queues.md):** implement queue with array, stack, implement min/max API
 1. **[Heap](./markdown/heaps/heaps.md):** implement minheap, implement priority queue, find k most frequent words, sort k sortted -
