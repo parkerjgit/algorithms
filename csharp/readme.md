@@ -1,22 +1,56 @@
-# Algorithms in Csharp
+# Csharp
 
-## Getting Started
+## dotnet cli
 
-### visual studio
+### create a class library project
 
-1. open test explorer: `Test > Test Explorer`
-2. run test(s)
+```bash
+# from csharp/
+mkdir HashTables
+cd HashTables
+dotnet new classlib -f "net5.0" # defaults location (-o) and name (-n) to current directory
+```
 
-### vs code
+### create a mstest project
 
-1. run all tests: `dotnet test`
-2. run one test: `dotnet test .\ArraysTest\`
+```bash
+# from csharp/
+mkdir HashTablesTest
+cd HashTablesTest
+dotnet new mstest -f "net5.0" # defaults location (-o) and name (-n) to current directory
+```
 
-https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-test#examples
+### run tests
 
-## [Create a solution]() (i.e., create a root-level container, e.g. "AlgorithmsInCSharp")
+run all tests
+  ```bash
+  # from csharp/
+  dotnet test
+  ```
+run all tests for project
+  ```bash
+  # from csharp/
+  dotnet test ArrayTest/
+  ```
+run single test
+  ```
+  ???
+  ```
 
-## [Create a project](https://docs.microsoft.com/en-us/dotnet/core/tutorials/library-with-visual-studio#create-a-class-library-project) (i.e., create a *class library* project for a problem set, e.g., "Strings")
+### getting help
+
+```
+dotnet --help
+dotnet new --list
+dotnet new classlib --help
+dotnet new mstest --help
+```
+
+## Visual Studio
+
+### Create a solution (i.e., a root-level container, e.g. "AlgorithmsInCSharp")
+
+### [Create a class library project](https://docs.microsoft.com/en-us/dotnet/core/tutorials/library-with-visual-studio#create-a-class-library-project) (for a problem set, e.g., "Strings")
 
 1. Right click solution (in navigator)
 2. Add > New Project > Class Library
@@ -24,16 +58,8 @@ https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-test#examples
 4. Target .NET 5.0 (or current)
 5. Build > Build Solution (to verify)
 
-## [Create an app]() (i.e., add a *console* app to a problem set project for a problem, e.g., "NSum")
+### Add a console app to the solution (for a problem, e.g., "NSum")
 
-## Add a project reference (i.e., dependancy)
+### Add a project reference
 
 https://docs.microsoft.com/en-us/dotnet/core/tutorials/library-with-visual-studio
-
-## [Create a test]() for a console app
-
-## update framework/sdk
-
-## Troubleshooting
-
-### migrating Arrays project from .net standard 2.0 to .net 5.0?
