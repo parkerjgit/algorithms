@@ -3,7 +3,7 @@
 A list of question sets grouped by problem type. Each set is preceeded by concise notes and procedes from easy to medium difficultly (a few problems that might be considered hard).
 
 1. **[Complexity](./markdown/complexity.md):** Cost of bin search, merge sort, looking at each item once, looking at all pairs/triplets/subsets/purmutations.
-1. **[Strings](./markdown/arrays_and_strings/strings.md):** Palindrome checker, find a substring, find the longest substring with unique characters.
+> 1. **[Strings](./markdown/arrays_and_strings/strings.md):** Palindrome checker, find a substring, find the longest substring with unique characters.
 1. **[Arrays](./markdown/arrays_and_strings/arrays.md):** flatten an array, partion an array (Dutch flag problem), apply/restore a permutation of an array.
 1. **[Matrices](./markdown/matrices/matrices.md):** prefill matrix, convert betwee 2d/1d array representations, traverse/transpose matrix, maze solver, paint bucket, etc. count sqr submatrices, maximal sqr, surrounded regions
 1. **[Linked-List](./markdown/linked_lists/linked_lists.md):** implement with class/prototype/object/function and traverse iteratively/recursively
