@@ -2,13 +2,18 @@
 
 ## dotnet cli
 
+### prerequisites
+
+1. dotnet cli - https://learn.microsoft.com/en-us/dotnet/core/install/
+1. .net framwork v6
+
 ### create a class library project
 
 ```bash
 # from csharp/
 mkdir HashTables
 cd HashTables
-dotnet new classlib -f "net5.0" # defaults location (-o) and name (-n) to current directory
+dotnet new classlib -f "net6.0" # defaults location (-o) and name (-n) to current directory
 ```
 
 ### create a mstest project
@@ -17,7 +22,7 @@ dotnet new classlib -f "net5.0" # defaults location (-o) and name (-n) to curren
 # from csharp/
 mkdir HashTablesTest
 cd HashTablesTest
-dotnet new mstest -f "net5.0" # defaults location (-o) and name (-n) to current directory
+dotnet new mstest -f "net6.0" # defaults location (-o) and name (-n) to current directory
 ```
 
 ### run tests
