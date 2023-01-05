@@ -20,7 +20,16 @@ A greedy algorithm use heuristic to make a locally optimal choice at each step w
 1. Sort denominations by size
 2. Loop over each denomination
 3. Take as many of each denomination as you can
-*  Note, this is not optimum for all denominations, eg. British Pence, came in [30, 24, 12, 6, 3, 1], but is optimum for US currency, as well as denominations of the general form [1, r, r2, r3,...].
+
+**Example:**
+
+```
+Denominations:        100   50    25    10    5     1
+Count:          0     4     4     5     6     6     7   --> return
+Remaining:      436   36    36    11    1     1     0
+```
+
+**Python:**
 
 ```py
 def change_making(cents):
@@ -33,6 +42,9 @@ def change_making(cents):
 
     return num_coins
 ```
+
+>  Note, this is not optimum for all denominations, eg. British Pence, came in [30, 24, 12, 6, 3, 1], but is optimum for US currency, as well as denominations of the general form [1, r, r2, r3,...].
+
 ---
 ## Min covering set
 

@@ -31,10 +31,12 @@
 ---
 ## Search a sorted array (Binary Search)
 
+![](../../images/bin_search.png)
+
 Recursive Passing Indices
 
 ```js
-function binSearch(arr, left, right, target) {
+function binSearch(arr, left, right, target) { // inclusive right
 
   let mid = left + Math.floor((right - left)/2);
 
@@ -54,11 +56,11 @@ function binSearch(arr, left, right, target) {
 Iterative Passing Indices
 
 ```js
-function binSearch(arr, left, right, target) {
+function binSearch(arr, left, right, target) { // exclusive right
 
   let [left, right] = [0, arr.length];
 
-  while (left < right) { // pretty sure don't want left <= right. check this.
+  while (left < right) { 
     let mid = left + Math.floor((right - left)/2);
 
     if (arr[mid] === target) {
