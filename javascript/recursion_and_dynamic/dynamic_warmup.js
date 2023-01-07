@@ -1,3 +1,5 @@
+// import { tests } from "../utils/testing";
+let tests = require('../utils/testing.js')
 
 // memo function for single arg
 const memoize = (fn) => {
@@ -17,7 +19,7 @@ const problems = [
       {
         description: 'top-down recursion without memoization',
         fn: function fib(n) {
-          return (n < 2) 
+          return (n < 2)
             ? n
             : fib(n-2) + fib(n-1);
         }
@@ -39,7 +41,7 @@ const problems = [
         description: 'top-down recursion with memoization function',
         fn: function(n) {
           return memoize(function fib(n) {
-            return (n < 2) 
+            return (n < 2)
               ? n
               : fib(n-2) + fib(n-1);
           })(n)
@@ -66,14 +68,14 @@ const problems = [
     ],
     tests: [
       {
-        expectation: 'return nth number in fibonacci sequence for n = 10',
+        expectation: 'returns nth number in fibonacci sequence for n = 10',
         params: [10],
         expected_output: 55
       },
       {
-        expectation: 'return nth number in fibonacci sequence for n = 40',
+        expectation: 'returns nth number in fibonacci sequence for n = 40',
         params: [30],
-        expected_output: 832040 
+        expected_output: 832040
       }
     ]
   }
@@ -81,18 +83,4 @@ const problems = [
 
 // Test
 
-problems.forEach(({ problem, solutions, tests }) => {
-  describe(`Warm-up: ${problem}`, function () {
-    solutions.forEach((solution, i) => {
-      tests.forEach(test => {
-        let t0 = performance.now();
-        let results = solution.fn(...test.params);
-        let t1 = performance.now();
-        let timing = t1 - t0;
-        it(`Solution ${i + 1} ${test.expectation} using ${solution.description} (timing: ${timing} ms)`, function () {
-          expect(results).toEqual(test.expected_output)
-        })
-      })
-    })
-  })
-})
+tests('Warm-up', problems);

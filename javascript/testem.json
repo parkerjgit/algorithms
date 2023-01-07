@@ -9,6 +9,7 @@
         "searching_and_sorting/*.js",
         "stacks_and_queues/*.js",
         "trees_and_graphs/*.js",
-        "unsortted/*.js"
+        "unsortted/*.js",
+        "utils/*.js"
     ]
 }
