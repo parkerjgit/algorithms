@@ -9,7 +9,7 @@ to each point in region by traversing adjacent pixels.
 
 source: adapted from EPI 18.2 Paint a Boolean Matrix
 
-### Boardwork (Design)
+### Design
 
 ![](../../images/paint_bucket.jpg)
 
@@ -18,14 +18,14 @@ source: adapted from EPI 18.2 Paint a Boolean Matrix
 Time: O(mn)
 Space: O(mn)
 
-### Codework (Test)
+### Implementation
 
 Helper functions.
 
 ```javascript
 const outOfBounds = (grid, r, c) => {
     return [
-        r < 0, r >= grid.length, 
+        r < 0, r >= grid.length,
         c < 0, c >= grid[0].length
     ].some(test => test)
 }
@@ -50,7 +50,7 @@ function fill(img, i, j) {
 
     function _fill(i,j) {
 
-        if (img[i][j] !== newColor) {       
+        if (img[i][j] !== newColor) {
             img[i][j] = newColor;
 
             let neighbors = getNeighbors(img, i, j);
@@ -78,7 +78,7 @@ function fill2(img, i, j) {
         img[i][j] = newColor;
         let neighbors = getNeighbors(img, i, j);
         neighbors.forEach(([i, j]) => {
-            if (img[i][j] !== newColor) { 
+            if (img[i][j] !== newColor) {
                 q.push([i, j])
             }
         })
@@ -86,3 +86,8 @@ function fill2(img, i, j) {
 }
 ```
 (from [paint_bucket.js](../../javascript/trees_and_graphs/paint_bucket.js))
+
+### Demo
+
+<iframe width="100%" height="834" frameborder="0"
+  src="https://observablehq.com/embed/76789f6c016bee21?cells=simple_paint_bucket"></iframe>

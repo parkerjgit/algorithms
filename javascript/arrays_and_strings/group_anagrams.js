@@ -1,3 +1,5 @@
+(() => {
+    
 /*
 Given an array of strings strs, group the anagrams together. You can return the answer in any order.
 
@@ -5,6 +7,7 @@ An Anagram is a word or phrase formed by rearranging the letters of a different 
 
 source: Group Anagrams (lc 49) - https://leetcode.com/problems/group-anagrams/
 */
+
 
 /**
  * @param {string[]} strs
@@ -63,3 +66,5 @@ function counter(s) {
   }
   return JSON.stringify(res);
 }
+
+})()
