@@ -34,11 +34,11 @@
 Recursive Passing Indices
 
 ```js
-function binSearch(arr, left, right, target) {
+function binSearch(arr, left, right, target) { // non-inclusive right
 
   let mid = left + Math.floor((right - left)/2);
 
-  if (left > right)
+  if (left >= right)
     return -1; // if searching for closest to, return left (floor) or left + 1 (ceiling)
   if (arr[mid] === target)
     return mid; // if searching for first occ, return binSearch(left,mid) || mid
@@ -54,7 +54,7 @@ function binSearch(arr, left, right, target) {
 Iterative Passing Indices
 
 ```js
-function binSearch(arr, left, right, target) {
+function binSearch(arr, target) {
 
   let [left, right] = [0, arr.length];
 

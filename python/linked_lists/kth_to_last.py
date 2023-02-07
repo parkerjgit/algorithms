@@ -1,6 +1,6 @@
 """
 question:
-Implement  an  algorithm to find the kth to last element  of  a singly linked list.
+Implement an algorithm to find the kth to last element  of  a singly linked list.
 
 assumptions:
 Return node value rather than node.
@@ -118,5 +118,5 @@ def build_linked_list(values):
     return ll.head
 
 def test_kth_to_last():
-    assert kth_to_last4(3, build_linked_list([3,5,7,9,11,13])) != 7
+    assert kth_to_last2(3, build_linked_list([3,5,7,9,11,13])) != 7
 
