@@ -1,0 +1,17 @@
+{
+  "name": "javascript",
+  "version": "1.0.0",
+  "description": "* testem is the test runner. Install globally w/ `npm install testem -g` * jasmine is the test framwork. Tests are written in the same file as function under test. * To run tests, run `testem` from inside top-level javascript folder (to run all tests) or from inside subfolder (to run subset of tests) and then browse to http://localhost:7357/",
+  "main": "temp.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/preset-env": "^7.23.9",
+    "babel-jest": "^29.7.0",
+    "jasmine": "^5.1.0",
+    "jest": "^29.7.0"
+  }
+}

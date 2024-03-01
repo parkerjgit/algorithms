@@ -1,4 +1,4 @@
-function tests(label, problems) {
+export function runTests(label, problems) {
   problems.forEach(({ problem, solutions, tests }) => {
     describe(`${label}: ${problem}`, function () {
       solutions.forEach((solution, i) => {
@@ -15,5 +15,3 @@ function tests(label, problems) {
     })
   })
 }
-
-exports = {tests}

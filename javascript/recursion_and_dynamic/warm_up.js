@@ -2,7 +2,7 @@
 
 // *************************************************************************
 // 1. compute factorial of n
-// 
+//
 // Solve with top-down and bottom-up recursion
 // recall factorial(5) = 5 x 4 x 3 x 2 x 1 = 5 x factorial(4)
 // and factorial of n can be defined recursively as n x factorial(n-1)
@@ -15,7 +15,7 @@
 //     if (n === 0) return 1
 //     if (n <= 2) return n;
 //     return n * topDownFactorial(n-1);
-// } 
+// }
 
 // Top-down with Memoization
 // Time: O(n)
@@ -25,7 +25,7 @@ const topDownFactorial = (n) => {
     if (!memo[n])
         memo[n] = n * topDownFactorial(n-1)
     return memo[n];
-} 
+}
 
 // NOTE: prefer array over object for map if keys are 0,1,2,...
 
@@ -65,7 +65,7 @@ describe('bottom up factorial', function() {
 
 // *************************************************************************
 // 1. compute fibonacci of n
-// 
+//
 // Solve with top-down and bottom-up recursion
 // recall factorial(5) = 5 x 4 x 3 x 2 x 1 = 5 x factorial(4)
 // and factorial of n can be defined recursively as n x factorial(n-1)
@@ -86,10 +86,10 @@ const fib = (n) => {
   // flatten arbitrarly nested array
 
   const flatten = array => array.reduce((a, b) => {
-    return (Array.isArray(b)) 
+    return (Array.isArray(b))
       ? a.concat(flatten(b))
       : a.concat(b)
   }, [])
-  
+
   const arr = [[1,[2,[3]]],4,[5,[6,[7]]]]
   const flattenedArray = flatten(arr)

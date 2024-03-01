@@ -5,7 +5,7 @@
 * Stacks and Queues and great when its ok to black box the data (i.e., no search or arbitrary access)
 * First In First Out (FIFO) are the "Fairest". Trickier to implement than stacks so use when order matters, or when want to minimize max time any item spends in the container, or when FIFO ordering is required as it is for *Breadth First Search*. Use *Enqueue* and *Dequeue* to insert/remove items into/from back/front of queue.
 * Queues typically implemented using either arrays or linked lists. If upper bound on the size of the container is known in advance, use a static array, else use a linked list (or dynamic array).
-* If implementing with array, use the end of array for the operation you want to optimize for!
+* If implementing with array, use the end of array for the operation (i.e., enqueue or dequeue) you want to optimize for!
 * a deque is a double-ended queue (or stack i guess), implemented as doubly linked-list or as a dynamic array. javascript/python arrays implement deques b/c you can push/pop both sides.
 * enqueue/dequeue operations on front of deque are often called push/pop and enqueue/dequeue on back go by many names like inject/eject, etc.
 * Use queue for buffering messages/moves/etc., processing data stream, eg. stream avg problem
@@ -42,46 +42,71 @@ queue.enqueue(2)
 queue.dequeue()
 ```
 
-*Note*, possible to implement queue with array so that either end is the head. So, instead of using `insert(0)` to enqueue start and `pop()` to dequeue last element, could use `append()` to enqueue end and `pop(0)` to dequeue first element. `append()` and `pop()` are faster so if want fast dequeue pop off the end of the array. Of course, if order doesn't matter, we should be using a stack, so we can `pop()` AND `append()` off the end of the array in constant time. 
+*Note*, possible to implement queue with array so that either end is the head. So, instead of using `insert(0)` to enqueue start and `pop()` to dequeue last element, could use `append()` to enqueue end and `pop(0)` to dequeue first element. `append()` and `pop()` are faster so if want fast dequeue pop off the end of the array. Of course, if order doesn't matter, we should be using a stack, so we can `pop()` AND `append()` off the end of the array in constant time.
 
 ---
 ## Javascript: Implementing queue with Array (using closure, object delegation, protypes, and classes)
 
 ```js
-// 1. quick and dirty
+// quick and dirty
 let q = [];
 
-// 2. put the methods each instance
+// Constructor function (creates full copy of base object)
 function Queue() {
     return {
-        data: [],
-        enqueue(val) { 
-          return this.data.unshift(val)   // -> back
-        },   
-        dequeue() { 
-          return this.data.pop()          //    front ->
-        }              
+        items: [],
+        enqueue(val) {
+          return this.items.unshift(val)
+        },
+        dequeue() {
+          return this.items.pop()
+        }
     }
 }
 let q = new Queue();
 
-// 3. use pojo (behavior delegation)
+// behavior delegation (creates copy of items array when initialized, but delegates all function calls to base object via prototype chain)
 let queue = {
-  init() { 
-    this.data = []; 
+  init() {
+    this.items = [];
   },
-  enqueue(val) { 
-    return this.data.unshift(val);
+  enqueue(item) {
+    return this.items.unshift(item);
   },
-  dequeue() { 
-    return this.data.pop() ;
+  dequeue() {
+    return this.items.pop() ;
   }
 }
-let q = Object.create(queue);
-q.init();
+let q = Object.create(queue); // 1. creates empty object with queue prototype
+q.init();                     // 2. creates items array on object
 
-// 4. using prototypes
-// todo...
+// Setting prototype explicitly. Affect is the same as behavioral delegation if no inheritance further up chain.
+function Queue() {
+  this.items = [];
+}
+Queue.prototype = {
+  enqueue(item) {
+    return this.items.unshift(item);
+  },
+  dequeue() {
+    return this.items.pop() ;
+  }
+}
+let q = new Queue()
+
+// classes
+class Queue {
+  constructor() {
+    this.items = []
+  }
+  enqueue(item) {
+    return this.items.unshift(item);
+  }
+  dequeue() {
+    return this.items.pop() ;
+  }
+}
+let q = new Queue()
 ```
 
 **notes:**
@@ -96,7 +121,7 @@ q.init();
 We can acheive constant-time enqueue/dequeue using a linked list, but that comes with some added overhead.
 
 ---
-## Implement queue with stacks 
+## Implement queue with stacks
 
 1. maintain two stacks: enq and deq
 2. enqueue: push onto enq stack.
@@ -114,7 +139,7 @@ We can acheive constant-time enqueue/dequeue using a linked list, but that comes
 
 ```
   0   1   2   3   4   5   6      T = (H + Cnt) % n
-| H |   |   |   |   |   |   |                           
+| H |   |   |   |   |   |   |
 | H | * | * | * | T |   |   |    T = (0 + 4) % 7 = 4
 |   | H | * | * | * | T |   |    T = (1 + 4) % 7 = 5
 | * | T |   |   | H | * | * |    T = (4 + 4) % 7 = 1
@@ -133,14 +158,14 @@ We can acheive constant-time enqueue/dequeue using a linked list, but that comes
 function CQ(size) {
   let data = [];
   let head = 0; // exclusive (derived tail is inclusive)
-  let count = 0; 
+  let count = 0;
 
   return {
     enq(val) {
       count++;
       let tail = (head + count) % size;
       data[tail] = val;
-      
+
     },
     deq() {
       head = (head + 1) % size; // increment first b/c head is exclusive
@@ -191,7 +216,7 @@ function deque() {
     data: [],
     enqueue(val)  { return this.data.push(val)    },  //             data <- enqueue
     eject()       { return this.data.pop()        }   //             data -> eject
-    dequeue()     { return this.data.shift()      },  //  dequeue <- data 
+    dequeue()     { return this.data.shift()      },  //  dequeue <- data
     inject(val)   { return this.data.unshift(val) },  //   inject -> data
   }
 }

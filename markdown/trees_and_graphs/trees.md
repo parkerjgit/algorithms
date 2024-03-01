@@ -3,13 +3,13 @@
 ## Notes
 
 1. Binary trees are linked lists with left and right pointers (plus optional parent pointer). They typically hold a single value (two in the case of interval), and unlike BSTs are not sortted.
-2. Binary Search Tree (BST) is a sorted binary tree with **no duplicates**, such that: for any node with key x, all nodes in the left subtree have key values < x while all nodes in the right subtree have key values > x.
+2. Binary Search Tree (BST) is a **sorted** binary tree with **no duplicates**, such that: for any node with key x, all nodes in the left subtree have key values < x while all nodes in the right subtree have key values > x.
 3. BSTs are fast to search AND update - Sorted arrays allow for fast search, and [double] linked lists support flexible update, but neither support *both* fast search and flexible update. **BSTs address this need**. Lookup, insert and delete all take time proportional to height or logn for balanced trees.
-3. **Think of BSTs as an alternative to hash tables or one way to implement them!**
+3. **Think of BSTs as an alternative to hash tables OR one way to implement them!**
 4. BSTs are fundamentally recursive - An important observation of BSTs is that the top-most node is the root, and all other nodes are the root of a subtree that is also a binary search tree. This of course describes a recursive structure. Furthermore, since a node defines a tree, functions that operate on trees often take the root as the argument rather than the tree, so take note of which is being passed.
 5. Search a BST in O(logn) by recursing left *or* right until item is found or node is null.
 6. Insert into BST in O(logn) by recursing left or right until the empty spot is found.
-7. Unlike Hash table, its easy to find Min/Max of BST (the leftmost/rightmost element). Of course hash table wins with O(1) lookup (vs. O(logn))
+7. Unlike Hash table, its easy to find Min/Max of BST (the leftmost/rightmost element). Of course hash table are faster to search with O(1) lookup (vs. O(logn))
 8. Both BSTs and hash tables use O(n) space (BSTs use little more in practice)
 8. Visiting all the nodes in a rooted binary tree is an important component of many algorithms. It is a special case of traversing all the nodes and edges in a graph. One application of tree traversal is listing the nodes of a tree in order. There are four ways to move through a tree, which produces four distinct node orderings that fall under categories of *breadth-first* and *depth-first*:
 8. There are two ways to traverse a BST: breadth-first traversal (BFT) or depth-first traversal (DFT)
@@ -17,7 +17,7 @@
 10. Implement a DFT iteratively with a Stack: push root to stack, then while stack is not empty pop a node and push its children.
 11. Implement a DFT by recursing left AND right until no more nodes.
 12. Implement In-, Pre- and Post- order DFTs by changing the order in which you visit node and recurse on children.
-13. Ok to store complex values in BST provided they are distinct and sortable, eg. can store intervals in a binary tree (see book a time in calendar problem)
+13. Ok to store complex values in BST **provided they are distinct and sortable**, eg. can store intervals in a binary tree (see book a time in calendar problem)
 14. **Avoid putting mutable values in BST** or be sure to remove mutable object before updating it and adding it back. (otherwise it will be in wrong spot and lookup will likely fail!)
 13. Compute all paths of Binary Tree with a pre-order DFT, handing approp. parent data (partial sum, path concat, etc.) off to children recursively as you go down tree. (if computing number represented by root-to-leaf paths shift number over by multiplying by base then adding next digit. If computing leaf-to-root representation, then  add next digit times base^depth to number) (EPI 9.5)
 
@@ -32,6 +32,8 @@ https://www.youtube.com/watch?v=7z2Ki44Vs4E
 ---
 ## Implement a BST
 
+Simplest implementation does not distinguish between a tree and node and tree:
+
 ```py
 class Node:
     def __init__(self, value, left = None, right = None):
@@ -39,11 +41,25 @@ class Node:
         self.right = right
         self.value = value
 
+my_bst = new Node(1)
+my_bst.insert(2)
 ```
+
+In practice, wrapper class is also typically implemented:
+
+```py
+class BST:
+    def __init__(self):
+        self.root = None
+
+my_bst = new BST()
+my_bst.insert(1)
+```
+
 (see [full implementation](.\..\..\javascript\trees_and_graphs\bst.js))
 
 ---
-## Search a BST
+## > Search a BST
 
 Search a BST by recursing left or right until node is null or item is found. Since empty nodes are null pointers, we reduce two base cases into one.
 
@@ -66,7 +82,7 @@ def search(node, value):
 ---
 ## Insert a new node into a BST
 
-Insert into BST by recursing left or right until the empty spot is found. The trick to insertion is making sure you test children for empty slots rather than recursing on child before testing for existance as you do with search. This is a slightly atypical recursive pattern b/c no base case before recursion condition. This is because we *know* we are going to find a spot for new node and bst ensures we will follow minimum path straight to empty slot.
+Insert into BST by recursing left or right until the empty spot is found. The trick to insertion is making sure you test children for empty slots rather than recursing on child before testing for existance as you do with search. This is a slightly atypical recursive pattern b/c no base case before recursion condition. This is because we *know* we are going to find a spot for new node and we need to ensure we find it while visiting its parent so that we can wire it up.
 
 ```py
 def insert(node, new_value):
@@ -74,12 +90,12 @@ def insert(node, new_value):
     if node.value < new_value:
         if node.right:
             insert(node.right, new_value)
-        else:
+        else: # found it!
             node.right = Node(new_value)
     else:
         if node.left:
             insert(node.left, new_value)
-        else:
+        else: # found it!
             node.left = Node(new_value)
 ```
 

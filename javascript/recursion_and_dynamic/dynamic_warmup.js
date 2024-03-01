@@ -1,6 +1,3 @@
-// import { tests } from "../utils/testing";
-let tests = require('../utils/testing.js')
-
 // memo function for single arg
 const memoize = (fn) => {
   let hash = {};
@@ -12,9 +9,10 @@ const memoize = (fn) => {
   }
 }
 
-const problems = [
+export const problems = [
   {
     problem: `Find nth number in fibonacci sequence`,
+    source: 'unknown',
     solutions: [
       {
         description: 'top-down recursion without memoization',
@@ -80,7 +78,3 @@ const problems = [
     ]
   }
 ];
-
-// Test
-
-tests('Warm-up', problems);

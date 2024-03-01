@@ -4,8 +4,8 @@
 
 * Stacks and Queues and great when its ok to black box the data (i.e., no search or arbitrary access). Stacks are best when order really doesn't matter.
 * Use *Push* and *Pop* to insert/remove items from a stack, *Peek* to get top without removing. Theses are constant time `O(1)` operations!
-* Stacks can be implemented using either arrays or linked lists. Arrays are preferable b/c less overhead (and push/pop already avail on Array.prototype)
-* Stack can also be implemented with queues. why?
+* Stacks can be implemented using either arrays or linked lists. Arrays are preferable b/c less overhead. Linked list are more flexible. Dynamic arrays (i.e., lists) are typically used for convenience.
+* Stack can also be implemented with two queues (not useful in practice)
 * Applications of Stacks:
   * Balancing of parentheses in an expression (Dijkstra's two-strack algorithm)
   * Infix to Postfix /Prefix conversion
@@ -63,7 +63,18 @@ function normalizePathname(pathname) {
 ---
 ## Evaluate RPN expression
 
+**Insight:**
+
 RPN expression `2,3,+,4,-,10,*` recursively defined as `(((2,3,+),4,-),10,*)`.
+
+**Algorithm:**
+
+1. if 1 token, return it
+2. if 2 tokens, throw error
+3. if 3 or more tokens:
+  * operation is last item
+  * x is 2nd to last item
+  * y is result of recursing on rest
 
 **Python:**
 
@@ -75,12 +86,12 @@ def eval_rpn_tokens(tokens):
           '*': lambda x, y: x * y,
           '/': lambda x, y: x / y }
 
-  # base cases
+  # base cases (1 or 2 tokens)
   if len(tokens) == 1: return float(tokens[0])
   if len(tokens) == 2: raise ValueError("input must be a valid RPN expression")
 
                                       #            -2 -1
-  # recurse                           # [ 2, 3, + , 4, +]
+  # recurse (> 3 tokens)              # [ 2, 3, + , 4, +]
   x = eval_rpn_tokens(tokens[:-2])    # [[2, 3, +]      ]
   y = float(tokens[-2])               # [           4   ]
   fn = ops[tokens[-1]]                # [              +]
@@ -91,7 +102,7 @@ def eval_rpn_tokens(tokens):
 see [full implementation](.\eval_rpn.py)
 
 ---
-## Evaluate mathmatical expression left to right implicit order of operation
+## > Evaluate mathmatical expression left to right implicit order of operation
 
 Expressions:
 `2+3-4*10` recursively defined as `(((2+3)-4)*10)`
